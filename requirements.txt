@@ -1,0 +1,7 @@
+google-generativeai
+youtube-transcript-api
+yt-dlp
+python-dotenv
+pydantic
+markdown
+python-frontmatter

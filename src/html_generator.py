@@ -1,0 +1,186 @@
+import os
+import re
+import frontmatter
+import markdown
+from config import OUTPUT_DIR
+
+
+def _build_hero_image_html(video_id: str) -> str:
+    """
+    サムネイル画像のHTMLを生成する。
+    まずローカルに抽出済みフレームがあればそれを使い、
+    なければYouTubeのサムネイルURLを直接参照する。
+    """
+    # ローカルフレームディレクトリを確認（extract_framesが出力するディレクトリ）
+    frames_dir = os.path.join(OUTPUT_DIR, f"{video_id}_frames")
+    if os.path.isdir(frames_dir):
+        files = sorted([f for f in os.listdir(frames_dir) if f.endswith(".jpg")])
+        if files:
+            # 最初のフレームをヒーローに使う（最小秒数 = 冒頭に近い）
+            first_frame = files[0]
+            rel_path = os.path.join(f"{video_id}_frames", first_frame).replace("\\", "/")
+            return (
+                f'<div class="hero-image">'
+                f'<img src="{rel_path}" alt="動画サムネイル" loading="lazy">'
+                f'</div>'
+            )
+
+    # フォールバック: YouTubeサムネイルをURLで参照
+    thumb_url = f"https://img.youtube.com/vi/{video_id}/maxresdefault.jpg"
+    return (
+        f'<div class="hero-image">'
+        f'<img src="{thumb_url}" alt="動画サムネイル" loading="lazy" '
+        f'onerror="this.src=\'https://img.youtube.com/vi/{video_id}/hqdefault.jpg\'">'
+        f'</div>'
+    )
+
+
+def _inject_scene_images(html_content: str, video_id: str, scenes: list) -> str:
+    """
+    HTML本文中の <h2> タグの直後に、対応するシーン画像を挿入する。
+    
+    scenes: analysis_result["重要シーン"] のリスト
+            [{"秒数": 45, "説明": "..."}, ...]
+    """
+    frames_dir = os.path.join(OUTPUT_DIR, f"{video_id}_frames")
+    if not os.path.isdir(frames_dir) or not scenes:
+        return html_content
+
+    # フレームファイルを秒数でインデックス化
+    frame_files = {}
+    for f in os.listdir(frames_dir):
+        if f.endswith(".jpg") and f.startswith("frame_"):
+            # "frame_00045s.jpg" → 45
+            try:
+                sec = int(f.replace("frame_", "").replace("s.jpg", ""))
+                frame_files[sec] = os.path.join(f"{video_id}_frames", f).replace("\\", "/")
+            except ValueError:
+                pass
+
+    if not frame_files:
+        return html_content
+
+    # シーンを秒数でソートし、最初のフレームは hero に使っているのでスキップ
+    sorted_scenes = sorted(scenes, key=lambda s: s.get("秒数", 0))
+    first_sec = sorted(frame_files.keys())[0] if frame_files else None
+
+    # h2タグを順番に見つけて、各々の直後にシーン画像を挿入
+    h2_pattern = re.compile(r'(<h2[^>]*>.*?</h2>)', re.DOTALL)
+    h2_positions = [(m.start(), m.end(), m.group(0)) for m in h2_pattern.finditer(html_content)]
+
+    if not h2_positions:
+        return html_content
+
+    # 各h2に対応するシーンを割り当て（h2の数とシーン数が一致しなくてもOK）
+    # 最初のh2にはheroの次のシーンから割り当て
+    usable_scenes = [s for s in sorted_scenes if s.get("秒数") != first_sec]
+
+    result = html_content
+    offset = 0  # 挿入によるインデックスのずれ
+
+    for i, (start, end, h2_tag) in enumerate(h2_positions):
+        if i >= len(usable_scenes):
+            break
+
+        scene = usable_scenes[i]
+        sec = scene.get("秒数", 0)
+        caption = scene.get("説明", "")
+
+        # 最も近いフレームファイルを探す
+        available_secs = list(frame_files.keys())
+        if not available_secs:
+            break
+        closest_sec = min(available_secs, key=lambda s: abs(s - sec))
+        rel_path = frame_files[closest_sec]
+
+        img_html = (
+            f'\n<div class="scene-capture">'
+            f'<img src="{rel_path}" alt="{caption}" loading="lazy">'
+            f'<div class="scene-caption">{caption}</div>'
+            f'</div>\n'
+        )
+
+        # h2タグの直後に挿入
+        insert_pos = start + offset + len(h2_tag)
+        result = result[:insert_pos] + img_html + result[insert_pos:]
+        offset += len(img_html)
+
+    return result
+
+
+def generate_html_preview(
+    markdown_path: str,
+    video_id: str = None,
+    scenes: list = None,
+) -> str:
+    """
+    生成されたMarkdownファイル（YAMLフロントマター付き）を読み込み、
+    リッチなHTMLテンプレートに埋め込んでプレビュー用HTMLを生成・保存する。
+
+    Args:
+        markdown_path: Markdownファイルのパス
+        video_id: 動画ID（画像埋め込みに使用、省略可）
+        scenes: analysis_result["重要シーン"] のリスト（省略可）
+    """
+    if not os.path.exists(markdown_path):
+        raise FileNotFoundError(f"Markdownファイルが見つかりません: {markdown_path}")
+
+    # テンプレートの読み込み
+    template_path = os.path.join(os.path.dirname(__file__), 'template.html')
+    with open(template_path, 'r', encoding='utf-8') as f:
+        html_template = f.read()
+
+    # Markdownとフロントマターの解析
+    with open(markdown_path, 'r', encoding='utf-8') as f:
+        post = frontmatter.load(f)
+
+    # 記事本文をMarkdownからHTMLに変換 (テーブル拡張を有効化)
+    html_content = markdown.markdown(post.content, extensions=['tables'])
+
+    # フロントマターからメタデータを取得
+    title = post.get('title', '無題のSEO記事')
+    description = post.get('description', '')
+    keywords = post.get('keywords', [])
+    source_url = post.get('source_youtube_url', '')
+
+    # video_idがない場合、ファイル名から推測する
+    if not video_id:
+        base_name = os.path.basename(markdown_path)
+        video_id = base_name.split('_')[0] if '_' in base_name else None
+
+    # タグ(キーワード)のHTML生成
+    tags_html = "".join([f'<span class="tag">{kw}</span>' for kw in keywords])
+
+    # ソースリンクのHTML生成
+    source_link_html = ""
+    if source_url:
+        source_link_html = f'<a href="{source_url}" target="_blank" class="source-link">🔗 元のYouTube動画を見る</a>'
+
+    # ヒーロー画像のHTML生成
+    hero_image_html = ""
+    if video_id:
+        hero_image_html = _build_hero_image_html(video_id)
+
+    # セクション画像の注入
+    if video_id and scenes:
+        html_content = _inject_scene_images(html_content, video_id, scenes)
+
+    # テンプレートに埋め込み
+    final_html = html_template
+    final_html = final_html.replace('{{title}}', title)
+    final_html = final_html.replace('{{description}}', description)
+    final_html = final_html.replace('{{tags_html}}', tags_html)
+    final_html = final_html.replace('{{source_link_html}}', source_link_html)
+    final_html = final_html.replace('{{hero_image_html}}', hero_image_html)
+    final_html = final_html.replace('{{content}}', html_content)
+
+    # 保存ファイル名の決定 (拡張子を .html に変更)
+    base_name = os.path.basename(markdown_path)
+    file_name_without_ext = os.path.splitext(base_name)[0]
+    html_output_path = os.path.join(OUTPUT_DIR, f"{file_name_without_ext}.html")
+
+    # HTMLの保存
+    with open(html_output_path, 'w', encoding='utf-8') as f:
+        f.write(final_html)
+
+    return html_output_path
