@@ -35,4 +35,12 @@ URL: {youtube_url}
 
     response = model.generate_content(user_content)
     
-    return response.text
+    text = response.text.strip()
+    # 先頭や末尾の ```yaml, ```markdown, ``` を除去
+    import re
+    text = re.sub(r'^```(?:yaml|markdown)?\s*\n', '', text, flags=re.IGNORECASE)
+    text = re.sub(r'\n```\s*$', '', text)
+    text = text.strip()
+    
+    return text
+

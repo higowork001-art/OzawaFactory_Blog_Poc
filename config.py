@@ -16,9 +16,45 @@ genai.configure(api_key=GEMINI_API_KEY)
 ANALYSIS_MODEL = os.getenv("ANALYSIS_MODEL", "gemini-3.6-flash")
 ARTICLE_MODEL = os.getenv("ARTICLE_MODEL", "gemini-3.6-flash")
 
+# YouTubeチャンネル・一括処理設定
+YOUTUBE_CHANNEL_URL = os.getenv("YOUTUBE_CHANNEL_URL", "")
+MAX_BATCH_VIDEOS = int(os.getenv("MAX_BATCH_VIDEOS", "10"))
+
 # 定数設定
 OUTPUT_DIR = "output"
 PROMPTS_DIR = "prompts"
 
+PROCESSED_LIST_PATH = os.path.join(OUTPUT_DIR, "processed_videos.txt")
 ANALYZE_PROMPT_PATH = os.path.join(PROMPTS_DIR, "analyze.txt")
 ARTICLE_PROMPT_PATH = os.path.join(PROMPTS_DIR, "article.txt")
+
+# WordPress連携設定
+WP_SITE_URL = os.getenv("WP_SITE_URL", "")
+WP_USERNAME = os.getenv("WP_USERNAME", "")
+WP_APP_PASSWORD = os.getenv("WP_APP_PASSWORD", "")
+WP_DEFAULT_STATUS = os.getenv("WP_DEFAULT_STATUS", "draft")
+
+# サイト運営者情報（固定ページ生成時にAIへ渡す変数）
+SITE_NAME = os.getenv("SITE_NAME", "")
+SITE_OPERATOR_NAME = os.getenv("SITE_OPERATOR_NAME", "")
+SITE_CONTACT_EMAIL = os.getenv("SITE_CONTACT_EMAIL", "")
+SITE_LAUNCH_DATE = os.getenv("SITE_LAUNCH_DATE", "")
+SITE_GENRE = os.getenv("SITE_GENRE", "")
+USES_GOOGLE_ANALYTICS = os.getenv("USES_GOOGLE_ANALYTICS", "false")
+
+# 固定ページ用プロンプトパス
+PAGE_ABOUT_PROMPT_PATH = os.path.join(PROMPTS_DIR, "page_about.txt")
+PAGE_CONTACT_PROMPT_PATH = os.path.join(PROMPTS_DIR, "page_contact.txt")
+PAGE_PRIVACY_PROMPT_PATH = os.path.join(PROMPTS_DIR, "page_privacy.txt")
+PAGE_OPERATOR_PROMPT_PATH = os.path.join(PROMPTS_DIR, "page_operator.txt")
+
+# カテゴリマッピング（AI分析の「動画テーマ」→ WordPressカテゴリ）
+CATEGORY_MAP = {
+    "料理": "レシピ・料理",
+    "レシピ": "レシピ・料理",
+    "調理器具": "レシピ・料理",
+    "ガジェット": "ガジェット・テクノロジー",
+    "レビュー": "レビュー",
+}
+DEFAULT_CATEGORY = "未分類"
+

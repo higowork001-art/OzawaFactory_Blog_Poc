@@ -108,10 +108,33 @@ def _inject_scene_images(html_content: str, video_id: str, scenes: list) -> str:
     return result
 
 
+def sanitize_filename(text: str) -> str:
+    """ファイル名として使用不可な文字を除去し、安全な文字列にする"""
+    if not text:
+        return "untitled"
+    # Windows/Linux禁忌文字 \ / : * ? " < > | および制御文字を除去
+    clean = re.sub(r'[\\/:*?"<>|\r\n\t]', '_', text)
+    # 連続スペースを1つに整理
+    clean = re.sub(r'\s+', ' ', clean).strip()
+    return clean[:100]
+
+
+def clean_markdown_text(raw_text: str) -> str:
+    """Markdownテキストから余計なコードブロック囲みや壊れたフロントマター指定を除去する"""
+    text = raw_text.strip()
+    # 先頭の ```yaml や ```markdown を除去
+    text = re.sub(r'^```(?:yaml|markdown)?\s*\n', '', text, flags=re.IGNORECASE)
+    # 末尾の ``` を除去
+    text = re.sub(r'\n```\s*$', '', text)
+    return text.strip()
+
+
 def generate_html_preview(
     markdown_path: str,
     video_id: str = None,
     scenes: list = None,
+    upload_date: str = None,
+    title_text: str = None,
 ) -> str:
     """
     生成されたMarkdownファイル（YAMLフロントマター付き）を読み込み、
@@ -121,6 +144,8 @@ def generate_html_preview(
         markdown_path: Markdownファイルのパス
         video_id: 動画ID（画像埋め込みに使用、省略可）
         scenes: analysis_result["重要シーン"] のリスト（省略可）
+        upload_date: 動画投稿日 (例: "20260906" または "2026-09-06")
+        title_text: 動画タイトル
     """
     if not os.path.exists(markdown_path):
         raise FileNotFoundError(f"Markdownファイルが見つかりません: {markdown_path}")
@@ -132,13 +157,21 @@ def generate_html_preview(
 
     # Markdownとフロントマターの解析
     with open(markdown_path, 'r', encoding='utf-8') as f:
-        post = frontmatter.load(f)
+        raw_text = f.read()
+
+    cleaned_text = clean_markdown_text(raw_text)
+    post = frontmatter.loads(cleaned_text)
+
+    # 本文に残ったフロントマターのゴミ（--- など）やコードブロックをクレンジング
+    content_body = post.content.strip()
+    content_body = re.sub(r'^```(?:yaml|markdown)?\s*\n', '', content_body, flags=re.IGNORECASE)
+    content_body = re.sub(r'\n```\s*$', '', content_body)
 
     # 記事本文をMarkdownからHTMLに変換 (テーブル拡張を有効化)
-    html_content = markdown.markdown(post.content, extensions=['tables'])
+    html_content = markdown.markdown(content_body, extensions=['tables'])
 
     # フロントマターからメタデータを取得
-    title = post.get('title', '無題のSEO記事')
+    title = post.get('title') or title_text or '無題のSEO記事'
     description = post.get('description', '')
     keywords = post.get('keywords', [])
     source_url = post.get('source_youtube_url', '')
@@ -165,22 +198,38 @@ def generate_html_preview(
     if video_id and scenes:
         html_content = _inject_scene_images(html_content, video_id, scenes)
 
+    # 保存ファイル名の決定 (投稿日 + タイトル または従来通りのfallback)
+    target_title = title_text or post.get('title')
+    if upload_date and target_title:
+        if len(upload_date) == 8 and upload_date.isdigit():
+            date_prefix = f"{upload_date[:4]}-{upload_date[4:6]}-{upload_date[6:]}"
+        else:
+            date_prefix = upload_date
+        clean_name = sanitize_filename(target_title)
+        html_file_name = f"{date_prefix}_{clean_name}.html"
+    else:
+        base_name = os.path.basename(markdown_path)
+        file_name_without_ext = os.path.splitext(base_name)[0]
+        html_file_name = f"{file_name_without_ext}.html"
+
+    # 表示タイトル（ユーザー指示: 「htmlファイル名と同じでよい」）
+    display_title = os.path.splitext(html_file_name)[0]
+
     # テンプレートに埋め込み
     final_html = html_template
-    final_html = final_html.replace('{{title}}', title)
+    final_html = final_html.replace('{{title}}', display_title)
     final_html = final_html.replace('{{description}}', description)
     final_html = final_html.replace('{{tags_html}}', tags_html)
     final_html = final_html.replace('{{source_link_html}}', source_link_html)
     final_html = final_html.replace('{{hero_image_html}}', hero_image_html)
     final_html = final_html.replace('{{content}}', html_content)
 
-    # 保存ファイル名の決定 (拡張子を .html に変更)
-    base_name = os.path.basename(markdown_path)
-    file_name_without_ext = os.path.splitext(base_name)[0]
-    html_output_path = os.path.join(OUTPUT_DIR, f"{file_name_without_ext}.html")
+    html_output_path = os.path.join(OUTPUT_DIR, html_file_name)
 
     # HTMLの保存
     with open(html_output_path, 'w', encoding='utf-8') as f:
         f.write(final_html)
 
     return html_output_path
+
+
