@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2026-08-25_実験！コレールのフライパンを１年つかったらどうなったか？</title>
+    <meta name="description" content="PFASフリーで注目のコレール（CORELLE）フライパンを、強火で1年間使い続けた耐久実験の結果を解説。焦げ付く原因や寿命を延ばす正しい火加減、フライパン選びの失敗を減らす根本的な解決策まで紹介します。">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-gradient-1: #fdfbfb;
+            --bg-gradient-2: #ebedee;
+            --glass-bg: rgba(255, 255, 255, 0.75);
+            --glass-border: rgba(255, 255, 255, 0.6);
+            --text-main: #2d3748;
+            --text-muted: #718096;
+            --accent: #4f46e5;
+            --accent-hover: #4338ca;
+            --surface: #ffffff;
+        }
+
+        body {
+            font-family: 'Inter', 'Noto Sans JP', sans-serif;
+            color: var(--text-main);
+            background: linear-gradient(135deg, #a1c4fd 0%, #c2e9fb 100%);
+            background-attachment: fixed;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+        }
+
+        /* Glassmorphism Container */
+        .container {
+            max-width: 800px;
+            margin: 40px 20px;
+            padding: 50px 60px;
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-radius: 24px;
+            border: 1px solid var(--glass-border);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Header / Meta section */
+        header {
+            margin-bottom: 40px;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            line-height: 1.4;
+            margin-bottom: 16px;
+            color: #1a202c;
+            letter-spacing: -0.02em;
+        }
+
+        .meta-description {
+            font-size: 1.05rem;
+            color: var(--text-muted);
+            margin-bottom: 24px;
+        }
+
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            justify-content: center;
+            margin-bottom: 30px;
+        }
+
+        .tag {
+            background: rgba(79, 70, 229, 0.1);
+            color: var(--accent);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            transition: all 0.2s ease;
+        }
+        
+        .tag:hover {
+            background: var(--accent);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .source-link {
+            display: inline-block;
+            margin-top: 10px;
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: color 0.2s;
+        }
+
+        .source-link:hover {
+            color: var(--accent-hover);
+            text-decoration: underline;
+        }
+
+        /* Markdown Content Styling */
+        .content {
+            font-size: 1.05rem;
+        }
+
+        .content h2 {
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-top: 48px;
+            margin-bottom: 20px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid rgba(0,0,0,0.05);
+            color: #1a202c;
+        }
+
+        .content h3 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-top: 36px;
+            margin-bottom: 16px;
+            color: #2d3748;
+        }
+
+        .content p {
+            margin-bottom: 20px;
+        }
+
+        .content ul, .content ol {
+            margin-bottom: 24px;
+            padding-left: 24px;
+        }
+
+        .content li {
+            margin-bottom: 8px;
+        }
+
+        .content strong {
+            font-weight: 700;
+            color: #1a202c;
+            background: linear-gradient(transparent 60%, rgba(79, 70, 229, 0.2) 60%);
+        }
+
+        .content table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 32px 0;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+        }
+
+        .content th, .content td {
+            padding: 14px 20px;
+            text-align: left;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .content th {
+            background: rgba(0,0,0,0.03);
+            font-weight: 600;
+            color: #4a5568;
+        }
+
+        .content tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .content blockquote {
+            margin: 24px 0;
+            padding: 16px 24px;
+            background: rgba(79, 70, 229, 0.05);
+            border-left: 4px solid var(--accent);
+            border-radius: 0 8px 8px 0;
+            color: #4a5568;
+            font-style: italic;
+        }
+
+        .content hr {
+            border: 0;
+            height: 1px;
+            background: rgba(0,0,0,0.1);
+            margin: 40px 0;
+        }
+
+        /* === Scene Capture Images === */
+        .hero-image {
+            width: 100%;
+            border-radius: 16px;
+            overflow: hidden;
+            margin: 24px 0 36px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.12);
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.4s ease;
+        }
+
+        .hero-image img:hover {
+            transform: scale(1.02);
+        }
+
+        .scene-capture {
+            margin: 24px 0 32px;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.10);
+            background: rgba(255,255,255,0.6);
+            border: 1px solid rgba(255,255,255,0.8);
+        }
+
+        .scene-capture img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .scene-caption {
+            padding: 10px 16px;
+            font-size: 0.82rem;
+            color: var(--text-muted);
+            font-style: italic;
+            border-top: 1px solid rgba(0,0,0,0.05);
+            background: rgba(255,255,255,0.4);
+        }
+
+        .scene-caption::before {
+            content: '📸 ';
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .container {
+                margin: 20px 10px;
+                padding: 30px 20px;
+            }
+            h1 {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div style="margin-bottom: 24px;">
+        <a href="index.html" style="display: inline-flex; align-items: center; gap: 6px; text-decoration: none; color: #4f46e5; font-weight: 600; font-size: 0.95rem; background: rgba(255,255,255,0.7); padding: 8px 16px; border-radius: 10px; border: 1px solid rgba(79,70,229,0.2); transition: all 0.2s;">← ブログトップに戻る</a>
+    </div>
+
+    <header>
+        <h1>2026-08-25_実験！コレールのフライパンを１年つかったらどうなったか？</h1>
+        <p class="meta-description">PFASフリーで注目のコレール（CORELLE）フライパンを、強火で1年間使い続けた耐久実験の結果を解説。焦げ付く原因や寿命を延ばす正しい火加減、フライパン選びの失敗を減らす根本的な解決策まで紹介します。</p>
+        
+        <div class="tags">
+            <span class="tag">コレール フライパン 評判</span><span class="tag">コレール フライパン 寿命</span><span class="tag">コレール フライパン くっつく</span><span class="tag">脱フッ素 フライパン 耐久性</span><span class="tag">PFASフリー フライパン 比較</span><span class="tag">ステンレス フライパン 焦げ付き</span>
+        </div>
+
+        <a href="https://www.youtube.com/watch?v=5pEDLLi64Mg" target="_blank" class="source-link">🔗 元のYouTube動画を見る</a>
+
+        <div class="hero-image"><img src="5pEDLLi64Mg_frames/frame_00026s.jpg" alt="動画サムネイル" loading="lazy"></div>
+    </header>
+
+    <div class="content">
+        <p>フッ素樹脂（テフロン）を使わない安全なフライパンとして人気の「コレール（CORELLE）フライパン」。購入を検討する中で、「本当にくっつかないのか」「どれくらい長持ちするのか」気になっている方も多いのではないでしょうか。</p>
+<p>結論からお伝えすると、<strong>コレールフライパンはPFASフリー（フッ素不使用）の中で高品質な製品であるものの、強火で日常的に使い続けると1年ほどで焦げ付きやくっつきが発生</strong>します。</p>
+<p>この記事では、コレールのフライパンを強火で1年間ハードに使った検証結果をもとに、焦げ付きの原因や長持ちさせるコツ、そしてフライパンの買い替えループから抜け出す方法を分かりやすく解説します。</p>
+<hr />
+<h2>結論：強火で1年使うとコレールでも焦げ付き・くっつきが発生する</h2>
+<div class="scene-capture"><img src="5pEDLLi64Mg_frames/frame_00085s.jpg" alt="温水で汚れを緩めて焦げを落とそうとする手入れシーン" loading="lazy"><div class="scene-caption">温水で汚れを緩めて焦げを落とそうとする手入れシーン</div></div>
+
+<p>コレールのフライパンはフッ素樹脂不使用で安全性に配慮された優秀な製品ですが、<strong>強火で毎日使用すると約1年でコーティングの熱劣化が進み、食材がくっつくようになります</strong>。</p>
+<p>実戦テストとして、父親に強火（IH高出力・ダイヤル5など）で毎日2回、1年間自由にコレールフライパンを使ってもらったところ、中央部分に焦げが蓄積し、手入れ後もくっつきが再発する状態になりました。</p>
+<p>どんなに優れたコーティングフライパンであっても、<strong>「強い火力による熱負荷」</strong>をかけ続けると寿命を縮めてしまうのが現実です。</p>
+<hr />
+<h2>1. コレール（Corelle）フライパンを強火で1年間使ったリアルな検証結果</h2>
+<div class="scene-capture"><img src="5pEDLLi64Mg_frames/frame_00170s.jpg" alt="汚れを磨き落とした後のフライパン内面の状態" loading="lazy"><div class="scene-caption">汚れを磨き落とした後のフライパン内面の状態</div></div>
+
+<p>1年間、強火で酷使したコレールのフライパン（26cm）の状態は以下の通りです。</p>
+<ul>
+<li><strong>見た目の変化</strong>：調理面の中央付近に黒ずみや蓄積した焦げ付きが確認できる</li>
+<li><strong>調理時の状態</strong>：油を引いても食材が中央にくっつきやすくなり、滑りが悪くなる</li>
+<li><strong>手入れ後の変化</strong>：温水で汚れを緩めて磨き落とした直後は一時的にきれいになるが、再度調理に使うとすぐに焦げ付きが再発する</li>
+</ul>
+<p>このように、表面の汚れを一度落としたとしても、熱によってコーティングの機能自体が劣化している場合は、本来の「くっつかない効果」を取り戻すことはできません。</p>
+<hr />
+<h2>2. なぜくっつく？コレールフライパンの焦げ付き原因</h2>
+<div class="scene-capture"><img src="5pEDLLi64Mg_frames/frame_00273s.jpg" alt="再度調理に使った後に焦げが付着し挫折した状態" loading="lazy"><div class="scene-caption">再度調理に使った後に焦げが付着し挫折した状態</div></div>
+
+<p>コレールフライパンが焦げ付くようになる主な原因は、以下の2点によるダブルパンチです。</p>
+<h3>① 高火力（IH高出力）による熱劣化</h3>
+<p>コレールのフライパンは下地にステンレスが使用されています。ステンレスはアルミ製フライパンに比べて熱保持力が高いため、強火で加熱すると調理面が非常に高温になり、コーティングに大きな熱負担がかかります。その結果、コーティングの劣化が早まってしまいます。</p>
+<h3>② コーティング表面への焦げ付き汚れの蓄積</h3>
+<p>微小な焦げや油汚れが表面に付着・蓄積すると、その部分から食材がくっつきやすくなります。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">原因</th>
+<th style="text-align: left;">状態</th>
+<th style="text-align: left;">影響</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>高火力による熱負荷</strong></td>
+<td style="text-align: left;">コーティング自体の加熱劣化</td>
+<td style="text-align: left;">元に戻らない（寿命）</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>汚れの蓄積</strong></td>
+<td style="text-align: left;">表面に焦げ付きが層として残る</td>
+<td style="text-align: left;">磨けば一時的に改善する場合もある</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>3. コレールフライパンを長持ちさせるための適切な使い方</h2>
+<div class="scene-capture"><img src="5pEDLLi64Mg_frames/frame_00353s.jpg" alt="ステンレス下地と強火によるコーティング負担の解説" loading="lazy"><div class="scene-caption">ステンレス下地と強火によるコーティング負担の解説</div></div>
+
+<p>コレールフライパンをできるだけ長く愛用したい場合は、以下のポイントを徹底することが重要です。</p>
+<ul>
+<li><strong>強火を避け、中火〜弱火で調理する</strong>
+  IHクッキングヒーターを使用する場合は、1000W以上の高出力を避け、<strong>800W程度の中火〜弱火</strong>で丁寧に扱いましょう。</li>
+<li><strong>空焚きをしない</strong>
+  高温での空焚きはコーティングを急速に傷める原因になります。</li>
+<li><strong>柔らかいスポンジとお湯で洗う</strong>
+  汚れは放置せず、使用後に温水で浮かせてから柔らかいスポンジで優しく洗い流します。金たわしなどで擦るとコーティングに傷がつきます。</li>
+</ul>
+<p>火加減さえ適切にコントロールできれば、寿命を大きく延ばすことが可能です。</p>
+<hr />
+<h2>4. 「くっつかず長持ちする完璧なフライパン」は存在しない理由</h2>
+<div class="scene-capture"><img src="5pEDLLi64Mg_frames/frame_00411s.jpg" alt="予熱を覚えてオールステンレスを選択することを提案する場面" loading="lazy"><div class="scene-caption">予熱を覚えてオールステンレスを選択することを提案する場面</div></div>
+
+<p>多くの方がフライパンに以下の4点を求めがちです。</p>
+<ol>
+<li><strong>安さ</strong></li>
+<li><strong>軽さ</strong></li>
+<li><strong>焦げ付かない（滑りの良さ）</strong></li>
+<li><strong>耐久性（一生モノ）</strong></li>
+</ol>
+<p>しかし、技術的に<strong>これらすべてを同時に満たすコーティングフライパンは存在しません</strong>。</p>
+<p>コーティング（表面処理）である以上、摩耗や熱による劣化を避けることはできません。「安くて軽くてくっつかなくて一生使える」という理想のコーティング鍋を探し続けるのは、買い替えループに陥る原因となります。</p>
+<hr />
+<h2>5. フライパンの買い替えループから抜け出すなら「オールステンレス」がおすすめ</h2>
+<p>「コーティングが剥がれるたびに買い替えるのがストレス」という方には、<strong>オールステンレスフライパン</strong>への移行がおすすめです。</p>
+<h3>オールステンレスフライパンのメリット</h3>
+<ul>
+<li><strong>コーティングがないため寿命がない（一生使える）</strong></li>
+<li><strong>強火調理やゴシゴシ洗いも可能</strong></li>
+<li><strong>PFASフリーで安全性が高い</strong></li>
+</ul>
+<p>ステンレスフライパンは「くっつきやすい」というイメージを持たれがちですが、<strong>正しい予熱（しっかり温めてから油をなじませる技術）</strong>をマスターすれば、焦げ付かせずに快適に調理できます。</p>
+<p>フライパン選びで悩み続けるよりも、予熱のコツを一度身につけることこそが、根本的な解決策になります。</p>
+<hr />
+<h2>よくある質問（FAQ）</h2>
+<h3>Q1. コレールのフライパンは金たわしで洗っても大丈夫ですか？</h3>
+<p><strong>A.</strong> いいえ、おすすめできません。コーティングが施されているため、金たわしなどの硬い素材でゴシゴシ擦ると表面が傷つき、かえって傷みや焦げ付きの原因になります。お湯で汚れを緩めてから柔らかいスポンジで洗ってください。</p>
+<h3>Q2. コレールフライパンで強火調理をしても問題ありませんか？</h3>
+<p><strong>A.</strong> 強火調理はコーティングの寿命を縮める大きな原因となります。特にIHの場合は800W以下の中火〜弱火で使用することをおすすめします。</p>
+<h3>Q3. 焦げ付くようになったコレールフライパンは復活しますか？</h3>
+<p><strong>A.</strong> 表面に付着した汚れを落とすことで一時的に滑りが戻ることもありますが、高熱によってコーティング自体が劣化してしまっている場合は、元どおりに復活させることはできません。</p>
+<hr />
+<h2>動画で紹介されているアイテム・サービス</h2>
+<p>動画内で紹介・関連して触れられているアイテムやサービスの一覧です。</p>
+<ul>
+<li><a href="https://link.amazon/B09bjbqrz">CORELLE 26cm フライパン</a></li>
+<li><a href="https://link.amazon/B02ArkmCh">CORELLE フライパン（小さいサイズ）</a></li>
+<li><a href="https://www.instagram.com/ozawa.channel.stainless/">大澤チャンネル インスタグラム</a></li>
+<li><a href="https://ozawachannnel.stores.jp">大澤チャンネル オリジナル商品サイト</a></li>
+<li><a href="https://www.up-x.com/product/purifier/re_married.html">安全な浄水器「Re」</a></li>
+<li><a href="https://amzn.to/3K8dg5T">国産置き型浄水器 beaq</a></li>
+<li><a href="https://amzn.to/4oRnLZK">予算1万円のおすすめお鍋</a></li>
+<li><a href="https://www.qoo10.jp/gmkt.inc/Goods/Goods.aspx?goodscode=1042615206">予算2万円のおすすめお鍋</a></li>
+<li><a href="https://amzn.to/34KgJmh">ヘンケルス オールステンレス包丁</a></li>
+<li><a href="https://amzn.to/3YTPL5h">内窯ステンレス炊飯器</a></li>
+<li><a href="https://hatsuga-kousogenmai.com">酵素玄米炊飯器</a></li>
+<li>ロイヤルクイーン（ステンレス鍋）買取</li>
+<li>オールステンレスフライパン / ステンレス鍋</li>
+</ul>
+<hr />
+<h2>まとめ</h2>
+<p>コレールのフライパンは、フッ素樹脂を使わない安全なフライパンとして優れていますが、<strong>強火で日常的に使うと約1年で焦げ付きが発生</strong>します。</p>
+<p>長く使うためには、<strong>IHなら800W程度の中火〜弱火</strong>を徹底することが大切です。</p>
+<p>もし「買い替えの手間やコーティングの劣化から解放されたい」と考えているなら、予熱の技術をマスターして<strong>オールステンレスフライパン</strong>へ移行することを検討してみてはいかがでしょうか。</p>
+    </div>
+
+    <div style="margin-top: 40px; padding-top: 24px; border-top: 1px solid rgba(0,0,0,0.08); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;">
+        <a href="index.html" style="display: inline-flex; align-items: center; gap: 6px; text-decoration: none; color: #4f46e5; font-weight: 600;">← トップページに戻る</a>
+        <div style="display: flex; gap: 16px; font-size: 0.9rem;">
+            <a href="pages/about.html" style="text-decoration: none; color: #6b7280;">このサイトについて</a>
+            <a href="pages/contact.html" style="text-decoration: none; color: #6b7280;">お問い合わせ</a>
+            <a href="pages/privacy_policy.html" style="text-decoration: none; color: #6b7280;">プライバシーポリシー</a>
+            <a href="pages/operator_info.html" style="text-decoration: none; color: #6b7280;">運営者情報</a>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

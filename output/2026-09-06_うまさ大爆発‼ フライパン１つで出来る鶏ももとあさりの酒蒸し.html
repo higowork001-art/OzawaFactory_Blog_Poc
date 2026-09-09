@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2026-09-06_うまさ大爆発‼ フライパン１つで出来る鶏ももとあさりの酒蒸し</title>
+    <meta name="description" content="ステンレスフライパンでお肉がくっつくお悩みを解決！水滴を使った正しい予熱テクニックと、皮パリパリでジューシーな鶏もも肉とあさりの酒蒸しレシピを紹介します。">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-gradient-1: #fdfbfb;
+            --bg-gradient-2: #ebedee;
+            --glass-bg: rgba(255, 255, 255, 0.75);
+            --glass-border: rgba(255, 255, 255, 0.6);
+            --text-main: #2d3748;
+            --text-muted: #718096;
+            --accent: #4f46e5;
+            --accent-hover: #4338ca;
+            --surface: #ffffff;
+        }
+
+        body {
+            font-family: 'Inter', 'Noto Sans JP', sans-serif;
+            color: var(--text-main);
+            background: linear-gradient(135deg, #a1c4fd 0%, #c2e9fb 100%);
+            background-attachment: fixed;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+        }
+
+        /* Glassmorphism Container */
+        .container {
+            max-width: 800px;
+            margin: 40px 20px;
+            padding: 50px 60px;
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-radius: 24px;
+            border: 1px solid var(--glass-border);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Header / Meta section */
+        header {
+            margin-bottom: 40px;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            line-height: 1.4;
+            margin-bottom: 16px;
+            color: #1a202c;
+            letter-spacing: -0.02em;
+        }
+
+        .meta-description {
+            font-size: 1.05rem;
+            color: var(--text-muted);
+            margin-bottom: 24px;
+        }
+
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            justify-content: center;
+            margin-bottom: 30px;
+        }
+
+        .tag {
+            background: rgba(79, 70, 229, 0.1);
+            color: var(--accent);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            transition: all 0.2s ease;
+        }
+        
+        .tag:hover {
+            background: var(--accent);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .source-link {
+            display: inline-block;
+            margin-top: 10px;
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: color 0.2s;
+        }
+
+        .source-link:hover {
+            color: var(--accent-hover);
+            text-decoration: underline;
+        }
+
+        /* Markdown Content Styling */
+        .content {
+            font-size: 1.05rem;
+        }
+
+        .content h2 {
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-top: 48px;
+            margin-bottom: 20px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid rgba(0,0,0,0.05);
+            color: #1a202c;
+        }
+
+        .content h3 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-top: 36px;
+            margin-bottom: 16px;
+            color: #2d3748;
+        }
+
+        .content p {
+            margin-bottom: 20px;
+        }
+
+        .content ul, .content ol {
+            margin-bottom: 24px;
+            padding-left: 24px;
+        }
+
+        .content li {
+            margin-bottom: 8px;
+        }
+
+        .content strong {
+            font-weight: 700;
+            color: #1a202c;
+            background: linear-gradient(transparent 60%, rgba(79, 70, 229, 0.2) 60%);
+        }
+
+        .content table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 32px 0;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+        }
+
+        .content th, .content td {
+            padding: 14px 20px;
+            text-align: left;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .content th {
+            background: rgba(0,0,0,0.03);
+            font-weight: 600;
+            color: #4a5568;
+        }
+
+        .content tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .content blockquote {
+            margin: 24px 0;
+            padding: 16px 24px;
+            background: rgba(79, 70, 229, 0.05);
+            border-left: 4px solid var(--accent);
+            border-radius: 0 8px 8px 0;
+            color: #4a5568;
+            font-style: italic;
+        }
+
+        .content hr {
+            border: 0;
+            height: 1px;
+            background: rgba(0,0,0,0.1);
+            margin: 40px 0;
+        }
+
+        /* === Scene Capture Images === */
+        .hero-image {
+            width: 100%;
+            border-radius: 16px;
+            overflow: hidden;
+            margin: 24px 0 36px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.12);
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.4s ease;
+        }
+
+        .hero-image img:hover {
+            transform: scale(1.02);
+        }
+
+        .scene-capture {
+            margin: 24px 0 32px;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.10);
+            background: rgba(255,255,255,0.6);
+            border: 1px solid rgba(255,255,255,0.8);
+        }
+
+        .scene-capture img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .scene-caption {
+            padding: 10px 16px;
+            font-size: 0.82rem;
+            color: var(--text-muted);
+            font-style: italic;
+            border-top: 1px solid rgba(0,0,0,0.05);
+            background: rgba(255,255,255,0.4);
+        }
+
+        .scene-caption::before {
+            content: '📸 ';
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .container {
+                margin: 20px 10px;
+                padding: 30px 20px;
+            }
+            h1 {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div style="margin-bottom: 24px;">
+        <a href="index.html" style="display: inline-flex; align-items: center; gap: 6px; text-decoration: none; color: #4f46e5; font-weight: 600; font-size: 0.95rem; background: rgba(255,255,255,0.7); padding: 8px 16px; border-radius: 10px; border: 1px solid rgba(79,70,229,0.2); transition: all 0.2s;">← ブログトップに戻る</a>
+    </div>
+
+    <header>
+        <h1>2026-09-06_うまさ大爆発‼ フライパン１つで出来る鶏ももとあさりの酒蒸し</h1>
+        <p class="meta-description">ステンレスフライパンでお肉がくっつくお悩みを解決！水滴を使った正しい予熱テクニックと、皮パリパリでジューシーな鶏もも肉とあさりの酒蒸しレシピを紹介します。</p>
+        
+        <div class="tags">
+            <span class="tag">ステンレスフライパン 鶏肉 くっつかない</span><span class="tag">鶏肉 あさり 酒蒸し</span><span class="tag">ステンレス鍋 予熱 方法</span><span class="tag">鶏もも肉 おつまみ ワイン</span><span class="tag">ステンレスフライパン 焼き方</span>
+        </div>
+
+        <a href="https://www.youtube.com/watch?v=wliNbsb8zoo" target="_blank" class="source-link">🔗 元のYouTube動画を見る</a>
+
+        <div class="hero-image"><img src="wliNbsb8zoo_frames/frame_00049s.jpg" alt="動画サムネイル" loading="lazy"></div>
+    </header>
+
+    <div class="content">
+        <p>「ステンレスフライパンでお肉を焼くとくっついてしまう」「皮がパリッと焼けない」とお悩みではありませんか？</p>
+<p>結論から言うと、ステンレスフライパンはお肉を入れる前に<strong>しっかり中火で予熱し、水滴がコロコロと弾ける状態にする</strong>ことで、油やお肉が一切くっつかなくなります。</p>
+<p>この記事では、ステンレスフライパンの正しい予熱テクニックと、フライパン1つで簡単に作れる「鶏もも肉とあさりの酒蒸し」のレシピをご紹介します。</p>
+<hr />
+<h2>鶏もも肉とあさりの酒蒸しの材料</h2>
+<div class="scene-capture"><img src="wliNbsb8zoo_frames/frame_00106s.jpg" alt="水滴がコロコロ弾ける予熱完了シーン" loading="lazy"><div class="scene-caption">水滴がコロコロ弾ける予熱完了シーン</div></div>
+
+<p>フライパン1つで手軽に作れる、ワインやお酒のおつまみにもぴったりな一品です。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">材料</th>
+<th style="text-align: left;">分量</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">鶏もも肉</td>
+<td style="text-align: left;">1枚</td>
+</tr>
+<tr>
+<td style="text-align: left;">あさり（冷凍可）</td>
+<td style="text-align: left;">70g</td>
+</tr>
+<tr>
+<td style="text-align: left;">ニンニク</td>
+<td style="text-align: left;">3片</td>
+</tr>
+<tr>
+<td style="text-align: left;">酒</td>
+<td style="text-align: left;">100ml</td>
+</tr>
+<tr>
+<td style="text-align: left;">オリーブオイル</td>
+<td style="text-align: left;">大さじ2</td>
+</tr>
+<tr>
+<td style="text-align: left;">塩・コショウ</td>
+<td style="text-align: left;">適量</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>絶対くっつかない！ステンレスフライパンの「予熱」と焼き方のコツ</h2>
+<div class="scene-capture"><img src="wliNbsb8zoo_frames/frame_00116s.jpg" alt="鶏肉を皮目からフライパンに入れる場面" loading="lazy"><div class="scene-caption">鶏肉を皮目からフライパンに入れる場面</div></div>
+
+<p>ステンレスフライパンでお肉をくっつけずに焼くための重要なポイントは「予熱」と「焼き方」です。</p>
+<h3>1. 水滴チェックによる正しい予熱</h3>
+<p>フライパンを<strong>中火で約5分間</strong>しっかりと温めます。フライパンに水滴を数滴落とした際、水が蒸発せずに<strong>コロコロと玉のように弾けて転がる状態</strong>になれば、予熱完了のサインです。</p>
+<h3>2. 焼く直前に塩コショウをする</h3>
+<p>鶏肉に塩を振って時間を置くと水分が出てきてしまうため、塩コショウは<strong>フライパンに入れる直前</strong>に行いましょう。</p>
+<h3>3. ひっくり返さず「片面焼き」にする</h3>
+<p>皮目を下にしてフライパンに置いたら、蓋をせず、途中で触ったり裏返したりせずに我慢して焼きます。ステンレス鍋の高い蓄熱性により、皮目から出た油でカリッと香ばしく焼き上がり、ポロっと剥がれるようになります。</p>
+<hr />
+<h2>鶏肉とあさりの酒蒸しの作り方ステップ</h2>
+<div class="scene-capture"><img src="wliNbsb8zoo_frames/frame_00156s.jpg" alt="皮目がパリッと黄金色に焼けたシーン" loading="lazy"><div class="scene-caption">皮目がパリッと黄金色に焼けたシーン</div></div>
+
+<h3>1. 予熱と鶏肉の片面焼き（皮パリパリの秘訣）</h3>
+<ol>
+<li>ステンレスフライパンを中火で約5分温め、水滴がコロコロ転がる状態まで予熱します。</li>
+<li>オリーブオイル（大さじ2）をひき、直前に塩コショウをした鶏もも肉を<strong>皮目から</strong>入れます。</li>
+<li>蓋をせず、ひっくり返さずにじっくりと焼き、皮目を黄金色にパリッと仕上げます。</li>
+<li>焼き上がったら鶏肉を一旦取り出します。</li>
+</ol>
+<h3>2. にんにくとあさりの絶品ソース作り</h3>
+<ol>
+<li>鶏肉を焼いたフライパンの油と旨味はそのまま残し、弱火にします。</li>
+<li>スライスしたニンニク（3片分）を加えて軽く炒めます。</li>
+<li>あさり（70g）と酒（100ml）を加え、蓋をして酒蒸しにします。</li>
+<li>あさりの口が開いたらソースの完成です。取り出しておいた鶏肉にたっぷりと回しかけて召し上がれ。</li>
+</ol>
+<hr />
+<h2>美味しさ倍増！旨味成分（イノシン酸×グルタミン酸）の組み合わせ</h2>
+<div class="scene-capture"><img src="wliNbsb8zoo_frames/frame_00183s.jpg" alt="フライパンにあさりと酒を投入する場面" loading="lazy"><div class="scene-caption">フライパンにあさりと酒を投入する場面</div></div>
+
+<p>このレシピが圧倒的に美味しい理由は、食材の旨味成分の組み合わせにあります。</p>
+<ul>
+<li><strong>鶏肉</strong>：イノシン酸が豊富</li>
+<li><strong>あさり</strong>：グルタミン酸・ハッカク酸が豊富</li>
+</ul>
+<p>お肉の「イノシン酸」と貝類の「グルタミン酸」が合わさることで<strong>旨味の相乗効果</strong>が生まれ、フライパン1つで驚くほど深い味わいのソースに仕上がります。</p>
+<hr />
+<h2>余ったソースで作る！パスタアレンジの提案</h2>
+<div class="scene-capture"><img src="wliNbsb8zoo_frames/frame_00220s.jpg" alt="焼き上がった鶏肉にあさりソースをかける" loading="lazy"><div class="scene-caption">焼き上がった鶏肉にあさりソースをかける</div></div>
+
+<p>鶏肉とあさりの旨味が凝縮されたソースが残ったら、捨てるのは勿体ありません。</p>
+<p>フライパンに残ったソースに少量の水とパスタ（乾麺）を直接投入して煮込むだけで、旨味をすべて吸い込んだ<strong>絶品あさりパスタ</strong>が完成します。お食事の締めにぜひ試してみてください。</p>
+<hr />
+<h2>動画で紹介されているアイテム・サービス</h2>
+<div class="scene-capture"><img src="wliNbsb8zoo_frames/frame_00288s.jpg" alt="鶏肉とあさりを一緒に一口で試食する場面" loading="lazy"><div class="scene-caption">鶏肉とあさりを一緒に一口で試食する場面</div></div>
+
+<p>動画内で使用・紹介されている商品およびサービスです。</p>
+<ul>
+<li><a href="https://x.gd/MQjdm">キッチンクラフト Lスキレット</a>（26cmのステンレスフライパン）</li>
+<li><a href="https://ozawachannnel.stores.jp">大澤チャンネル オリジナル商品サイト</a>（ステンレス菜箸、鍋磨き用ブラシなど）</li>
+<li><a href="https://amzn.to/34KgJmh">ヘンケルス オールステンレス包丁</a></li>
+<li><a href="https://www.up-x.com/product/purifier/re_married.html">安全な浄水器「Re」</a></li>
+<li><a href="https://amzn.to/3K8dg5T">国産置き型浄水器 beaq</a></li>
+<li><a href="https://hatsuga-kousogenmai.com">酵素玄米炊飯器</a></li>
+</ul>
+<hr />
+<h2>ステンレス鍋に関するよくある質問（FAQ）</h2>
+<h3>Q. ステンレスフライパンでお肉がくっついてしまう原因は？</h3>
+<p><strong>A.</strong> 主な原因は予熱不足です。中火で約5分間しっかり温め、水を落とした時に水滴がコロコロと弾ける状態になってから油とお肉を入れることで、くっつきを防ぐことができます。</p>
+<h3>Q. あさりは生のものを使う必要がありますか？</h3>
+<p><strong>A.</strong> 冷凍のあさりでも十分に美味しく作れます。砂抜き不要の冷凍あさりを使えば、手軽に調理できます。</p>
+<h3>Q. 鶏肉を焼くときにひっくり返さなくても火が通りますか？</h3>
+<p><strong>A.</strong> ステンレス鍋は蓄熱性と保温性が非常に高いため、皮目を下にして蓋をせずじっくり片面焼きするだけで熱が通り、皮はパリッと、身はジューシーに仕上がります。</p>
+<hr />
+<h2>まとめ</h2>
+<p>ステンレスフライパンは、正しい予熱手順（水滴チェック）を行うことで、お肉をくっつけずに皮パリパリに焼くことができます。</p>
+<p>鶏肉のイノシン酸にあさりのグルタミン酸を掛け合わせた酒蒸しは、簡単でありながら本格的な味わいを楽しめるレシピです。ぜひご家庭のステンレスフライパンで試してみてください！</p>
+    </div>
+
+    <div style="margin-top: 40px; padding-top: 24px; border-top: 1px solid rgba(0,0,0,0.08); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;">
+        <a href="index.html" style="display: inline-flex; align-items: center; gap: 6px; text-decoration: none; color: #4f46e5; font-weight: 600;">← トップページに戻る</a>
+        <div style="display: flex; gap: 16px; font-size: 0.9rem;">
+            <a href="pages/about.html" style="text-decoration: none; color: #6b7280;">このサイトについて</a>
+            <a href="pages/contact.html" style="text-decoration: none; color: #6b7280;">お問い合わせ</a>
+            <a href="pages/privacy_policy.html" style="text-decoration: none; color: #6b7280;">プライバシーポリシー</a>
+            <a href="pages/operator_info.html" style="text-decoration: none; color: #6b7280;">運営者情報</a>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

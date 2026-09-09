@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ru2kKBNMZRg_article</title>
+    <meta name="description" content="ダイエット中も安心して食べられる「糸こんにゃくパッタイ」の作り方をご紹介。ナンプラーなどの特別な調味料は一切不要！ご家庭にある醤油やオイスターソースで手軽に作れるヘルシーレシピと、ステンレス鍋で美味しく炒めるコツを解説します。">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-gradient-1: #fdfbfb;
+            --bg-gradient-2: #ebedee;
+            --glass-bg: rgba(255, 255, 255, 0.75);
+            --glass-border: rgba(255, 255, 255, 0.6);
+            --text-main: #2d3748;
+            --text-muted: #718096;
+            --accent: #4f46e5;
+            --accent-hover: #4338ca;
+            --surface: #ffffff;
+        }
+
+        body {
+            font-family: 'Inter', 'Noto Sans JP', sans-serif;
+            color: var(--text-main);
+            background: linear-gradient(135deg, #a1c4fd 0%, #c2e9fb 100%);
+            background-attachment: fixed;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+        }
+
+        /* Glassmorphism Container */
+        .container {
+            max-width: 800px;
+            margin: 40px 20px;
+            padding: 50px 60px;
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-radius: 24px;
+            border: 1px solid var(--glass-border);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Header / Meta section */
+        header {
+            margin-bottom: 40px;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            line-height: 1.4;
+            margin-bottom: 16px;
+            color: #1a202c;
+            letter-spacing: -0.02em;
+        }
+
+        .meta-description {
+            font-size: 1.05rem;
+            color: var(--text-muted);
+            margin-bottom: 24px;
+        }
+
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            justify-content: center;
+            margin-bottom: 30px;
+        }
+
+        .tag {
+            background: rgba(79, 70, 229, 0.1);
+            color: var(--accent);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            transition: all 0.2s ease;
+        }
+        
+        .tag:hover {
+            background: var(--accent);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .source-link {
+            display: inline-block;
+            margin-top: 10px;
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: color 0.2s;
+        }
+
+        .source-link:hover {
+            color: var(--accent-hover);
+            text-decoration: underline;
+        }
+
+        /* Markdown Content Styling */
+        .content {
+            font-size: 1.05rem;
+        }
+
+        .content h2 {
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-top: 48px;
+            margin-bottom: 20px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid rgba(0,0,0,0.05);
+            color: #1a202c;
+        }
+
+        .content h3 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-top: 36px;
+            margin-bottom: 16px;
+            color: #2d3748;
+        }
+
+        .content p {
+            margin-bottom: 20px;
+        }
+
+        .content ul, .content ol {
+            margin-bottom: 24px;
+            padding-left: 24px;
+        }
+
+        .content li {
+            margin-bottom: 8px;
+        }
+
+        .content strong {
+            font-weight: 700;
+            color: #1a202c;
+            background: linear-gradient(transparent 60%, rgba(79, 70, 229, 0.2) 60%);
+        }
+
+        .content table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 32px 0;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+        }
+
+        .content th, .content td {
+            padding: 14px 20px;
+            text-align: left;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .content th {
+            background: rgba(0,0,0,0.03);
+            font-weight: 600;
+            color: #4a5568;
+        }
+
+        .content tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .content blockquote {
+            margin: 24px 0;
+            padding: 16px 24px;
+            background: rgba(79, 70, 229, 0.05);
+            border-left: 4px solid var(--accent);
+            border-radius: 0 8px 8px 0;
+            color: #4a5568;
+            font-style: italic;
+        }
+
+        .content hr {
+            border: 0;
+            height: 1px;
+            background: rgba(0,0,0,0.1);
+            margin: 40px 0;
+        }
+
+        /* === Scene Capture Images === */
+        .hero-image {
+            width: 100%;
+            border-radius: 16px;
+            overflow: hidden;
+            margin: 24px 0 36px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.12);
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.4s ease;
+        }
+
+        .hero-image img:hover {
+            transform: scale(1.02);
+        }
+
+        .scene-capture {
+            margin: 24px 0 32px;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.10);
+            background: rgba(255,255,255,0.6);
+            border: 1px solid rgba(255,255,255,0.8);
+        }
+
+        .scene-capture img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .scene-caption {
+            padding: 10px 16px;
+            font-size: 0.82rem;
+            color: var(--text-muted);
+            font-style: italic;
+            border-top: 1px solid rgba(0,0,0,0.05);
+            background: rgba(255,255,255,0.4);
+        }
+
+        .scene-caption::before {
+            content: '📸 ';
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .container {
+                margin: 20px 10px;
+                padding: 30px 20px;
+            }
+            h1 {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h1>Ru2kKBNMZRg_article</h1>
+        <p class="meta-description">ダイエット中も安心して食べられる「糸こんにゃくパッタイ」の作り方をご紹介。ナンプラーなどの特別な調味料は一切不要！ご家庭にある醤油やオイスターソースで手軽に作れるヘルシーレシピと、ステンレス鍋で美味しく炒めるコツを解説します。</p>
+        
+        <div class="tags">
+            <span class="tag">パッタイ ダイエット</span><span class="tag">こんにゃく パッタイ</span><span class="tag">ナンプラーなし パッタイ</span><span class="tag">糸こんにゃく レシピ</span><span class="tag">ステンレス鍋 フライパン くっつかない</span>
+        </div>
+
+        <a href="https://www.youtube.com/watch?v=Ru2kKBNMZRg" target="_blank" class="source-link">🔗 元のYouTube動画を見る</a>
+
+        <div class="hero-image"><img src="Ru2kKBNMZRg_frames/frame_00052s.jpg" alt="動画サムネイル" loading="lazy"></div>
+    </header>
+
+    <div class="content">
+        <p>「ダイエット中にパッタイのような本格麺料理が食べたいけれど、糖質やカロリーが気になる…」
+「ナンプラーを買っても使い切れずに余らせてしまう…」</p>
+<p>そんな悩みをお持ちの方におすすめなのが、<strong>米粉麺の代わりに「糸こんにゃく」を使い、身近な調味料だけで作るヘルシーパッタイ</strong>です。</p>
+<p>ナンプラーを使わなくても、ご家庭にある醤油やオイスターソース、仕上げのレモンを活用することで、満足感たっぷりの日本人好みのアジアン風パッタイが完成します。</p>
+<p>この記事では、失敗しない「こんにゃくパッタイ」の作り方と、食材をくっつけずに美味しく仕上げる調理のポイントを分かりやすく解説します。</p>
+<hr />
+<h2>ダイエットの強い味方！糸こんにゃくで作る「ナンプラーなし」ヘルシーパッタイとは？</h2>
+<div class="scene-capture"><img src="Ru2kKBNMZRg_frames/frame_00116s.jpg" alt="予熱した鍋で卵をさっと炒めて取り出す" loading="lazy"><div class="scene-caption">予熱した鍋で卵をさっと炒めて取り出す</div></div>
+
+<p>タイの定番焼きそば「パッタイ」は通常、米粉でできた麺（センレックなど）を使いますが、糖質量が気になることもあります。そこで米粉麺を「糸こんにゃく」に置き換えることで、<strong>カロリーと糖質を大幅にカット</strong>できます。</p>
+<p>また、エスニック料理でよく使われるナンプラーを用意しなくても、<strong>醤油・オイスターソース・酢・砂糖・鶏ガラスープの素</strong>といった基本の調味料で十分に本格的な味付けが可能です。最後にレモンをしっかり絞ることで、爽やかな酸味が全体を引き締め、ナンプラーなしでも本格的な風味を楽しめます。</p>
+<hr />
+<h2>材料と調味料一覧｜特別なエスニック調味料は一切不要！</h2>
+<div class="scene-capture"><img src="Ru2kKBNMZRg_frames/frame_00157s.jpg" alt="エビとしっかり水切りしたこんにゃくを投入" loading="lazy"><div class="scene-caption">エビとしっかり水切りしたこんにゃくを投入</div></div>
+
+<p>ご家庭にある食材と調味料で簡単に揃えられます。</p>
+<h3>主な材料（目安）</h3>
+<ul>
+<li><strong>糸こんにゃく</strong>：2袋</li>
+<li><strong>もやし</strong>：1袋</li>
+<li><strong>ニラ</strong>：1袋</li>
+<li><strong>むきエビ</strong>：12尾</li>
+<li><strong>卵</strong>：2個</li>
+<li><strong>にんにく（すりおろし）</strong>：1片分</li>
+<li><strong>レモン</strong>：適量（仕上げ用）</li>
+</ul>
+<h3>調味料</h3>
+<ul>
+<li><strong>醤油</strong>：大さじ2</li>
+<li><strong>オイスターソース</strong>：大さじ1</li>
+<li><strong>酢</strong>：小さじ1</li>
+<li><strong>砂糖</strong>：大さじ1</li>
+<li><strong>鶏ガラスープの素</strong>：小さじ1</li>
+</ul>
+<hr />
+<h2>失敗しない！こんにゃくパッタイの簡単作り方ステップ</h2>
+<div class="scene-capture"><img src="Ru2kKBNMZRg_frames/frame_00176s.jpg" alt="くっつき防止のため混ぜずに広げて加熱する" loading="lazy"><div class="scene-caption">くっつき防止のため混ぜずに広げて加熱する</div></div>
+
+<h3>1. 下準備（糸こんにゃくの洗い・水切りと具材カット）</h3>
+<ol>
+<li>糸こんにゃくは下茹で不要です。浄水などのきれいな水でさっと洗い、ザルにあげて<strong>しっかりと水切り</strong>をしておきます（水分をしっかり切るのが味しみを良くするコツです）。</li>
+<li>ニラは食べやすい長さにカットします。</li>
+</ol>
+<h3>2. 卵の調理と取り出し</h3>
+<ol>
+<li>フライパン（ステンレス鍋）をしっかりと予熱し、油を馴染ませます。</li>
+<li>溶き卵（2個分）を流し込み、さっと炒めて半熟状の炒り卵を作ったら、一旦お皿に取り出しておきます。</li>
+</ol>
+<h3>3. エビとこんにゃくの炒め方（くっつかない炒め方のコツ）</h3>
+<ol>
+<li>同じフライパンにすりおろしにんにくとむきエビ、しっかりと水切りした糸こんにゃくを投入します。</li>
+<li><strong>ポイント：</strong> ステンレス鍋などで炒める際は、<strong>一生懸命混ぜ続けず、具材を鍋全体に広げて少し置く（放置する）ように加熱</strong>します。混ぜすぎないことで余計な油を吸わず、食材が鍋にくっつきにくくなります。</li>
+<li>こんにゃくの水分が飛んできたら、もやしを加えてさらに炒めます。</li>
+</ol>
+<h3>4. 調味料の投入と余熱でのニラ・卵仕上げ</h3>
+<ol>
+<li>全体的に火が通ったら、あらかじめ合わせておいた調味料（醤油、オイスターソース、酢、砂糖、鶏ガラスープの素）を一気に回し入れます。</li>
+<li>調味料が全体に絡んだら<strong>火を止めます</strong>。</li>
+<li>取り出しておいた炒り卵とニラを加え、<strong>火を消したあとの余熱でサッとあえるだけ</strong>でOKです。余熱で加熱することでニラのシャキシャキ感が残り、色鮮やかに仕上がります。</li>
+<li>お皿に盛り付け、召し上がる直前にレモンをたっぷり絞って完成です！</li>
+</ol>
+<hr />
+<h2>ステンレス鍋を使うメリット｜エビがプリプリに仕上がる理由</h2>
+<div class="scene-capture"><img src="Ru2kKBNMZRg_frames/frame_00224s.jpg" alt="水分が飛んだタイミングで調味料を一気に投入" loading="lazy"><div class="scene-caption">水分が飛んだタイミングで調味料を一気に投入</div></div>
+
+<p>ステンレス鍋は熱伝導が均一で蓄熱性が高いため、食材にじっくり均一に熱を通すことができます。</p>
+<p>パッタイ作りにおいてステンレス鍋を活用すると、以下のメリットがあります。</p>
+<ul>
+<li><strong>エビが縮まずプリプリに仕上がる</strong>：均一な加熱により、水分を逃さず旨味を閉じ込めます。</li>
+<li><strong>「混ぜすぎない」ことでくっつきを防止</strong>：しっかり予熱して具材を広げて待つ調理法により、油分を過剰に使わずにくっつかず香ばしく炒められます。</li>
+</ul>
+<hr />
+<h2>パッタイ作りでよくある質問（FAQ）</h2>
+<div class="scene-capture"><img src="Ru2kKBNMZRg_frames/frame_00238s.jpg" alt="火を止め余熱でニラにサッと火を通す" loading="lazy"><div class="scene-caption">火を止め余熱でニラにサッと火を通す</div></div>
+
+<h3>Q1. ナンプラーがなくてもパッタイ風の味になりますか？</h3>
+<p><strong>A.</strong> はい、十分に美味しいパッタイ風に仕上がります。醤油やオイスターソースのコクに、酢と砂糖で甘酸っぱさを加え、仕上げにレモン果汁を絞ることで、アジアンテイストの爽やかな味わいが表現できます。</p>
+<h3>Q2. 糸こんにゃくは事前にアク抜きや下茹でが必要ですか？</h3>
+<p><strong>A.</strong> 最近の糸こんにゃくは臭みが少ないものが多いため、きれいな水でさっと洗って水気をしっかり切るだけでそのまま使用して問題ありません。</p>
+<h3>Q3. こんにゃくを炒めるときに鍋にくっついてしまうのですがどうすればいいですか？</h3>
+<p><strong>A.</strong> フライパンをあらかじめしっかり予熱してから油を引くことが大切です。また、具材を入れた後に何度も激しく混ぜすぎず、全体に広げて少し置くように火を通すとくっつきにくくなります。</p>
+<hr />
+<h2>動画で紹介されているアイテム・サービス</h2>
+<div class="scene-capture"><img src="Ru2kKBNMZRg_frames/frame_00272s.jpg" alt="仕上げにレモンを絞ってヘルシーパッタイ完成" loading="lazy"><div class="scene-caption">仕上げにレモンを絞ってヘルシーパッタイ完成</div></div>
+
+<p>今回のレシピ動画内で使用・紹介されている商品および関連サービスです。</p>
+<ul>
+<li><a href="https://x.gd/MQjdm">キッチンクラフト Lスキレット（26.8cm）</a></li>
+<li>熱伝導に優れたステンレス製フライパン。具材をふっくら美味しく炒め上げます。</li>
+<li><a href="https://www.instagram.com/ozawa.channel.stainless/">大澤チャンネル 公式Instagram</a></li>
+<li>ステンレス鍋を活用したレシピやお手入れのコツを発信中。</li>
+<li><a href="https://ozawachannnel.stores.jp">大澤チャンネル オリジナル商品サイト</a></li>
+<li>ステンレス菜箸や鍋磨き用ブラシなどのオリジナルキッチングッズを販売。</li>
+<li><a href="https://www.up-x.com/product/purifier/re_married.html">安全な浄水器「Re」</a></li>
+<li>糸こんにゃくの洗浄など調理全般に使われている浄水器。</li>
+<li><a href="https://amzn.to/34KgJmh">ヘンケルス オールステンレス包丁</a></li>
+<li>動画内で使用されている衛生的なオールステンレス製の包丁。</li>
+<li>各種おすすめ調味料（美濃三年酢、ピンクの塩、岐阜の3年みりん等）</li>
+<li>酵素玄米炊飯器</li>
+</ul>
+<hr />
+<h2>まとめ</h2>
+<p>糸こんにゃくを使ったパッタイは、<strong>低糖質・低カロリーでありながら満腹感もしっかり得られる最高のダイエットレシピ</strong>です。</p>
+<ul>
+<li><strong>麺を糸こんにゃくに置き換えて大幅糖質オフ</strong></li>
+<li><strong>ナンプラー不要！家にある醤油やオイスターソース＋レモンで本格味</strong></li>
+<li><strong>ニラは火を止めてからの余熱調理でシャキシャキに</strong></li>
+<li><strong>ステンレス鍋なら「広げて混ぜすぎない」のがくっつかないコツ</strong></li>
+</ul>
+<p>特別な材料を買う必要がないため、思い立った時にすぐ作れるのも嬉しいポイントです。ぜひ今夜のメニューに取り入れて、ヘルシーで美味しいパッタイを楽しんでみてください！</p>
+    </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>このサイトについて | 料理男子のおうちごはんレシピ</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-gradient: linear-gradient(135deg, #f0f4fd 0%, #e2ebf8 100%);
+            --glass-bg: rgba(255, 255, 255, 0.85);
+            --glass-border: rgba(255, 255, 255, 0.7);
+            --text-main: #1f2937;
+            --text-muted: #4b5563;
+            --accent: #2563eb;
+            --accent-hover: #1d4ed8;
+            --card-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+        }
+        body {
+            font-family: 'Inter', 'Noto Sans JP', sans-serif;
+            color: var(--text-main);
+            background: var(--bg-gradient);
+            background-attachment: fixed;
+            margin: 0;
+            padding: 0;
+            line-height: 1.8;
+            min-height: 100vh;
+        }
+        nav.global-nav {
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(229, 231, 235, 0.8);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.03);
+        }
+        .nav-inner {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 14px 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+        .site-logo {
+            font-size: 1.25rem;
+            font-weight: 800;
+            color: #111827;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .nav-links {
+            display: flex;
+            gap: 20px;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            font-weight: 600;
+            transition: color 0.2s;
+        }
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--accent);
+        }
+        .container {
+            max-width: 860px;
+            margin: 40px auto;
+            padding: 48px;
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            border-radius: 20px;
+            border: 1px solid var(--glass-border);
+            box-shadow: var(--card-shadow);
+        }
+        .page-header {
+            border-bottom: 2px solid #e5e7eb;
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+        .page-header h1 {
+            margin: 0 0 10px 0;
+            font-size: 2rem;
+            color: #111827;
+        }
+        .page-body h2 {
+            font-size: 1.5rem;
+            color: #1f2937;
+            margin-top: 36px;
+            margin-bottom: 16px;
+            border-left: 5px solid var(--accent);
+            padding-left: 14px;
+        }
+        .page-body table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 24px 0;
+            background: #ffffff;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+        }
+        .page-body th, .page-body td {
+            padding: 14px 18px;
+            border: 1px solid #e5e7eb;
+            text-align: left;
+        }
+        .page-body th {
+            background: #f9fafb;
+            font-weight: 600;
+            width: 25%;
+        }
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            margin-top: 40px;
+            padding: 10px 22px;
+            background: #ffffff;
+            color: var(--accent);
+            border: 1px solid #d1d5db;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+        .back-btn:hover {
+            background: var(--accent);
+            color: #ffffff;
+            border-color: var(--accent);
+            transform: translateY(-2px);
+        }
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <nav class="global-nav">
+        <div class="nav-inner">
+            <a href="../index.html" class="site-logo">🍳 料理男子のおうちごはんレシピ</a>
+            <ul class="nav-links">
+                <li><a href="../index.html">ホーム</a></li>
+                <li><a href="../pages/about.html" class="active">このサイトについて</a></li>
+                <li><a href="../pages/contact.html" >お問い合わせ</a></li>
+                <li><a href="../pages/privacy_policy.html" >プライバシーポリシー</a></li>
+                <li><a href="../pages/operator_info.html" >運営者情報</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="page-header">
+            <h1>このサイトについて</h1>
+        </div>
+        <div class="page-body">
+            <p>こんにちは、運営者のイサムです。「料理男子のおうちごはんレシピ」にお越しいただき、ありがとうございます。</p>
+<p>このサイトは、忙しい日常の中でも手軽に作れる「簡単・おいしい・ボリューム満点」なおうちごはんのレシピを発信しているブログです。特別な調味料や難しい調理工程は使わず、スーパーで買える身近な食材でパパッと作れるガッツリ系の「男飯」から、ほっとする日々の定番おかずまで、実際に私自身が作って「うまい！」と感じた料理の数々を紹介しています。</p>
+<h2>サイトを始めたきっかけ</h2>
+<p>私が自炊を本格的に始めたころ、一般的なレシピ本や料理サイトを見ても「工程が多くて面倒くさい」「めったに使わない調味料が必要」と感じて挫折しそうになることがよくありました。仕事終わりや疲れている日でも自炊を無理なく続けるためには、「手軽に作れること」と「食べたときの大満足感」が何より大切だと実感したんです。</p>
+<p>同じように、「料理を始めてみたいけれど難しそう」「仕事帰りにパパッと作れる献立が知りたい」「少ない手間でおいしいものが食べたい」と悩んでいる方に向けて、自分が試行錯誤してたどり着いた「これなら失敗せずに作れる」と思えるレシピを共有したいと考え、2026年9月にこのブログを立ち上げました。</p>
+<h2>記事のスタンスと読者のみなさまへ</h2>
+<p>当ブログで紹介しているレシピは、すべて私自身がキッチンに立ち、実際に作って味を確かめた実体験に基づいています。「洗い物をできるだけ減らす工夫」や「火の通りを良くするちょっとしたコツ」など、実際に作ってみたからこそわかるリアルなポイントも丁寧にお伝えすることを心がけています。</p>
+<p>記事の更新は週に1〜2回程度をベースに、マイペースながら本当に役立つ情報をお届けしていく予定です。仕事や学業で忙しい一人暮らしの方から、ご家族に満足感のある料理を作りたい方まで、みなさんの「今日のごはん、何作ろう？」を解決するヒントになれば嬉しく思います。</p>
+<p>「作ってみたら美味しかった！」「今度この食材を使ったレシピが知りたい」といったコメントやお問い合わせは大歓迎です。みなさんの反応がとても励みになります。</p>
+<p>このサイトが、あなたの毎日の食卓を少しでも楽しく、美味しいものにするきっかけになれば幸いです。どうぞゆっくりと記事を読んでいってくださいね。</p>
+        </div>
+        <a href="../index.html" class="back-btn">← トップページに戻る</a>
+    </div>
+
+    <footer>
+        <p>© 2026 料理男子のおうちごはんレシピ All Rights Reserved.</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2026-08-21_圧倒的に美味しい！バター醤油とうもろこしおこわ</title>
+    <meta name="description" content="ステンレス鍋で作る「バター醤油とうもろこしおこわ」のレシピをご紹介。もち米の水加減や火加減、焦げ付かせない蒸らしのコツ、とうもろこしの旨味を最大限に引き出す方法を解説します。">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-gradient-1: #fdfbfb;
+            --bg-gradient-2: #ebedee;
+            --glass-bg: rgba(255, 255, 255, 0.75);
+            --glass-border: rgba(255, 255, 255, 0.6);
+            --text-main: #2d3748;
+            --text-muted: #718096;
+            --accent: #4f46e5;
+            --accent-hover: #4338ca;
+            --surface: #ffffff;
+        }
+
+        body {
+            font-family: 'Inter', 'Noto Sans JP', sans-serif;
+            color: var(--text-main);
+            background: linear-gradient(135deg, #a1c4fd 0%, #c2e9fb 100%);
+            background-attachment: fixed;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+        }
+
+        /* Glassmorphism Container */
+        .container {
+            max-width: 800px;
+            margin: 40px 20px;
+            padding: 50px 60px;
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-radius: 24px;
+            border: 1px solid var(--glass-border);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Header / Meta section */
+        header {
+            margin-bottom: 40px;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            line-height: 1.4;
+            margin-bottom: 16px;
+            color: #1a202c;
+            letter-spacing: -0.02em;
+        }
+
+        .meta-description {
+            font-size: 1.05rem;
+            color: var(--text-muted);
+            margin-bottom: 24px;
+        }
+
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            justify-content: center;
+            margin-bottom: 30px;
+        }
+
+        .tag {
+            background: rgba(79, 70, 229, 0.1);
+            color: var(--accent);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            transition: all 0.2s ease;
+        }
+        
+        .tag:hover {
+            background: var(--accent);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .source-link {
+            display: inline-block;
+            margin-top: 10px;
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: color 0.2s;
+        }
+
+        .source-link:hover {
+            color: var(--accent-hover);
+            text-decoration: underline;
+        }
+
+        /* Markdown Content Styling */
+        .content {
+            font-size: 1.05rem;
+        }
+
+        .content h2 {
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-top: 48px;
+            margin-bottom: 20px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid rgba(0,0,0,0.05);
+            color: #1a202c;
+        }
+
+        .content h3 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-top: 36px;
+            margin-bottom: 16px;
+            color: #2d3748;
+        }
+
+        .content p {
+            margin-bottom: 20px;
+        }
+
+        .content ul, .content ol {
+            margin-bottom: 24px;
+            padding-left: 24px;
+        }
+
+        .content li {
+            margin-bottom: 8px;
+        }
+
+        .content strong {
+            font-weight: 700;
+            color: #1a202c;
+            background: linear-gradient(transparent 60%, rgba(79, 70, 229, 0.2) 60%);
+        }
+
+        .content table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 32px 0;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+        }
+
+        .content th, .content td {
+            padding: 14px 20px;
+            text-align: left;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .content th {
+            background: rgba(0,0,0,0.03);
+            font-weight: 600;
+            color: #4a5568;
+        }
+
+        .content tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .content blockquote {
+            margin: 24px 0;
+            padding: 16px 24px;
+            background: rgba(79, 70, 229, 0.05);
+            border-left: 4px solid var(--accent);
+            border-radius: 0 8px 8px 0;
+            color: #4a5568;
+            font-style: italic;
+        }
+
+        .content hr {
+            border: 0;
+            height: 1px;
+            background: rgba(0,0,0,0.1);
+            margin: 40px 0;
+        }
+
+        /* === Scene Capture Images === */
+        .hero-image {
+            width: 100%;
+            border-radius: 16px;
+            overflow: hidden;
+            margin: 24px 0 36px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.12);
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.4s ease;
+        }
+
+        .hero-image img:hover {
+            transform: scale(1.02);
+        }
+
+        .scene-capture {
+            margin: 24px 0 32px;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.10);
+            background: rgba(255,255,255,0.6);
+            border: 1px solid rgba(255,255,255,0.8);
+        }
+
+        .scene-capture img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .scene-caption {
+            padding: 10px 16px;
+            font-size: 0.82rem;
+            color: var(--text-muted);
+            font-style: italic;
+            border-top: 1px solid rgba(0,0,0,0.05);
+            background: rgba(255,255,255,0.4);
+        }
+
+        .scene-caption::before {
+            content: '📸 ';
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .container {
+                margin: 20px 10px;
+                padding: 30px 20px;
+            }
+            h1 {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div style="margin-bottom: 24px;">
+        <a href="index.html" style="display: inline-flex; align-items: center; gap: 6px; text-decoration: none; color: #4f46e5; font-weight: 600; font-size: 0.95rem; background: rgba(255,255,255,0.7); padding: 8px 16px; border-radius: 10px; border: 1px solid rgba(79,70,229,0.2); transition: all 0.2s;">← ブログトップに戻る</a>
+    </div>
+
+    <header>
+        <h1>2026-08-21_圧倒的に美味しい！バター醤油とうもろこしおこわ</h1>
+        <p class="meta-description">ステンレス鍋で作る「バター醤油とうもろこしおこわ」のレシピをご紹介。もち米の水加減や火加減、焦げ付かせない蒸らしのコツ、とうもろこしの旨味を最大限に引き出す方法を解説します。</p>
+        
+        <div class="tags">
+            <span class="tag">とうもろこしおこわ</span><span class="tag">バター醤油 とうもろこしご飯</span><span class="tag">ステンレス鍋 ご飯 炊き方</span><span class="tag">もち米 とうもろこし レシピ</span><span class="tag">ステンレス鍋 もち米</span>
+        </div>
+
+        <a href="https://www.youtube.com/watch?v=jPifRImSvv0" target="_blank" class="source-link">🔗 元のYouTube動画を見る</a>
+
+        <div class="hero-image"><img src="jPifRImSvv0_frames/frame_00069s.jpg" alt="動画サムネイル" loading="lazy"></div>
+    </header>
+
+    <div class="content">
+        <p>旬のとうもろこしを使った料理の中でも、特におすすめなのが「バター醤油とうもろこしおこわ」です。</p>
+<p>結論からお伝えすると、<strong>高密閉・高蓄熱なステンレス鍋を使えば、炊飯器のにおい移りを気にせず、短時間でもっちり香ばしい最高のおこわが炊き上がります。</strong></p>
+<p>今回は、もち米の水加減や火加減のコツから、とうもろこしの旨味を余すことなく引き出す手順まで詳しく解説します。</p>
+<hr />
+<h2>バター醤油とうもろこしおこわの材料と準備</h2>
+<div class="scene-capture"><img src="jPifRImSvv0_frames/frame_00104s.jpg" alt="もち米の水加減をひたひたに調整する" loading="lazy"><div class="scene-caption">もち米の水加減をひたひたに調整する</div></div>
+
+<p>まずは必要な材料を用意しましょう。もち米の吸水時間が美味しさを左右するため、事前準備が大切です。</p>
+<h3>材料（作りやすい分量）</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">材料</th>
+<th style="text-align: left;">分量</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">もち米</td>
+<td style="text-align: left;">1.5合</td>
+</tr>
+<tr>
+<td style="text-align: left;">とうもろこし</td>
+<td style="text-align: left;">1本</td>
+</tr>
+<tr>
+<td style="text-align: left;">水</td>
+<td style="text-align: left;">ひたひた（お米の表面が出そうなくらい）</td>
+</tr>
+<tr>
+<td style="text-align: left;">コンソメ</td>
+<td style="text-align: left;">1個</td>
+</tr>
+<tr>
+<td style="text-align: left;">醤油</td>
+<td style="text-align: left;">大さじ1</td>
+</tr>
+<tr>
+<td style="text-align: left;">バター</td>
+<td style="text-align: left;">20g</td>
+</tr>
+</tbody>
+</table>
+<h3>事前準備のポイント</h3>
+<p>もち米は洗った後、<strong>20分以上しっかり水に浸けて吸水</strong>させておきます。しっかり吸水させることで、芯までふっくらとした食感に仕上がります。</p>
+<hr />
+<h2>失敗しない！とうもろこしおこわの作り方ステップ</h2>
+<div class="scene-capture"><img src="jPifRImSvv0_frames/frame_00117s.jpg" alt="鍋の上でとうもろこしの実を削ぎ落とす" loading="lazy"><div class="scene-caption">鍋の上でとうもろこしの実を削ぎ落とす</div></div>
+
+<p>ステンレス鍋を使って、焦げ付きなく美味しく炊き上げるための手順です。</p>
+<h3>1. 水加減を「ひたひた」に調整する</h3>
+<p>吸水したもち米の水気を切り、お鍋に入れます。水加減は<strong>「ひたひた」（もち米の表面が少し水から出そうになるくらいの量）</strong>にするのが、べたつかずにもっちり炊き上げる最大のコツです。</p>
+<h3>2. とうもろこしの実をそぐ</h3>
+<p>とうもろこしは半分に折ると扱いやすくなります。まな板の上で作業すると実が飛び散りやすいため、<strong>お鍋の上で直接包丁を入れて実を削ぎ落とす</strong>と無駄がありません。</p>
+<h3>3. 芯と調味料を加える</h3>
+<p>削ぎ落とした実だけでなく、<strong>とうもろこしの芯も一緒にお鍋に入れます</strong>。芯から非常に良い出汁と旨味が出るため、絶対に捨てずに使いましょう。続いて、コンソメ1個と醤油大さじ1を加えます。</p>
+<h3>4. 加熱・炊飯（中弱火→弱火で10分）</h3>
+<p>お鍋に蓋をして中弱火で加熱します。沸騰してフタの隙間からしっかり蒸気が上がってきたら、<strong>弱火に落として10分間加熱</strong>します。</p>
+<h3>5. 蒸らして仕上げ（蒸らし2〜3分＋バター）</h3>
+<p>10分経ったら火を止め、<strong>フタをしたまま2〜3分蒸らします</strong>。
+蒸らし終わったらフタを開け、とうもろこしの芯を取り出します。仕上げにバター20gを加え、お鍋に残った蒸気と熱で溶かしながら、全体をサッと混ぜ合わせれば完成です。</p>
+<hr />
+<h2>美味しく仕上げるためのワンポイント</h2>
+<div class="scene-capture"><img src="jPifRImSvv0_frames/frame_00163s.jpg" alt="芯と調味料を入れて炊飯準備完了" loading="lazy"><div class="scene-caption">芯と調味料を入れて炊飯準備完了</div></div>
+
+<ul>
+<li><strong>芯から出る出汁を活用する</strong><br />
+  とうもろこしは実だけでなく、芯にも旨味が詰まっています。一緒に炊き込むことで全体の風味が格段にアップします。</li>
+<li><strong>しっかり蒸らして焦げ付き防止</strong><br />
+  ステンレス鍋で炊飯する際、「鍋底にくっつかないか」と心配になる方もいるかもしれません。しかし、炊き上がった後に<strong>2〜3分しっかり蒸らすことで、鍋底からお米がツルリと綺麗に剥がれる</strong>ようになります。</li>
+<li><strong>バターは一番最後に加える</strong><br />
+  最初からバターを入れて炊くのではなく、炊き上がりの蒸らし後に余熱で溶かし混ぜることで、バターの風味が飛ぶことなくリッチな香りが引き立ちます。</li>
+</ul>
+<hr />
+<h2>よくある質問（FAQ）</h2>
+<div class="scene-capture"><img src="jPifRImSvv0_frames/frame_00182s.jpg" alt="蒸気が出たら弱火にして10分加熱する" loading="lazy"><div class="scene-caption">蒸気が出たら弱火にして10分加熱する</div></div>
+
+<h3>Q. もち米の水加減は普通のお米と違いますか？</h3>
+<p><strong>A.</strong> はい、異なります。もち米は普通のお米よりも水分を吸いやすいため、水を多めに入れるとべたついてしまいます。水加減は「ひたひた」（もち米の表面が水から少し出るか出ないかくらい）に抑えるのが美味しく炊き上げるコツです。</p>
+<h3>Q. とうもろこしの芯も一緒に入れるのはなぜですか？</h3>
+<p><strong>A.</strong> とうもろこしの芯からは非常に良い出汁と旨味が出ます。一緒に炊き込むことで、ご飯全体にとうもろこしの甘みとコクが行き渡ります。</p>
+<h3>Q. ステンレス鍋で炊くと焦げ付きませんか？</h3>
+<p><strong>A.</strong> 正しい火加減（沸騰後に弱火で10分）を守り、炊き上がり後に2〜3分蒸らすことで、鍋底にお米がくっつかずツルリと剥がれます。</p>
+<hr />
+<h2>まとめとお手入れ・道具選びについて</h2>
+<div class="scene-capture"><img src="jPifRImSvv0_frames/frame_00217s.jpg" alt="炊き上がり後に鍋底がつるりと剥がれる" loading="lazy"><div class="scene-caption">炊き上がり後に鍋底がつるりと剥がれる</div></div>
+
+<p>ステンレス鍋を使った「バター醤油とうもろこしおこわ」は、素材の甘みと旨味が引き立つ絶品レシピです。高蓄熱なステンレス鍋なら、短時間でムラなく熱が通り、炊飯器特有のフッ素加工の匂い移りもありません。蒸らし時間を適切に取れば鍋底へのこびりつきもなく、後片付けも非常に簡単です。</p>
+<p>ぜひ旬の時期に、ご家庭で試してみてください。</p>
+<hr />
+<h2>動画で紹介されているアイテム・サービス</h2>
+<div class="scene-capture"><img src="jPifRImSvv0_frames/frame_00224s.jpg" alt="仕上げにバターを乗せて蒸気の熱で溶かす" loading="lazy"><div class="scene-caption">仕上げにバターを乗せて蒸気の熱で溶かす</div></div>
+
+<p>動画内で使用・紹介されている調理器具や関連サービスの一覧です。</p>
+<ul>
+<li><a href="https://x.gd/MQjdm">キッチンクラフト２コート</a>（動画で使用しているステンレス鍋）</li>
+<li><a href="https://www.instagram.com/ozawa.channel.stainless/">大澤チャンネル公式インスタグラム</a>（レシピのテキスト版や鍋のコツを発信）</li>
+<li><a href="https://ozawachannnel.stores.jp">大澤チャンネル オリジナル商品サイト</a>（ステンレス菜箸などのオリジナル商品）</li>
+<li><a href="https://www.up-x.com/product/purifier/re_married.html">安全な浄水器「Re」</a>（銀イオン・界面活性剤不使用の浄水器）</li>
+<li><a href="https://amzn.to/34KgJmh">ヘンケルス オールステンレス包丁</a>（動画で使用している包丁）</li>
+<li><a href="https://hatsuga-kousogenmai.com">酵素玄米炊飯器</a>（発芽玄米・酵素玄米用炊飯器）</li>
+<li>国産置き型浄水器 beaq</li>
+</ul>
+    </div>
+
+    <div style="margin-top: 40px; padding-top: 24px; border-top: 1px solid rgba(0,0,0,0.08); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;">
+        <a href="index.html" style="display: inline-flex; align-items: center; gap: 6px; text-decoration: none; color: #4f46e5; font-weight: 600;">← トップページに戻る</a>
+        <div style="display: flex; gap: 16px; font-size: 0.9rem;">
+            <a href="pages/about.html" style="text-decoration: none; color: #6b7280;">このサイトについて</a>
+            <a href="pages/contact.html" style="text-decoration: none; color: #6b7280;">お問い合わせ</a>
+            <a href="pages/privacy_policy.html" style="text-decoration: none; color: #6b7280;">プライバシーポリシー</a>
+            <a href="pages/operator_info.html" style="text-decoration: none; color: #6b7280;">運営者情報</a>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

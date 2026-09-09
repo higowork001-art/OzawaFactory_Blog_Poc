@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>お問い合わせ | 料理男子のおうちごはんレシピ</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-gradient: linear-gradient(135deg, #f0f4fd 0%, #e2ebf8 100%);
+            --glass-bg: rgba(255, 255, 255, 0.85);
+            --glass-border: rgba(255, 255, 255, 0.7);
+            --text-main: #1f2937;
+            --text-muted: #4b5563;
+            --accent: #2563eb;
+            --accent-hover: #1d4ed8;
+            --card-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+        }
+        body {
+            font-family: 'Inter', 'Noto Sans JP', sans-serif;
+            color: var(--text-main);
+            background: var(--bg-gradient);
+            background-attachment: fixed;
+            margin: 0;
+            padding: 0;
+            line-height: 1.8;
+            min-height: 100vh;
+        }
+        nav.global-nav {
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(229, 231, 235, 0.8);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.03);
+        }
+        .nav-inner {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 14px 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+        .site-logo {
+            font-size: 1.25rem;
+            font-weight: 800;
+            color: #111827;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .nav-links {
+            display: flex;
+            gap: 20px;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            font-weight: 600;
+            transition: color 0.2s;
+        }
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--accent);
+        }
+        .container {
+            max-width: 860px;
+            margin: 40px auto;
+            padding: 48px;
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            border-radius: 20px;
+            border: 1px solid var(--glass-border);
+            box-shadow: var(--card-shadow);
+        }
+        .page-header {
+            border-bottom: 2px solid #e5e7eb;
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+        .page-header h1 {
+            margin: 0 0 10px 0;
+            font-size: 2rem;
+            color: #111827;
+        }
+        .page-body h2 {
+            font-size: 1.5rem;
+            color: #1f2937;
+            margin-top: 36px;
+            margin-bottom: 16px;
+            border-left: 5px solid var(--accent);
+            padding-left: 14px;
+        }
+        .page-body table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 24px 0;
+            background: #ffffff;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+        }
+        .page-body th, .page-body td {
+            padding: 14px 18px;
+            border: 1px solid #e5e7eb;
+            text-align: left;
+        }
+        .page-body th {
+            background: #f9fafb;
+            font-weight: 600;
+            width: 25%;
+        }
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            margin-top: 40px;
+            padding: 10px 22px;
+            background: #ffffff;
+            color: var(--accent);
+            border: 1px solid #d1d5db;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+        .back-btn:hover {
+            background: var(--accent);
+            color: #ffffff;
+            border-color: var(--accent);
+            transform: translateY(-2px);
+        }
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <nav class="global-nav">
+        <div class="nav-inner">
+            <a href="../index.html" class="site-logo">🍳 料理男子のおうちごはんレシピ</a>
+            <ul class="nav-links">
+                <li><a href="../index.html">ホーム</a></li>
+                <li><a href="../pages/about.html" >このサイトについて</a></li>
+                <li><a href="../pages/contact.html" class="active">お問い合わせ</a></li>
+                <li><a href="../pages/privacy_policy.html" >プライバシーポリシー</a></li>
+                <li><a href="../pages/operator_info.html" >運営者情報</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="page-header">
+            <h1>お問い合わせ</h1>
+        </div>
+        <div class="page-body">
+            <p>「料理男子のおうちごはんレシピ」をご覧いただき、ありがとうございます。</p>
+<p>当ブログへのご意見・ご感想、掲載レシピの訂正依頼をはじめ、レシピの掲載依頼や取材・お仕事のご依頼、広告掲載のご相談など、下記のお問い合わせフォームよりお気軽にご連絡ください。</p>
+<p>お送りいただいた内容につきましては、通常<strong>3〜7営業日以内</strong>を目安にご返信いたします。なお、お問い合わせの内容によっては、お返事を差し上げられない場合や、返信までにお時間をいただくこともございますのであらかじめご了承ください。</p>
+<p>万が一、入力フォームがうまく動作しない場合は、お手数ですが以下のメールアドレスまで直接ご連絡いただけますようお願いいたします。</p>
+<p><strong>連絡先メールアドレス：</strong> info@example.com</p>
+        </div>
+        <a href="../index.html" class="back-btn">← トップページに戻る</a>
+    </div>
+
+    <footer>
+        <p>© 2026 料理男子のおうちごはんレシピ All Rights Reserved.</p>
+    </footer>
+</body>
+</html>
