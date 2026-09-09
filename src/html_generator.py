@@ -216,9 +216,15 @@ def generate_html_preview(
         file_name_without_ext = os.path.splitext(base_name)[0]
         html_file_name = f"{file_name_without_ext}.html"
 
-    # 表示タイトル（ユーザー指示: 「htmlファイル名と同じでよい」）
-    display_title = os.path.splitext(html_file_name)[0]
-
+    # 表示タイトル（見やすくフォーマット: 2026-09-06_タイトル → 2026/09/06 タイトル）
+    raw_filename = os.path.splitext(html_file_name)[0]
+    date_match = re.match(r"^(\d{4}-\d{2}-\d{2})_(.+)$", raw_filename)
+    if date_match:
+        pub_date = date_match.group(1).replace("-", "/")
+        title_part = date_match.group(2)
+        display_title = f"{pub_date} {title_part}"
+    else:
+        display_title = raw_filename
     # サイト名と年の取得
     import config
     from datetime import datetime
