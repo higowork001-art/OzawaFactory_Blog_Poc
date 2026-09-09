@@ -42,7 +42,8 @@
             line-height: 1.6;
             min-height: 100vh;
             display: flex;
-            justify-content: center;
+            flex-direction: column;
+            align-items: center;
         }
 
         /* Glassmorphism Container */
@@ -291,12 +292,86 @@
             background: rgba(255, 255, 255, 0.95);
         }
 
+        /* 記事下部「トップへ戻る」ボタン */
+        .footer-back-wrap {
+            margin-top: 40px;
+            padding-top: 24px;
+            border-top: 1px solid rgba(0,0,0,0.08);
+            display: flex;
+            justify-content: center;
+        }
+
+        .back-to-home-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 28px;
+            background: linear-gradient(135deg, #4f46e5 0%, #3b82f6 100%);
+            color: #ffffff;
+            font-weight: 700;
+            font-size: 0.95rem;
+            border-radius: 24px;
+            text-decoration: none;
+            box-shadow: 0 4px 15px rgba(79, 70, 229, 0.25);
+            transition: all 0.25s ease;
+        }
+
+        .back-to-home-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(79, 70, 229, 0.35);
+            color: #ffffff;
+        }
+
+        /* サイト共通フッター */
+        footer.site-footer {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(12px);
+            border-top: 1px solid rgba(229, 231, 235, 0.8);
+            padding: 36px 20px;
+            margin-top: 60px;
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.88rem;
+            box-shadow: 0 -2px 10px rgba(0,0,0,0.02);
+        }
+
+        .footer-nav {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-bottom: 16px;
+        }
+
+        .footer-nav a {
+            color: #4b5563;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: color 0.2s;
+        }
+
+        .footer-nav a:hover {
+            color: var(--accent);
+        }
+
+        .footer-copy {
+            margin: 0;
+            color: #9ca3af;
+            font-size: 0.82rem;
+        }
+
         /* Responsive */
         @media (max-width: 768px) {
+            body {
+                display: block;
+            }
             .container {
                 margin: 14px 10px;
                 padding: 24px 18px;
                 border-radius: 16px;
+                width: auto;
             }
             h1 {
                 font-size: 1.5rem;
@@ -320,29 +395,15 @@
                 overflow-x: auto;
                 white-space: nowrap;
             }
-            .footer-links-wrap {
-                flex-direction: column;
-                align-items: stretch !important;
-                gap: 16px !important;
+            .footer-nav {
+                gap: 10px 14px;
             }
-            .footer-sub-links {
-                display: flex;
-                gap: 8px !important;
-                overflow-x: auto;
-                white-space: nowrap;
-                -webkit-overflow-scrolling: touch;
-                padding-bottom: 4px;
-                scrollbar-width: none;
+            .footer-nav a {
+                font-size: 0.82rem;
             }
-            .footer-sub-links::-webkit-scrollbar {
-                display: none;
-            }
-            .footer-sub-links a {
-                padding: 6px 12px;
-                background: rgba(0, 0, 0, 0.04);
-                border-radius: 14px;
-                font-size: 0.82rem !important;
-                flex-shrink: 0;
+            footer.site-footer {
+                padding: 28px 14px;
+                margin-top: 40px;
             }
         }
     </style>
@@ -359,10 +420,10 @@
         <p class="meta-description">ステンレス鍋で作る「バター醤油とうもろこしおこわ」のレシピをご紹介。もち米の水加減や火加減、焦げ付かせない蒸らしのコツ、とうもろこしの旨味を最大限に引き出す方法を解説します。</p>
         
         <div class="tags">
-            <span class="tag">とうもろこしおこわ</span><span class="tag">バター醤油 とうもろこしご飯</span><span class="tag">ステンレス鍋 ご飯 炊き方</span><span class="tag">もち米 とうもろこし レシピ</span><span class="tag">ステンレス鍋 もち米</span>
+            <span class="tag">#料理レシピ</span><span class="tag">#時短料理</span>
         </div>
 
-        <a href="https://www.youtube.com/watch?v=jPifRImSvv0" target="_blank" class="source-link">🔗 元のYouTube動画を見る</a>
+        <a href="https://www.youtube.com/watch?v=jPifRImSvv0" target="_blank" class="source-link">▶ YouTubeで元動画を見る</a>
 
         <div class="hero-image"><img src="jPifRImSvv0_thumb.jpg" alt="YouTube動画サムネイル" loading="lazy"></div>
     </header>
@@ -377,7 +438,8 @@
     </div>
 
     <div class="content">
-        <p>旬のとうもろこしを使った料理の中でも、特におすすめなのが「バター醤油とうもろこしおこわ」です。</p>
+        <p>```</p>
+<p>旬のとうもろこしを使った料理の中でも、特におすすめなのが「バター醤油とうもろこしおこわ」です。</p>
 <p>結論からお伝えすると、<strong>高密閉・高蓄熱なステンレス鍋を使えば、炊飯器のにおい移りを気にせず、短時間でもっちり香ばしい最高のおこわが炊き上がります。</strong></p>
 <p>今回は、もち米の水加減や火加減のコツから、とうもろこしの旨味を余すことなく引き出す手順まで詳しく解説します。</p>
 <hr />
@@ -436,7 +498,7 @@
 <h3>4. 加熱・炊飯（中弱火→弱火で10分）</h3>
 <p>お鍋に蓋をして中弱火で加熱します。沸騰してフタの隙間からしっかり蒸気が上がってきたら、<strong>弱火に落として10分間加熱</strong>します。</p>
 <h3>5. 蒸らして仕上げ（蒸らし2〜3分＋バター）</h3>
-<p>10分経ったら火を止め、<strong>フタをしたまま2〜3分蒸らします</strong>。
+<p>10分経ったら火を止め、<strong>フタをしたまま2〜3分蒸らします</strong>。<br />
 蒸らし終わったらフタを開け、とうもろこしの芯を取り出します。仕上げにバター20gを加え、お鍋に残った蒸気と熱で溶かしながら、全体をサッと混ぜ合わせれば完成です。</p>
 <hr />
 <h2>美味しく仕上げるためのワンポイント</h2>
@@ -491,16 +553,22 @@
         </div>
     </div>
 
-    <div class="footer-links-wrap" style="margin-top: 40px; padding-top: 24px; border-top: 1px solid rgba(0,0,0,0.08); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;">
-        <a href="index.html" style="display: inline-flex; align-items: center; gap: 6px; text-decoration: none; color: #4f46e5; font-weight: 600;">← トップページに戻る</a>
-        <div class="footer-sub-links" style="display: flex; gap: 16px; font-size: 0.9rem;">
-            <a href="pages/about.html" style="text-decoration: none; color: #6b7280;">このサイトについて</a>
-            <a href="pages/contact.html" style="text-decoration: none; color: #6b7280;">お問い合わせ</a>
-            <a href="pages/privacy_policy.html" style="text-decoration: none; color: #6b7280;">プライバシーポリシー</a>
-            <a href="pages/operator_info.html" style="text-decoration: none; color: #6b7280;">運営者情報</a>
-        </div>
+    <div class="footer-back-wrap">
+        <a href="index.html" class="back-to-home-btn">← 記事一覧（トップ）に戻る</a>
     </div>
 </div>
+
+<!-- サイト共通フッター -->
+<footer class="site-footer">
+    <div class="footer-nav">
+        <a href="index.html">ホーム</a>
+        <a href="pages/about.html">このサイトについて</a>
+        <a href="pages/contact.html">お問い合わせ</a>
+        <a href="pages/privacy_policy.html">プライバシーポリシー</a>
+        <a href="pages/operator_info.html">運営者情報</a>
+    </div>
+    <p class="footer-copy">© {{year}} {{site_name}} All Rights Reserved.</p>
+</footer>
 
 </body>
 </html>

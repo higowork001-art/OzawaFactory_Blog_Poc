@@ -462,3 +462,43 @@ YouTubeチャンネルURL（例: `https://www.youtube.com/@isamumumu1/videos`）
   - 各記事カードおよび記事冒頭のヒーロー画像に、完成料理の写真・キャッチコピーが入った公式YouTubeサムネイルが鮮明に表示されることを確認。
   - 本文中の各見出し（`<h2>`）の下には引き続き抽出されたシーン解説画像が正しく挿入されていることを確認。
 
+---
+
+## セッション #9 — 2026-09-09
+
+### 担当者
+- アカウント: AI Pair Programmer (Claude Sonnet 4.6 Thinking / Antigravity Agent)
+- 作業環境: Windows / PowerShell / Python 3.14
+
+---
+
+### 作業内容
+
+#### ✅ キーワード検索機能の確認（既実装済み）
+
+`build_portal.py` にはすでにキーワード検索バー（`#keyword-search-input`）と AND検索ロジック（`parseSearchTokens`）が実装済みだった。
+
+**トップページの検索機能（既実装）**:
+- 任意キーワードのインクリメンタル検索（リアルタイム絞り込み）
+- スペース区切りでAND検索（例: `鯛 ポワレ`・`鶏肉 フライパン`）
+- 全角スペース自動変換対応
+- カテゴリフィルターとの組み合わせ検索
+- 0件時の「該当なし」メッセージ＋リセットボタン
+- ✕ボタンで検索クリア
+
+#### 🐛 バグ修正: 記事個別ページのフッター体裁崩れ
+
+**原因**:
+`src/template.html` のCSS構造が壊れていた。`@media (max-width: 768px) {}` の閉じブレースが途中で欠落し、`.footer-back-wrap`・`.back-to-home-btn`・`footer.site-footer`・`.footer-nav` 等のスタイルがメディアクエリの**内側**に誤って入り込んでいた。
+
+PC幅ではフッター関連のスタイルが一切適用されず、「このサイトについて〜プライバシーポリシー」等のリンクが縦並び・スタイル無しで崩れて表示されていた。
+
+**修正内容** (`src/template.html`):
+- `@media (max-width: 768px) {}` の閉じブレースを正しい位置に修正
+- `.footer-back-wrap`・`.back-to-home-btn`・`footer.site-footer`・`.footer-nav`・`.footer-copy` をメディアクエリ外の通常スタイルとして正しく配置
+- スマホ用メディアクエリを末尾に正しく再配置
+
+**検証**:
+- `scratch/update_article_htmls.py` で全5記事HTML再生成（exit code 0）
+- `src/build_portal.py` で `output/index.html` および固定ページHTML再生成（exit code 0）
+

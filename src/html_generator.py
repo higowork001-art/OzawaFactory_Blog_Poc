@@ -219,6 +219,12 @@ def generate_html_preview(
     # 表示タイトル（ユーザー指示: 「htmlファイル名と同じでよい」）
     display_title = os.path.splitext(html_file_name)[0]
 
+    # サイト名と年の取得
+    import config
+    from datetime import datetime
+    site_name = config.SITE_NAME or "料理男子のおうちごはんレシピ"
+    current_year = str(datetime.now().year)
+
     # テンプレートに埋め込み
     final_html = html_template
     final_html = final_html.replace('{{title}}', display_title)
@@ -227,6 +233,8 @@ def generate_html_preview(
     final_html = final_html.replace('{{source_link_html}}', source_link_html)
     final_html = final_html.replace('{{hero_image_html}}', hero_image_html)
     final_html = final_html.replace('{{content}}', html_content)
+    final_html = final_html.replace('{{site_name}}', site_name)
+    final_html = final_html.replace('{{year}}', current_year)
 
     html_output_path = os.path.join(OUTPUT_DIR, html_file_name)
 

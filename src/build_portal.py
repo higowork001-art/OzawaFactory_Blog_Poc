@@ -2,12 +2,13 @@
 src/build_portal.py
 ローカルでブログサイト全体の構成・デザイン（トップページ、記事一覧、固定ページ4種）を
 Chromeなどのブラウザでプレビュー確認するためのポータルHTML生成スクリプト。
-カテゴリ絞り込み（タブ・サイドバー・バッジクリック）に完全対応。
+任意文字でのキーワード検索（複数単語AND検索対応）およびカテゴリ絞り込みに完全対応。
 """
 import os
 import sys
 import re
 import glob
+import html
 from collections import Counter
 import markdown
 from datetime import datetime
@@ -28,6 +29,18 @@ def get_clean_markdown(text: str) -> str:
     text = re.sub(r'\n```\s*$', '', text)
     return text.strip()
 
+def extract_searchable_text(html_content: str) -> str:
+    """HTMLからスクリプトやタグを除去し、検索用プレーンテキストを抽出"""
+    # script/styleの除去
+    text = re.sub(r'<(script|style)[^>]*>.*?</\1>', ' ', html_content, flags=re.DOTALL | re.IGNORECASE)
+    # HTMLタグの除去
+    text = re.sub(r'<[^>]+>', ' ', text)
+    # HTMLエンティティのアンエスケープ
+    text = html.unescape(text)
+    # 余分な空白の整理
+    text = re.sub(r'\s+', ' ', text).strip().lower()
+    return text
+
 def build_static_page_html(md_path: str, title: str, nav_prefix: str = "../") -> str:
     """固定ページ用のHTMLを生成"""
     with open(md_path, 'r', encoding='utf-8') as f:
@@ -38,7 +51,7 @@ def build_static_page_html(md_path: str, title: str, nav_prefix: str = "../") ->
 
     site_name = config.SITE_NAME or "料理男子のおうちごはんレシピ"
 
-    html = f"""<!DOCTYPE html>
+    html_out = f"""<!DOCTYPE html>
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
@@ -268,7 +281,7 @@ def build_static_page_html(md_path: str, title: str, nav_prefix: str = "../") ->
 </body>
 </html>
 """
-    return html
+    return html_out
 
 def determine_category(title: str, description: str) -> str:
     """記事タイトルと概要から最適なカテゴリを判定（検証・レビューを最優先判定）"""
@@ -342,6 +355,11 @@ def build_portal():
         # 正確なカテゴリ判定
         category = determine_category(raw_title, description)
 
+        # 全文検索用のテキスト抽出
+        searchable_body = extract_searchable_text(content)
+        # タイトル、カテゴリ、概要、本文を統合した検索用文字列
+        combined_search_text = f"{raw_title} {category} {description} {searchable_body}".lower()
+
         articles.append({
             "filename": filename,
             "title": raw_title,
@@ -349,6 +367,7 @@ def build_portal():
             "description": description[:110] + "..." if len(description) > 110 else description,
             "image": img_src,
             "category": category,
+            "search_text": html.escape(combined_search_text, quote=True),
         })
 
     total_articles = len(articles)
@@ -363,13 +382,13 @@ def build_portal():
         if c not in all_categories:
             all_categories.append(c)
 
-    # 3. 記事カード HTML 生成（data-category 属性付き）
+    # 3. 記事カード HTML 生成（data-category, data-search-text 属性付き）
     article_cards_html = ""
     for idx, a in enumerate(articles):
         article_cards_html += f"""
-        <article class="post-card" data-category="{a['category']}">
+        <article class="post-card" data-category="{a['category']}" data-title="{html.escape(a['title'], quote=True)}" data-search-text="{a['search_text']}">
             <a href="{a['filename']}" class="post-card-thumb-link">
-                <img src="{a['image']}" alt="{a['title']}" class="post-card-thumb" onerror="this.src='https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=600&auto=format&fit=crop&q=80'">
+                <img src="{a['image']}" alt="{html.escape(a['title'])}" class="post-card-thumb" onerror="this.src='https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=600&auto=format&fit=crop&q=80'">
                 <button type="button" class="category-badge" data-filter="{a['category']}" title="{a['category']}で絞り込む">{a['category']}</button>
             </a>
             <div class="post-card-content">
@@ -395,7 +414,6 @@ def build_portal():
             </div>
         </div>
         """
-
 
     # 4. カテゴリフィルタータブ HTML
     filter_tabs_html = f'<button type="button" class="filter-btn active" data-filter="all">すべて ({total_articles})</button>'
@@ -523,18 +541,6 @@ def build_portal():
             opacity: 0.92;
             line-height: 1.7;
         }}
-        .adsense-status-tag {{
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            margin-top: 18px;
-            padding: 6px 16px;
-            background: rgba(255, 255, 255, 0.18);
-            border: 1px solid rgba(255, 255, 255, 0.35);
-            border-radius: 20px;
-            font-size: 0.85rem;
-            font-weight: 600;
-        }}
 
         /* メインレイアウト */
         .main-layout {{
@@ -551,6 +557,81 @@ def build_portal():
             }}
         }}
 
+        /* 検索バーセクション */
+        .search-section {{
+            margin-bottom: 20px;
+        }}
+        .search-bar-wrap {{
+            display: flex;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border: 1.5px solid #d1d5db;
+            border-radius: 24px;
+            padding: 6px 10px 6px 16px;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+            transition: all 0.25s ease;
+        }}
+        .search-bar-wrap:focus-within {{
+            border-color: var(--accent);
+            box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.15), 0 4px 18px rgba(37, 99, 235, 0.1);
+        }}
+        .search-icon {{
+            font-size: 1.15rem;
+            margin-right: 10px;
+            color: #6b7280;
+            user-select: none;
+        }}
+        .search-input {{
+            flex: 1;
+            border: none;
+            outline: none;
+            background: transparent;
+            font-size: 0.96rem;
+            font-family: inherit;
+            color: var(--text-main);
+            padding: 8px 4px;
+        }}
+        .search-input::placeholder {{
+            color: #9ca3af;
+        }}
+        .clear-search-btn {{
+            background: #e5e7eb;
+            border: none;
+            color: #4b5563;
+            width: 26px;
+            height: 26px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            cursor: pointer;
+            margin-right: 8px;
+            transition: all 0.2s;
+        }}
+        .clear-search-btn:hover {{
+            background: #d1d5db;
+            color: #111827;
+        }}
+        .search-btn {{
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-hover) 100%);
+            color: #ffffff;
+            border: none;
+            border-radius: 18px;
+            padding: 8px 18px;
+            font-size: 0.9rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s;
+            white-space: nowrap;
+            box-shadow: 0 2px 8px rgba(37, 99, 235, 0.25);
+        }}
+        .search-btn:hover {{
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.35);
+            transform: translateY(-1px);
+        }}
+
         /* カテゴリフィルタータブ */
         .category-filter-section {{
             margin-bottom: 24px;
@@ -559,7 +640,7 @@ def build_portal():
             display: flex;
             flex-wrap: wrap;
             gap: 8px;
-            background: rgba(255, 255, 255, 0.7);
+            background: rgba(255, 255, 255, 0.75);
             backdrop-filter: blur(8px);
             padding: 10px 14px;
             border-radius: 16px;
@@ -602,23 +683,28 @@ def build_portal():
             margin-bottom: 20px;
             font-size: 0.95rem;
             color: #1e40af;
+            flex-wrap: wrap;
+            gap: 10px;
         }}
         .filter-status-banner strong {{
             font-weight: 700;
+            color: #1d4ed8;
         }}
         .reset-filter-btn {{
             background: none;
-            border: none;
-            color: #ef4444;
+            border: 1px solid #fca5a5;
+            color: #dc2626;
             font-weight: 700;
             cursor: pointer;
             font-size: 0.85rem;
-            padding: 4px 8px;
-            border-radius: 6px;
-            transition: background 0.2s;
+            padding: 5px 12px;
+            border-radius: 8px;
+            background: #ffffff;
+            transition: all 0.2s;
         }}
         .reset-filter-btn:hover {{
             background: #fee2e2;
+            border-color: #ef4444;
         }}
 
         /* 該当記事なしメッセージ */
@@ -631,9 +717,13 @@ def build_portal():
             color: var(--text-muted);
             border: 1px dashed #cbd5e1;
         }}
+        .no-results h3 {{
+            margin: 10px 0;
+            color: #1f2937;
+        }}
         .no-results p {{
-            margin: 8px 0 0 0;
-            font-size: 1.05rem;
+            margin: 8px 0 18px 0;
+            font-size: 0.95rem;
         }}
 
         /* 記事一覧 */
@@ -849,6 +939,7 @@ def build_portal():
             background: rgba(255,255,255,0.25);
             color: #ffffff;
         }}
+
         /* 公式ストア・ショップウィジェット */
         .shop-widget {{
             background: linear-gradient(145deg, rgba(255, 255, 255, 0.95), rgba(240, 247, 255, 0.92));
@@ -979,6 +1070,16 @@ def build_portal():
                 padding: 0 12px;
                 gap: 20px;
             }}
+            .search-bar-wrap {{
+                padding: 4px 8px 4px 12px;
+            }}
+            .search-input {{
+                font-size: 0.88rem;
+            }}
+            .search-btn {{
+                padding: 6px 14px;
+                font-size: 0.82rem;
+            }}
             .category-filter-bar {{
                 padding: 8px 10px;
                 gap: 6px;
@@ -1068,7 +1169,7 @@ def build_portal():
         footer.site-footer {{
             background: #ffffff;
             border-top: 1px solid #e5e7eb;
-            padding: 32px 16px;
+            padding: 36px 16px;
             margin-top: 50px;
             text-align: center;
             color: var(--text-muted);
@@ -1077,14 +1178,15 @@ def build_portal():
         .footer-nav {{
             display: flex;
             justify-content: center;
-            gap: 16px;
+            gap: 20px;
             flex-wrap: wrap;
             margin-bottom: 16px;
         }}
         .footer-nav a {{
             color: #4b5563;
             text-decoration: none;
-            font-size: 0.85rem;
+            font-size: 0.9rem;
+            font-weight: 600;
             transition: color 0.2s;
         }}
         .footer-nav a:hover {{
@@ -1118,6 +1220,16 @@ def build_portal():
     <div class="main-layout">
         <!-- 記事一覧コンテナ -->
         <main>
+            <!-- 任意文字キーワード検索バー -->
+            <div class="search-section">
+                <div class="search-bar-wrap">
+                    <span class="search-icon">🔍</span>
+                    <input type="text" id="keyword-search-input" class="search-input" placeholder="料理名・食材・器具で検索（例: 鯛 ポワレ、鶏肉、フライパン...）" autocomplete="off">
+                    <button type="button" id="clear-search-btn" class="clear-search-btn" title="検索ワードをクリア" style="display: none;">✕</button>
+                    <button type="button" id="submit-search-btn" class="search-btn">検索</button>
+                </div>
+            </div>
+
             <!-- カテゴリ絞り込みタブ -->
             <div class="category-filter-section">
                 <div class="category-filter-bar">
@@ -1127,7 +1239,7 @@ def build_portal():
 
             <!-- 絞り込み状況バナー -->
             <div id="filter-status-banner" class="filter-status-banner">
-                <span>カテゴリ「<strong id="current-cat-name"></strong>」の記事を表示中（<strong id="filtered-count"></strong>件）</span>
+                <span id="filter-status-text"></span>
                 <button type="button" id="reset-filter-btn" class="reset-filter-btn">✕ 絞り込みを解除</button>
             </div>
 
@@ -1147,7 +1259,8 @@ def build_portal():
             <div id="no-results-msg" class="no-results">
                 <div style="font-size: 2.5rem; margin-bottom: 8px;">🔍</div>
                 <h3>該当する記事が見つかりませんでした</h3>
-                <p>別のカテゴリを選択するか、絞り込みを解除してください。</p>
+                <p id="no-results-desc">検索キーワードを変更するか、絞り込みを解除してください。</p>
+                <button type="button" id="no-results-reset-btn" class="reset-filter-btn" style="display: inline-block;">絞り込みをリセット</button>
             </div>
         </main>
 
@@ -1161,8 +1274,6 @@ def build_portal():
                 <p class="profile-bio">ステンレス鍋やフライパンを活用した男の手抜き時短料理を発信中。実体験をもとにしたレシピを整理しています。</p>
                 <a href="pages/about.html" class="read-more" style="justify-content: center;">詳しいプロフィール <span>→</span></a>
             </div>
-
-
 
             <!-- AdSense サイドバー広告スロット -->
             <div class="sidebar-widget ad-container ad-sidebar">
@@ -1210,16 +1321,35 @@ def build_portal():
         <p>© {datetime.now().year} {site_name} All Rights Reserved.</p>
     </footer>
 
-    <!-- カテゴリ絞り込み＋ページネーションJavaScript -->
+    <!-- カテゴリ絞り込み＋キーワード検索＋ページネーションJavaScript -->
     <script>
         const ITEMS_PER_PAGE = 5;
         let currentPage = 1;
         let currentFilter = 'all';
+        let searchTokens = [];
+
+        function parseSearchTokens(text) {{
+            if (!text) return [];
+            // 全角スペースを半角に置換し、小文字化して分割
+            return text.replace(/　/g, ' ').trim().toLowerCase().split(/\\s+/).filter(Boolean);
+        }}
 
         function getVisibleCards() {{
             const cards = Array.from(document.querySelectorAll('.post-card'));
-            if (currentFilter === 'all') return cards;
-            return cards.filter(c => c.getAttribute('data-category') === currentFilter);
+            return cards.filter(card => {{
+                // 1. カテゴリチェック
+                const cat = card.getAttribute('data-category');
+                const matchCategory = (currentFilter === 'all' || cat === currentFilter);
+                if (!matchCategory) return false;
+
+                // 2. キーワードチェック（複数単語AND検索）
+                if (searchTokens.length === 0) return true;
+                const searchText = (card.getAttribute('data-search-text') || '').toLowerCase();
+                const cardTitle = (card.getAttribute('data-title') || '').toLowerCase();
+                const targetCombined = cardTitle + ' ' + searchText;
+
+                return searchTokens.every(token => targetCombined.includes(token));
+            }});
         }}
 
         function applyPagination() {{
@@ -1247,10 +1377,18 @@ def build_portal():
             const nextBtn = document.getElementById('next-page-btn');
             const pageInfo = document.getElementById('page-info');
             const noResults = document.getElementById('no-results-msg');
+            const noResultsDesc = document.getElementById('no-results-desc');
 
             if (visibleCards.length === 0) {{
                 pagination.style.display = 'none';
-                if (noResults) noResults.style.display = 'block';
+                if (noResults) {{
+                    noResults.style.display = 'block';
+                    if (searchTokens.length > 0) {{
+                        noResultsDesc.textContent = '「' + searchTokens.join(' ') + '」に一致する記事は見つかりませんでした。別の言葉で検索してください。';
+                    }} else {{
+                        noResultsDesc.textContent = '選択されたカテゴリの記事は見つかりませんでした。';
+                    }}
+                }}
             }} else {{
                 if (noResults) noResults.style.display = 'none';
                 if (totalPages <= 1) {{
@@ -1262,6 +1400,31 @@ def build_portal():
                     nextBtn.disabled = (currentPage >= totalPages);
                 }}
             }}
+
+            updateFilterBanner(visibleCards.length);
+        }}
+
+        function updateFilterBanner(count) {{
+            const banner = document.getElementById('filter-status-banner');
+            const bannerText = document.getElementById('filter-status-text');
+            const hasCategory = currentFilter !== 'all';
+            const hasSearch = searchTokens.length > 0;
+
+            if (!hasCategory && !hasSearch) {{
+                banner.style.display = 'none';
+                return;
+            }}
+
+            banner.style.display = 'flex';
+            let msg = '';
+            if (hasCategory && hasSearch) {{
+                msg = 'カテゴリ「<strong>' + currentFilter + '</strong>」 × 検索「<strong>' + searchTokens.join(' ') + '</strong>」の記事を表示中（<strong>' + count + '</strong>件）';
+            }} else if (hasCategory) {{
+                msg = 'カテゴリ「<strong>' + currentFilter + '</strong>」の記事を表示中（<strong>' + count + '</strong>件）';
+            }} else {{
+                msg = '検索「<strong>' + searchTokens.join(' ') + '</strong>」の記事を表示中（<strong>' + count + '</strong>件）';
+            }}
+            bannerText.innerHTML = msg;
         }}
 
         function applyCategoryFilter(catName) {{
@@ -1269,7 +1432,7 @@ def build_portal():
             currentPage = 1;
 
             // ボタンのactiveクラス切り替え
-            document.querySelectorAll('.filter-btn').forEach(el => {{
+            document.querySelectorAll('.filter-btn, .cat-link').forEach(el => {{
                 if (el.getAttribute('data-filter') === catName) {{
                     el.classList.add('active');
                 }} else {{
@@ -1277,20 +1440,43 @@ def build_portal():
                 }}
             }});
 
-            // 状態バナーの更新
-            const banner = document.getElementById('filter-status-banner');
-            const visibleCards = getVisibleCards();
+            applyPagination();
+        }}
 
-            if (catName === 'all') {{
-                banner.style.display = 'none';
-                if (window.location.hash && window.location.hash.startsWith('#category=')) {{
-                    history.replaceState(null, '', window.location.pathname);
-                }}
+        function handleSearchInput() {{
+            const input = document.getElementById('keyword-search-input');
+            const clearBtn = document.getElementById('clear-search-btn');
+            const val = input.value.trim();
+
+            if (val) {{
+                clearBtn.style.display = 'flex';
             }} else {{
-                banner.style.display = 'flex';
-                document.getElementById('current-cat-name').textContent = catName;
-                document.getElementById('filtered-count').textContent = visibleCards.length;
-                window.location.hash = 'category=' + encodeURIComponent(catName);
+                clearBtn.style.display = 'none';
+            }}
+
+            searchTokens = parseSearchTokens(val);
+            currentPage = 1;
+            applyPagination();
+        }}
+
+        function resetAllFilters() {{
+            const input = document.getElementById('keyword-search-input');
+            input.value = '';
+            document.getElementById('clear-search-btn').style.display = 'none';
+            searchTokens = [];
+            currentFilter = 'all';
+            currentPage = 1;
+
+            document.querySelectorAll('.filter-btn, .cat-link').forEach(el => {{
+                if (el.getAttribute('data-filter') === 'all') {{
+                    el.classList.add('active');
+                }} else {{
+                    el.classList.remove('active');
+                }}
+            }});
+
+            if (window.location.hash && window.location.hash.startsWith('#category=')) {{
+                history.replaceState(null, '', window.location.pathname);
             }}
 
             applyPagination();
@@ -1298,7 +1484,31 @@ def build_portal():
 
         // イベントリスナーの登録
         document.addEventListener('DOMContentLoaded', () => {{
-            // タブボタンのクリック
+            const searchInput = document.getElementById('keyword-search-input');
+            const clearSearchBtn = document.getElementById('clear-search-btn');
+            const submitSearchBtn = document.getElementById('submit-search-btn');
+
+            // 検索入力時のインクリメンタル検索
+            searchInput.addEventListener('input', handleSearchInput);
+            searchInput.addEventListener('keydown', (e) => {{
+                if (e.key === 'Enter') {{
+                    e.preventDefault();
+                    handleSearchInput();
+                }}
+            }});
+            submitSearchBtn.addEventListener('click', handleSearchInput);
+
+            // 検索クリアボタン
+            clearSearchBtn.addEventListener('click', () => {{
+                searchInput.value = '';
+                clearSearchBtn.style.display = 'none';
+                searchTokens = [];
+                currentPage = 1;
+                applyPagination();
+                searchInput.focus();
+            }});
+
+            // カテゴリタブ・サイドバーボタンのクリック
             document.querySelectorAll('[data-filter]').forEach(el => {{
                 el.addEventListener('click', (e) => {{
                     e.preventDefault();
@@ -1308,12 +1518,14 @@ def build_portal():
                 }});
             }});
 
-            // リセットボタン
+            // 絞り込みリセットボタン
             const resetBtn = document.getElementById('reset-filter-btn');
             if (resetBtn) {{
-                resetBtn.addEventListener('click', () => {{
-                    applyCategoryFilter('all');
-                }});
+                resetBtn.addEventListener('click', resetAllFilters);
+            }}
+            const noResultsResetBtn = document.getElementById('no-results-reset-btn');
+            if (noResultsResetBtn) {{
+                noResultsResetBtn.addEventListener('click', resetAllFilters);
             }}
 
             // ページネーションボタン
@@ -1331,17 +1543,6 @@ def build_portal():
                 applyCategoryFilter(targetCat);
             }} else {{
                 applyPagination();
-            }}
-        }});
-
-        // ブラウザの戻る・進む（hashchange）に対応
-        window.addEventListener('hashchange', () => {{
-            const hash = window.location.hash;
-            if (hash && hash.startsWith('#category=')) {{
-                const targetCat = decodeURIComponent(hash.replace('#category=', ''));
-                applyCategoryFilter(targetCat);
-            }} else if (!hash || hash === '#') {{
-                applyCategoryFilter('all');
             }}
         }});
     </script>
