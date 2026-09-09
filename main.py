@@ -22,7 +22,7 @@ from src.analyzer import analyze_transcript
 from src.article_generator import generate_article
 from src.output import save_transcript, save_analysis, save_article
 from src.html_generator import generate_html_preview
-from src.screenshot import extract_frames
+from src.screenshot import extract_frames, download_thumbnail, get_thumbnail_url
 from src.tracker import load_processed_video_ids, mark_video_as_processed
 from src.wordpress import WordPressClient
 
@@ -64,8 +64,11 @@ def process_single_video(url: str) -> bool:
         if scenes:
             print(f"  → 重要シーン {len(scenes)} 件を選定")
 
-        # [5/9] スクリーンショット抽出
-        print("[5/9] 動画からスクリーンショットを抽出しています...")
+        # [5/9] スクリーンショット抽出 ＆ サムネイル取得
+        print("[5/9] 動画からサムネイルとスクリーンショットを取得しています...")
+        # YouTube公式サムネイルをダウンロード
+        thumbnail_file = download_thumbnail(video_id)
+
         if scenes:
             timestamps = [s.get("秒数", 0) for s in scenes if s.get("秒数") is not None]
             if timestamps:
@@ -109,9 +112,11 @@ def process_single_video(url: str) -> bool:
                 body_markdown = post.content if post.content else article_markdown
                 html_body = markdown.markdown(body_markdown, extensions=["extra", "tables", "nl2br"])
 
-                # アイキャッチ画像（抽出フレームの先頭）のアップロード
+                # アイキャッチ画像（YouTube公式サムネイル）のアップロード
                 featured_media_id = None
-                if extracted_frames:
+                if thumbnail_file and os.path.isfile(thumbnail_file):
+                    featured_media_id = client.upload_media(thumbnail_file, title=article_title)
+                elif extracted_frames:
                     first_frame_path = list(extracted_frames.values())[0]
                     if os.path.isfile(first_frame_path):
                         featured_media_id = client.upload_media(first_frame_path, title=article_title)

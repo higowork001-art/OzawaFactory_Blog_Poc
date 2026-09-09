@@ -7,30 +7,37 @@ from config import OUTPUT_DIR
 
 def _build_hero_image_html(video_id: str) -> str:
     """
-    サムネイル画像のHTMLを生成する。
-    まずローカルに抽出済みフレームがあればそれを使い、
-    なければYouTubeのサムネイルURLを直接参照する。
+    記事の見出し画像（ヒーロー画像）のHTMLを生成する。
+    YouTubeの公式サムネイル画像（文字や完成品写真入りの公式画像）を最優先で使用する。
+    ローカルにダウンロード済みサムネイルがあればそれを使い、なければYouTubeサムネイルURLを参照する。
     """
-    # ローカルフレームディレクトリを確認（extract_framesが出力するディレクトリ）
-    frames_dir = os.path.join(OUTPUT_DIR, f"{video_id}_frames")
-    if os.path.isdir(frames_dir):
-        files = sorted([f for f in os.listdir(frames_dir) if f.endswith(".jpg")])
-        if files:
-            # 最初のフレームをヒーローに使う（最小秒数 = 冒頭に近い）
-            first_frame = files[0]
-            rel_path = os.path.join(f"{video_id}_frames", first_frame).replace("\\", "/")
-            return (
-                f'<div class="hero-image">'
-                f'<img src="{rel_path}" alt="動画サムネイル" loading="lazy">'
-                f'</div>'
-            )
+    # 1. ローカルにダウンロードされたサムネイルファイルを確認
+    thumb_filename = f"{video_id}_thumb.jpg"
+    thumb_path = os.path.join(OUTPUT_DIR, thumb_filename)
+    if os.path.exists(thumb_path) and os.path.getsize(thumb_path) > 1000:
+        return (
+            f'<div class="hero-image">'
+            f'<img src="{thumb_filename}" alt="YouTube動画サムネイル" loading="lazy">'
+            f'</div>'
+        )
 
-    # フォールバック: YouTubeサムネイルをURLで参照
+    # 2. frames ディレクトリ内のサムネイル画像を確認
+    frames_thumb = os.path.join(OUTPUT_DIR, f"{video_id}_frames", "thumbnail.jpg")
+    if os.path.exists(frames_thumb) and os.path.getsize(frames_thumb) > 1000:
+        rel_path = f"{video_id}_frames/thumbnail.jpg"
+        return (
+            f'<div class="hero-image">'
+            f'<img src="{rel_path}" alt="YouTube動画サムネイル" loading="lazy">'
+            f'</div>'
+        )
+
+    # 3. YouTube公式サムネイルURLを直接参照（フォールバック付き）
     thumb_url = f"https://img.youtube.com/vi/{video_id}/maxresdefault.jpg"
+    fallback_url = f"https://img.youtube.com/vi/{video_id}/hqdefault.jpg"
     return (
         f'<div class="hero-image">'
-        f'<img src="{thumb_url}" alt="動画サムネイル" loading="lazy" '
-        f'onerror="this.src=\'https://img.youtube.com/vi/{video_id}/hqdefault.jpg\'">'
+        f'<img src="{thumb_url}" alt="YouTube動画サムネイル" loading="lazy" '
+        f'onerror="this.src=\'{fallback_url}\'">'
         f'</div>'
     )
 
@@ -60,9 +67,8 @@ def _inject_scene_images(html_content: str, video_id: str, scenes: list) -> str:
     if not frame_files:
         return html_content
 
-    # シーンを秒数でソートし、最初のフレームは hero に使っているのでスキップ
+    # シーンを秒数順にソート（見出し画像はYouTube公式サムネイルなので、シーン画像は先頭からh2に順次挿入）
     sorted_scenes = sorted(scenes, key=lambda s: s.get("秒数", 0))
-    first_sec = sorted(frame_files.keys())[0] if frame_files else None
 
     # h2タグを順番に見つけて、各々の直後にシーン画像を挿入
     h2_pattern = re.compile(r'(<h2[^>]*>.*?</h2>)', re.DOTALL)
@@ -71,9 +77,7 @@ def _inject_scene_images(html_content: str, video_id: str, scenes: list) -> str:
     if not h2_positions:
         return html_content
 
-    # 各h2に対応するシーンを割り当て（h2の数とシーン数が一致しなくてもOK）
-    # 最初のh2にはheroの次のシーンから割り当て
-    usable_scenes = [s for s in sorted_scenes if s.get("秒数") != first_sec]
+    usable_scenes = sorted_scenes
 
     result = html_content
     offset = 0  # 挿入によるインデックスのずれ

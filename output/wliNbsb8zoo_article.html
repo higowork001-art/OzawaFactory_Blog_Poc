@@ -13,13 +13,23 @@
         :root {
             --bg-gradient-1: #fdfbfb;
             --bg-gradient-2: #ebedee;
-            --glass-bg: rgba(255, 255, 255, 0.75);
-            --glass-border: rgba(255, 255, 255, 0.6);
+            --glass-bg: rgba(255, 255, 255, 0.85);
+            --glass-border: rgba(255, 255, 255, 0.7);
             --text-main: #2d3748;
             --text-muted: #718096;
             --accent: #4f46e5;
             --accent-hover: #4338ca;
             --surface: #ffffff;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html, body {
+            overflow-x: hidden;
+            width: 100%;
+            max-width: 100vw;
         }
 
         body {
@@ -37,9 +47,10 @@
 
         /* Glassmorphism Container */
         .container {
+            width: calc(100% - 32px);
             max-width: 800px;
-            margin: 40px 20px;
-            padding: 50px 60px;
+            margin: 32px auto;
+            padding: 44px 48px;
             background: var(--glass-bg);
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
@@ -47,6 +58,7 @@
             border: 1px solid var(--glass-border);
             box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
             animation: fadeIn 0.8s ease-out;
+            word-break: break-word;
         }
 
         @keyframes fadeIn {
@@ -56,7 +68,7 @@
 
         /* Header / Meta section */
         header {
-            margin-bottom: 40px;
+            margin-bottom: 32px;
             text-align: center;
         }
 
@@ -247,14 +259,90 @@
             content: '📸 ';
         }
 
+        /* Google AdSense 広告枠スタイル */
+        .ad-container {
+            margin: 32px 0;
+            text-align: center;
+        }
+        .ad-notice {
+            font-size: 0.72rem;
+            color: #9ca3af;
+            letter-spacing: 0.05em;
+            margin-bottom: 6px;
+            display: block;
+            text-transform: uppercase;
+        }
+        .ad-box {
+            background: rgba(255, 255, 255, 0.75);
+            border: 1px dashed #cbd5e1;
+            border-radius: 14px;
+            padding: 18px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: #94a3b8;
+            font-size: 0.82rem;
+            min-height: 120px;
+            transition: all 0.2s;
+        }
+        .ad-box:hover {
+            border-color: #94a3b8;
+            background: rgba(255, 255, 255, 0.95);
+        }
+
         /* Responsive */
         @media (max-width: 768px) {
             .container {
-                margin: 20px 10px;
-                padding: 30px 20px;
+                margin: 14px 10px;
+                padding: 24px 18px;
+                border-radius: 16px;
             }
             h1 {
-                font-size: 1.8rem;
+                font-size: 1.5rem;
+                line-height: 1.4;
+            }
+            .meta-description {
+                font-size: 0.92rem;
+            }
+            .content {
+                font-size: 0.98rem;
+            }
+            .content h2 {
+                font-size: 1.35rem;
+                margin-top: 36px;
+            }
+            .content h3 {
+                font-size: 1.15rem;
+            }
+            .content table {
+                display: block;
+                overflow-x: auto;
+                white-space: nowrap;
+            }
+            .footer-links-wrap {
+                flex-direction: column;
+                align-items: stretch !important;
+                gap: 16px !important;
+            }
+            .footer-sub-links {
+                display: flex;
+                gap: 8px !important;
+                overflow-x: auto;
+                white-space: nowrap;
+                -webkit-overflow-scrolling: touch;
+                padding-bottom: 4px;
+                scrollbar-width: none;
+            }
+            .footer-sub-links::-webkit-scrollbar {
+                display: none;
+            }
+            .footer-sub-links a {
+                padding: 6px 12px;
+                background: rgba(0, 0, 0, 0.04);
+                border-radius: 14px;
+                font-size: 0.82rem !important;
+                flex-shrink: 0;
             }
         }
     </style>
@@ -262,6 +350,10 @@
 <body>
 
 <div class="container">
+    <div style="margin-bottom: 24px;">
+        <a href="index.html" style="display: inline-flex; align-items: center; gap: 6px; text-decoration: none; color: #4f46e5; font-weight: 600; font-size: 0.92rem; background: rgba(255,255,255,0.85); padding: 8px 16px; border-radius: 20px; border: 1px solid rgba(79,70,229,0.2); transition: all 0.2s; box-shadow: 0 2px 6px rgba(0,0,0,0.03);">← ブログトップに戻る</a>
+    </div>
+
     <header>
         <h1>wliNbsb8zoo_article</h1>
         <p class="meta-description">ステンレスフライパンでお肉がくっつくお悩みを解決！水滴を使った正しい予熱テクニックと、皮パリパリでジューシーな鶏もも肉とあさりの酒蒸しレシピを紹介します。</p>
@@ -272,8 +364,17 @@
 
         <a href="https://www.youtube.com/watch?v=wliNbsb8zoo" target="_blank" class="source-link">🔗 元のYouTube動画を見る</a>
 
-        <div class="hero-image"><img src="wliNbsb8zoo_frames/frame_00049s.jpg" alt="動画サムネイル" loading="lazy"></div>
+        <div class="hero-image"><img src="wliNbsb8zoo_thumb.jpg" alt="YouTube動画サムネイル" loading="lazy"></div>
     </header>
+
+    <!-- 記事上部 AdSense 広告枠 -->
+    <div class="ad-container ad-article-top">
+        <span class="ad-notice">スポンサーリンク</span>
+        <div class="ad-box">
+            <!-- Google AdSense Responsive Ad Code Here -->
+            <span>広告スペース（AdSense レスポンシブ広告）</span>
+        </div>
+    </div>
 
     <div class="content">
         <p>「ステンレスフライパンでお肉を焼くとくっついてしまう」「皮がパリッと焼けない」とお悩みではありませんか？</p>
@@ -281,7 +382,7 @@
 <p>この記事では、ステンレスフライパンの正しい予熱テクニックと、フライパン1つで簡単に作れる「鶏もも肉とあさりの酒蒸し」のレシピをご紹介します。</p>
 <hr />
 <h2>鶏もも肉とあさりの酒蒸しの材料</h2>
-<div class="scene-capture"><img src="wliNbsb8zoo_frames/frame_00106s.jpg" alt="水滴がコロコロ弾ける予熱完了シーン" loading="lazy"><div class="scene-caption">水滴がコロコロ弾ける予熱完了シーン</div></div>
+<div class="scene-capture"><img src="wliNbsb8zoo_frames/frame_00049s.jpg" alt="26cmのLスキレットを用意する場面" loading="lazy"><div class="scene-caption">26cmのLスキレットを用意する場面</div></div>
 
 <p>フライパン1つで手軽に作れる、ワインやお酒のおつまみにもぴったりな一品です。</p>
 <table>
@@ -320,7 +421,7 @@
 </table>
 <hr />
 <h2>絶対くっつかない！ステンレスフライパンの「予熱」と焼き方のコツ</h2>
-<div class="scene-capture"><img src="wliNbsb8zoo_frames/frame_00116s.jpg" alt="鶏肉を皮目からフライパンに入れる場面" loading="lazy"><div class="scene-caption">鶏肉を皮目からフライパンに入れる場面</div></div>
+<div class="scene-capture"><img src="wliNbsb8zoo_frames/frame_00106s.jpg" alt="水滴がコロコロ弾ける予熱完了シーン" loading="lazy"><div class="scene-caption">水滴がコロコロ弾ける予熱完了シーン</div></div>
 
 <p>ステンレスフライパンでお肉をくっつけずに焼くための重要なポイントは「予熱」と「焼き方」です。</p>
 <h3>1. 水滴チェックによる正しい予熱</h3>
@@ -331,7 +432,7 @@
 <p>皮目を下にしてフライパンに置いたら、蓋をせず、途中で触ったり裏返したりせずに我慢して焼きます。ステンレス鍋の高い蓄熱性により、皮目から出た油でカリッと香ばしく焼き上がり、ポロっと剥がれるようになります。</p>
 <hr />
 <h2>鶏肉とあさりの酒蒸しの作り方ステップ</h2>
-<div class="scene-capture"><img src="wliNbsb8zoo_frames/frame_00156s.jpg" alt="皮目がパリッと黄金色に焼けたシーン" loading="lazy"><div class="scene-caption">皮目がパリッと黄金色に焼けたシーン</div></div>
+<div class="scene-capture"><img src="wliNbsb8zoo_frames/frame_00116s.jpg" alt="鶏肉を皮目からフライパンに入れる場面" loading="lazy"><div class="scene-caption">鶏肉を皮目からフライパンに入れる場面</div></div>
 
 <h3>1. 予熱と鶏肉の片面焼き（皮パリパリの秘訣）</h3>
 <ol>
@@ -349,7 +450,7 @@
 </ol>
 <hr />
 <h2>美味しさ倍増！旨味成分（イノシン酸×グルタミン酸）の組み合わせ</h2>
-<div class="scene-capture"><img src="wliNbsb8zoo_frames/frame_00183s.jpg" alt="フライパンにあさりと酒を投入する場面" loading="lazy"><div class="scene-caption">フライパンにあさりと酒を投入する場面</div></div>
+<div class="scene-capture"><img src="wliNbsb8zoo_frames/frame_00156s.jpg" alt="皮目がパリッと黄金色に焼けたシーン" loading="lazy"><div class="scene-caption">皮目がパリッと黄金色に焼けたシーン</div></div>
 
 <p>このレシピが圧倒的に美味しい理由は、食材の旨味成分の組み合わせにあります。</p>
 <ul>
@@ -359,13 +460,13 @@
 <p>お肉の「イノシン酸」と貝類の「グルタミン酸」が合わさることで<strong>旨味の相乗効果</strong>が生まれ、フライパン1つで驚くほど深い味わいのソースに仕上がります。</p>
 <hr />
 <h2>余ったソースで作る！パスタアレンジの提案</h2>
-<div class="scene-capture"><img src="wliNbsb8zoo_frames/frame_00220s.jpg" alt="焼き上がった鶏肉にあさりソースをかける" loading="lazy"><div class="scene-caption">焼き上がった鶏肉にあさりソースをかける</div></div>
+<div class="scene-capture"><img src="wliNbsb8zoo_frames/frame_00183s.jpg" alt="フライパンにあさりと酒を投入する場面" loading="lazy"><div class="scene-caption">フライパンにあさりと酒を投入する場面</div></div>
 
 <p>鶏肉とあさりの旨味が凝縮されたソースが残ったら、捨てるのは勿体ありません。</p>
 <p>フライパンに残ったソースに少量の水とパスタ（乾麺）を直接投入して煮込むだけで、旨味をすべて吸い込んだ<strong>絶品あさりパスタ</strong>が完成します。お食事の締めにぜひ試してみてください。</p>
 <hr />
 <h2>動画で紹介されているアイテム・サービス</h2>
-<div class="scene-capture"><img src="wliNbsb8zoo_frames/frame_00288s.jpg" alt="鶏肉とあさりを一緒に一口で試食する場面" loading="lazy"><div class="scene-caption">鶏肉とあさりを一緒に一口で試食する場面</div></div>
+<div class="scene-capture"><img src="wliNbsb8zoo_frames/frame_00220s.jpg" alt="焼き上がった鶏肉にあさりソースをかける" loading="lazy"><div class="scene-caption">焼き上がった鶏肉にあさりソースをかける</div></div>
 
 <p>動画内で使用・紹介されている商品およびサービスです。</p>
 <ul>
@@ -378,6 +479,8 @@
 </ul>
 <hr />
 <h2>ステンレス鍋に関するよくある質問（FAQ）</h2>
+<div class="scene-capture"><img src="wliNbsb8zoo_frames/frame_00288s.jpg" alt="鶏肉とあさりを一緒に一口で試食する場面" loading="lazy"><div class="scene-caption">鶏肉とあさりを一緒に一口で試食する場面</div></div>
+
 <h3>Q. ステンレスフライパンでお肉がくっついてしまう原因は？</h3>
 <p><strong>A.</strong> 主な原因は予熱不足です。中火で約5分間しっかり温め、水を落とした時に水滴がコロコロと弾ける状態になってから油とお肉を入れることで、くっつきを防ぐことができます。</p>
 <h3>Q. あさりは生のものを使う必要がありますか？</h3>
@@ -388,6 +491,25 @@
 <h2>まとめ</h2>
 <p>ステンレスフライパンは、正しい予熱手順（水滴チェック）を行うことで、お肉をくっつけずに皮パリパリに焼くことができます。</p>
 <p>鶏肉のイノシン酸にあさりのグルタミン酸を掛け合わせた酒蒸しは、簡単でありながら本格的な味わいを楽しめるレシピです。ぜひご家庭のステンレスフライパンで試してみてください！</p>
+    </div>
+
+    <!-- 記事下部 AdSense 広告枠 -->
+    <div class="ad-container ad-article-bottom">
+        <span class="ad-notice">スポンサーリンク</span>
+        <div class="ad-box">
+            <!-- Google AdSense Matched Content / Bottom Ad Code Here -->
+            <span>広告スペース（AdSense 記事下広告）</span>
+        </div>
+    </div>
+
+    <div class="footer-links-wrap" style="margin-top: 40px; padding-top: 24px; border-top: 1px solid rgba(0,0,0,0.08); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;">
+        <a href="index.html" style="display: inline-flex; align-items: center; gap: 6px; text-decoration: none; color: #4f46e5; font-weight: 600;">← トップページに戻る</a>
+        <div class="footer-sub-links" style="display: flex; gap: 16px; font-size: 0.9rem;">
+            <a href="pages/about.html" style="text-decoration: none; color: #6b7280;">このサイトについて</a>
+            <a href="pages/contact.html" style="text-decoration: none; color: #6b7280;">お問い合わせ</a>
+            <a href="pages/privacy_policy.html" style="text-decoration: none; color: #6b7280;">プライバシーポリシー</a>
+            <a href="pages/operator_info.html" style="text-decoration: none; color: #6b7280;">運営者情報</a>
+        </div>
     </div>
 </div>
 

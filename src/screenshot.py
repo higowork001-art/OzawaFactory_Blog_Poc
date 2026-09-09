@@ -10,13 +10,51 @@ import sys
 from config import OUTPUT_DIR
 
 
+import requests
+
 def get_thumbnail_url(video_id: str) -> str:
     """
     YouTubeサムネイルのURLを返す（ダウンロード不要）。
     maxresdefault → hqdefault の順にフォールバックする。
-    実際の存在確認は行わず、HTMLで直接imgタグに使う。
     """
     return f"https://img.youtube.com/vi/{video_id}/maxresdefault.jpg"
+
+
+def download_thumbnail(video_id: str) -> str:
+    """
+    YouTube動画の公式サムネイル画像をダウンロードしてローカルに保存する。
+    maxresdefault.jpg を試し、取得できない場合は hqdefault.jpg を取得する。
+    
+    Returns:
+        保存したサムネイル画像のローカルファイルパス（失敗時はサムネイルURL）
+    """
+    out_path = os.path.join(OUTPUT_DIR, f"{video_id}_thumb.jpg")
+    
+    # 既にダウンロード済みならそのパスを返す
+    if os.path.exists(out_path) and os.path.getsize(out_path) > 1000:
+        return out_path
+
+    urls = [
+        f"https://img.youtube.com/vi/{video_id}/maxresdefault.jpg",
+        f"https://img.youtube.com/vi/{video_id}/hqdefault.jpg",
+        f"https://i.ytimg.com/vi/{video_id}/maxresdefault.jpg",
+        f"https://i.ytimg.com/vi/{video_id}/hqdefault.jpg",
+    ]
+
+    for url in urls:
+        try:
+            resp = requests.get(url, timeout=10)
+            # YouTubeは存在しないmaxresdefaultに対してステータス404または小さいプレースホルダーを返すことがある
+            if resp.status_code == 200 and len(resp.content) > 1000:
+                with open(out_path, "wb") as f:
+                    f.write(resp.content)
+                print(f"  [screenshot] YouTubeサムネイルをダウンロード完了: {os.path.basename(out_path)} ({len(resp.content)} bytes)")
+                return out_path
+        except Exception as e:
+            continue
+
+    # ダウンロード失敗時のフォールバックURL
+    return get_thumbnail_url(video_id)
 
 
 def _get_ffmpeg_path() -> str:

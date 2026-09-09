@@ -13,13 +13,23 @@
         :root {
             --bg-gradient-1: #fdfbfb;
             --bg-gradient-2: #ebedee;
-            --glass-bg: rgba(255, 255, 255, 0.75);
-            --glass-border: rgba(255, 255, 255, 0.6);
+            --glass-bg: rgba(255, 255, 255, 0.85);
+            --glass-border: rgba(255, 255, 255, 0.7);
             --text-main: #2d3748;
             --text-muted: #718096;
             --accent: #4f46e5;
             --accent-hover: #4338ca;
             --surface: #ffffff;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html, body {
+            overflow-x: hidden;
+            width: 100%;
+            max-width: 100vw;
         }
 
         body {
@@ -37,9 +47,10 @@
 
         /* Glassmorphism Container */
         .container {
+            width: calc(100% - 32px);
             max-width: 800px;
-            margin: 40px 20px;
-            padding: 50px 60px;
+            margin: 32px auto;
+            padding: 44px 48px;
             background: var(--glass-bg);
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
@@ -47,6 +58,7 @@
             border: 1px solid var(--glass-border);
             box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
             animation: fadeIn 0.8s ease-out;
+            word-break: break-word;
         }
 
         @keyframes fadeIn {
@@ -56,7 +68,7 @@
 
         /* Header / Meta section */
         header {
-            margin-bottom: 40px;
+            margin-bottom: 32px;
             text-align: center;
         }
 
@@ -247,14 +259,90 @@
             content: '📸 ';
         }
 
+        /* Google AdSense 広告枠スタイル */
+        .ad-container {
+            margin: 32px 0;
+            text-align: center;
+        }
+        .ad-notice {
+            font-size: 0.72rem;
+            color: #9ca3af;
+            letter-spacing: 0.05em;
+            margin-bottom: 6px;
+            display: block;
+            text-transform: uppercase;
+        }
+        .ad-box {
+            background: rgba(255, 255, 255, 0.75);
+            border: 1px dashed #cbd5e1;
+            border-radius: 14px;
+            padding: 18px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: #94a3b8;
+            font-size: 0.82rem;
+            min-height: 120px;
+            transition: all 0.2s;
+        }
+        .ad-box:hover {
+            border-color: #94a3b8;
+            background: rgba(255, 255, 255, 0.95);
+        }
+
         /* Responsive */
         @media (max-width: 768px) {
             .container {
-                margin: 20px 10px;
-                padding: 30px 20px;
+                margin: 14px 10px;
+                padding: 24px 18px;
+                border-radius: 16px;
             }
             h1 {
-                font-size: 1.8rem;
+                font-size: 1.5rem;
+                line-height: 1.4;
+            }
+            .meta-description {
+                font-size: 0.92rem;
+            }
+            .content {
+                font-size: 0.98rem;
+            }
+            .content h2 {
+                font-size: 1.35rem;
+                margin-top: 36px;
+            }
+            .content h3 {
+                font-size: 1.15rem;
+            }
+            .content table {
+                display: block;
+                overflow-x: auto;
+                white-space: nowrap;
+            }
+            .footer-links-wrap {
+                flex-direction: column;
+                align-items: stretch !important;
+                gap: 16px !important;
+            }
+            .footer-sub-links {
+                display: flex;
+                gap: 8px !important;
+                overflow-x: auto;
+                white-space: nowrap;
+                -webkit-overflow-scrolling: touch;
+                padding-bottom: 4px;
+                scrollbar-width: none;
+            }
+            .footer-sub-links::-webkit-scrollbar {
+                display: none;
+            }
+            .footer-sub-links a {
+                padding: 6px 12px;
+                background: rgba(0, 0, 0, 0.04);
+                border-radius: 14px;
+                font-size: 0.82rem !important;
+                flex-shrink: 0;
             }
         }
     </style>
@@ -262,6 +350,10 @@
 <body>
 
 <div class="container">
+    <div style="margin-bottom: 24px;">
+        <a href="index.html" style="display: inline-flex; align-items: center; gap: 6px; text-decoration: none; color: #4f46e5; font-weight: 600; font-size: 0.92rem; background: rgba(255,255,255,0.85); padding: 8px 16px; border-radius: 20px; border: 1px solid rgba(79,70,229,0.2); transition: all 0.2s; box-shadow: 0 2px 6px rgba(0,0,0,0.03);">← ブログトップに戻る</a>
+    </div>
+
     <header>
         <h1>OaLbGnNo37M_article</h1>
         <p class="meta-description">ステンレス鍋のすぐれた熱伝導性と密閉性を活かし、包丁・まな板不要で簡単に作れるおつまみ5品（手羽先の甘辛煮、蒸し枝豆、蒸しトウモロコシ、チルド餃子、焼き椎茸）のレシピや調理のコツを紹介します。</p>
@@ -272,8 +364,17 @@
 
         <a href="https://www.youtube.com/watch?v=OaLbGnNo37M" target="_blank" class="source-link">🔗 元のYouTube動画を見る</a>
 
-        <div class="hero-image"><img src="OaLbGnNo37M_frames/frame_00030s.jpg" alt="動画サムネイル" loading="lazy"></div>
+        <div class="hero-image"><img src="OaLbGnNo37M_thumb.jpg" alt="YouTube動画サムネイル" loading="lazy"></div>
     </header>
+
+    <!-- 記事上部 AdSense 広告枠 -->
+    <div class="ad-container ad-article-top">
+        <span class="ad-notice">スポンサーリンク</span>
+        <div class="ad-box">
+            <!-- Google AdSense Responsive Ad Code Here -->
+            <span>広告スペース（AdSense レスポンシブ広告）</span>
+        </div>
+    </div>
 
     <div class="content">
         <p><strong>結論からお伝えすると、ステンレス鍋を使えば、包丁やまな板を一切使わずに材料を入れて火にかけるだけの「ほったらかし調理」で、美味しいおつまみが同時に一気で作れます。</strong></p>
@@ -411,6 +512,25 @@
 
 <p>ステンレス鍋は、その高い保温性と密閉性を活かすことで、「包丁を使わない」「水も少量」「火にかけたら放置」という圧倒的に手間のかからない調理を可能にしてくれます。</p>
 <p>手羽先の煮物や少量の水で蒸す枝豆、冷たい鍋からじっくり焼く餃子など、少しの工夫で仕上がりも味も格段にアップします。後片付けも簡単なステンレス鍋のほったらかしレシピを、ぜひ日々の献立やおつまみ作りに取り入れてみてください。</p>
+    </div>
+
+    <!-- 記事下部 AdSense 広告枠 -->
+    <div class="ad-container ad-article-bottom">
+        <span class="ad-notice">スポンサーリンク</span>
+        <div class="ad-box">
+            <!-- Google AdSense Matched Content / Bottom Ad Code Here -->
+            <span>広告スペース（AdSense 記事下広告）</span>
+        </div>
+    </div>
+
+    <div class="footer-links-wrap" style="margin-top: 40px; padding-top: 24px; border-top: 1px solid rgba(0,0,0,0.08); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;">
+        <a href="index.html" style="display: inline-flex; align-items: center; gap: 6px; text-decoration: none; color: #4f46e5; font-weight: 600;">← トップページに戻る</a>
+        <div class="footer-sub-links" style="display: flex; gap: 16px; font-size: 0.9rem;">
+            <a href="pages/about.html" style="text-decoration: none; color: #6b7280;">このサイトについて</a>
+            <a href="pages/contact.html" style="text-decoration: none; color: #6b7280;">お問い合わせ</a>
+            <a href="pages/privacy_policy.html" style="text-decoration: none; color: #6b7280;">プライバシーポリシー</a>
+            <a href="pages/operator_info.html" style="text-decoration: none; color: #6b7280;">運営者情報</a>
+        </div>
     </div>
 </div>
 

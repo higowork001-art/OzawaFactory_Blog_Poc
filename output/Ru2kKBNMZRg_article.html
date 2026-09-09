@@ -13,13 +13,23 @@
         :root {
             --bg-gradient-1: #fdfbfb;
             --bg-gradient-2: #ebedee;
-            --glass-bg: rgba(255, 255, 255, 0.75);
-            --glass-border: rgba(255, 255, 255, 0.6);
+            --glass-bg: rgba(255, 255, 255, 0.85);
+            --glass-border: rgba(255, 255, 255, 0.7);
             --text-main: #2d3748;
             --text-muted: #718096;
             --accent: #4f46e5;
             --accent-hover: #4338ca;
             --surface: #ffffff;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html, body {
+            overflow-x: hidden;
+            width: 100%;
+            max-width: 100vw;
         }
 
         body {
@@ -37,9 +47,10 @@
 
         /* Glassmorphism Container */
         .container {
+            width: calc(100% - 32px);
             max-width: 800px;
-            margin: 40px 20px;
-            padding: 50px 60px;
+            margin: 32px auto;
+            padding: 44px 48px;
             background: var(--glass-bg);
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
@@ -47,6 +58,7 @@
             border: 1px solid var(--glass-border);
             box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
             animation: fadeIn 0.8s ease-out;
+            word-break: break-word;
         }
 
         @keyframes fadeIn {
@@ -56,7 +68,7 @@
 
         /* Header / Meta section */
         header {
-            margin-bottom: 40px;
+            margin-bottom: 32px;
             text-align: center;
         }
 
@@ -247,14 +259,90 @@
             content: '📸 ';
         }
 
+        /* Google AdSense 広告枠スタイル */
+        .ad-container {
+            margin: 32px 0;
+            text-align: center;
+        }
+        .ad-notice {
+            font-size: 0.72rem;
+            color: #9ca3af;
+            letter-spacing: 0.05em;
+            margin-bottom: 6px;
+            display: block;
+            text-transform: uppercase;
+        }
+        .ad-box {
+            background: rgba(255, 255, 255, 0.75);
+            border: 1px dashed #cbd5e1;
+            border-radius: 14px;
+            padding: 18px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: #94a3b8;
+            font-size: 0.82rem;
+            min-height: 120px;
+            transition: all 0.2s;
+        }
+        .ad-box:hover {
+            border-color: #94a3b8;
+            background: rgba(255, 255, 255, 0.95);
+        }
+
         /* Responsive */
         @media (max-width: 768px) {
             .container {
-                margin: 20px 10px;
-                padding: 30px 20px;
+                margin: 14px 10px;
+                padding: 24px 18px;
+                border-radius: 16px;
             }
             h1 {
-                font-size: 1.8rem;
+                font-size: 1.5rem;
+                line-height: 1.4;
+            }
+            .meta-description {
+                font-size: 0.92rem;
+            }
+            .content {
+                font-size: 0.98rem;
+            }
+            .content h2 {
+                font-size: 1.35rem;
+                margin-top: 36px;
+            }
+            .content h3 {
+                font-size: 1.15rem;
+            }
+            .content table {
+                display: block;
+                overflow-x: auto;
+                white-space: nowrap;
+            }
+            .footer-links-wrap {
+                flex-direction: column;
+                align-items: stretch !important;
+                gap: 16px !important;
+            }
+            .footer-sub-links {
+                display: flex;
+                gap: 8px !important;
+                overflow-x: auto;
+                white-space: nowrap;
+                -webkit-overflow-scrolling: touch;
+                padding-bottom: 4px;
+                scrollbar-width: none;
+            }
+            .footer-sub-links::-webkit-scrollbar {
+                display: none;
+            }
+            .footer-sub-links a {
+                padding: 6px 12px;
+                background: rgba(0, 0, 0, 0.04);
+                border-radius: 14px;
+                font-size: 0.82rem !important;
+                flex-shrink: 0;
             }
         }
     </style>
@@ -262,6 +350,10 @@
 <body>
 
 <div class="container">
+    <div style="margin-bottom: 24px;">
+        <a href="index.html" style="display: inline-flex; align-items: center; gap: 6px; text-decoration: none; color: #4f46e5; font-weight: 600; font-size: 0.92rem; background: rgba(255,255,255,0.85); padding: 8px 16px; border-radius: 20px; border: 1px solid rgba(79,70,229,0.2); transition: all 0.2s; box-shadow: 0 2px 6px rgba(0,0,0,0.03);">← ブログトップに戻る</a>
+    </div>
+
     <header>
         <h1>Ru2kKBNMZRg_article</h1>
         <p class="meta-description">ダイエット中も安心して食べられる「糸こんにゃくパッタイ」の作り方をご紹介。ナンプラーなどの特別な調味料は一切不要！ご家庭にある醤油やオイスターソースで手軽に作れるヘルシーレシピと、ステンレス鍋で美味しく炒めるコツを解説します。</p>
@@ -272,8 +364,17 @@
 
         <a href="https://www.youtube.com/watch?v=Ru2kKBNMZRg" target="_blank" class="source-link">🔗 元のYouTube動画を見る</a>
 
-        <div class="hero-image"><img src="Ru2kKBNMZRg_frames/frame_00052s.jpg" alt="動画サムネイル" loading="lazy"></div>
+        <div class="hero-image"><img src="Ru2kKBNMZRg_thumb.jpg" alt="YouTube動画サムネイル" loading="lazy"></div>
     </header>
+
+    <!-- 記事上部 AdSense 広告枠 -->
+    <div class="ad-container ad-article-top">
+        <span class="ad-notice">スポンサーリンク</span>
+        <div class="ad-box">
+            <!-- Google AdSense Responsive Ad Code Here -->
+            <span>広告スペース（AdSense レスポンシブ広告）</span>
+        </div>
+    </div>
 
     <div class="content">
         <p>「ダイエット中にパッタイのような本格麺料理が食べたいけれど、糖質やカロリーが気になる…」
@@ -283,13 +384,13 @@
 <p>この記事では、失敗しない「こんにゃくパッタイ」の作り方と、食材をくっつけずに美味しく仕上げる調理のポイントを分かりやすく解説します。</p>
 <hr />
 <h2>ダイエットの強い味方！糸こんにゃくで作る「ナンプラーなし」ヘルシーパッタイとは？</h2>
-<div class="scene-capture"><img src="Ru2kKBNMZRg_frames/frame_00116s.jpg" alt="予熱した鍋で卵をさっと炒めて取り出す" loading="lazy"><div class="scene-caption">予熱した鍋で卵をさっと炒めて取り出す</div></div>
+<div class="scene-capture"><img src="Ru2kKBNMZRg_frames/frame_00052s.jpg" alt="糸こんにゃくを水で洗い水切りする下準備" loading="lazy"><div class="scene-caption">糸こんにゃくを水で洗い水切りする下準備</div></div>
 
 <p>タイの定番焼きそば「パッタイ」は通常、米粉でできた麺（センレックなど）を使いますが、糖質量が気になることもあります。そこで米粉麺を「糸こんにゃく」に置き換えることで、<strong>カロリーと糖質を大幅にカット</strong>できます。</p>
 <p>また、エスニック料理でよく使われるナンプラーを用意しなくても、<strong>醤油・オイスターソース・酢・砂糖・鶏ガラスープの素</strong>といった基本の調味料で十分に本格的な味付けが可能です。最後にレモンをしっかり絞ることで、爽やかな酸味が全体を引き締め、ナンプラーなしでも本格的な風味を楽しめます。</p>
 <hr />
 <h2>材料と調味料一覧｜特別なエスニック調味料は一切不要！</h2>
-<div class="scene-capture"><img src="Ru2kKBNMZRg_frames/frame_00157s.jpg" alt="エビとしっかり水切りしたこんにゃくを投入" loading="lazy"><div class="scene-caption">エビとしっかり水切りしたこんにゃくを投入</div></div>
+<div class="scene-capture"><img src="Ru2kKBNMZRg_frames/frame_00116s.jpg" alt="予熱した鍋で卵をさっと炒めて取り出す" loading="lazy"><div class="scene-caption">予熱した鍋で卵をさっと炒めて取り出す</div></div>
 
 <p>ご家庭にある食材と調味料で簡単に揃えられます。</p>
 <h3>主な材料（目安）</h3>
@@ -312,7 +413,7 @@
 </ul>
 <hr />
 <h2>失敗しない！こんにゃくパッタイの簡単作り方ステップ</h2>
-<div class="scene-capture"><img src="Ru2kKBNMZRg_frames/frame_00176s.jpg" alt="くっつき防止のため混ぜずに広げて加熱する" loading="lazy"><div class="scene-caption">くっつき防止のため混ぜずに広げて加熱する</div></div>
+<div class="scene-capture"><img src="Ru2kKBNMZRg_frames/frame_00157s.jpg" alt="エビとしっかり水切りしたこんにゃくを投入" loading="lazy"><div class="scene-caption">エビとしっかり水切りしたこんにゃくを投入</div></div>
 
 <h3>1. 下準備（糸こんにゃくの洗い・水切りと具材カット）</h3>
 <ol>
@@ -339,7 +440,7 @@
 </ol>
 <hr />
 <h2>ステンレス鍋を使うメリット｜エビがプリプリに仕上がる理由</h2>
-<div class="scene-capture"><img src="Ru2kKBNMZRg_frames/frame_00224s.jpg" alt="水分が飛んだタイミングで調味料を一気に投入" loading="lazy"><div class="scene-caption">水分が飛んだタイミングで調味料を一気に投入</div></div>
+<div class="scene-capture"><img src="Ru2kKBNMZRg_frames/frame_00176s.jpg" alt="くっつき防止のため混ぜずに広げて加熱する" loading="lazy"><div class="scene-caption">くっつき防止のため混ぜずに広げて加熱する</div></div>
 
 <p>ステンレス鍋は熱伝導が均一で蓄熱性が高いため、食材にじっくり均一に熱を通すことができます。</p>
 <p>パッタイ作りにおいてステンレス鍋を活用すると、以下のメリットがあります。</p>
@@ -349,7 +450,7 @@
 </ul>
 <hr />
 <h2>パッタイ作りでよくある質問（FAQ）</h2>
-<div class="scene-capture"><img src="Ru2kKBNMZRg_frames/frame_00238s.jpg" alt="火を止め余熱でニラにサッと火を通す" loading="lazy"><div class="scene-caption">火を止め余熱でニラにサッと火を通す</div></div>
+<div class="scene-capture"><img src="Ru2kKBNMZRg_frames/frame_00224s.jpg" alt="水分が飛んだタイミングで調味料を一気に投入" loading="lazy"><div class="scene-caption">水分が飛んだタイミングで調味料を一気に投入</div></div>
 
 <h3>Q1. ナンプラーがなくてもパッタイ風の味になりますか？</h3>
 <p><strong>A.</strong> はい、十分に美味しいパッタイ風に仕上がります。醤油やオイスターソースのコクに、酢と砂糖で甘酸っぱさを加え、仕上げにレモン果汁を絞ることで、アジアンテイストの爽やかな味わいが表現できます。</p>
@@ -359,7 +460,7 @@
 <p><strong>A.</strong> フライパンをあらかじめしっかり予熱してから油を引くことが大切です。また、具材を入れた後に何度も激しく混ぜすぎず、全体に広げて少し置くように火を通すとくっつきにくくなります。</p>
 <hr />
 <h2>動画で紹介されているアイテム・サービス</h2>
-<div class="scene-capture"><img src="Ru2kKBNMZRg_frames/frame_00272s.jpg" alt="仕上げにレモンを絞ってヘルシーパッタイ完成" loading="lazy"><div class="scene-caption">仕上げにレモンを絞ってヘルシーパッタイ完成</div></div>
+<div class="scene-capture"><img src="Ru2kKBNMZRg_frames/frame_00238s.jpg" alt="火を止め余熱でニラにサッと火を通す" loading="lazy"><div class="scene-caption">火を止め余熱でニラにサッと火を通す</div></div>
 
 <p>今回のレシピ動画内で使用・紹介されている商品および関連サービスです。</p>
 <ul>
@@ -378,6 +479,8 @@
 </ul>
 <hr />
 <h2>まとめ</h2>
+<div class="scene-capture"><img src="Ru2kKBNMZRg_frames/frame_00272s.jpg" alt="仕上げにレモンを絞ってヘルシーパッタイ完成" loading="lazy"><div class="scene-caption">仕上げにレモンを絞ってヘルシーパッタイ完成</div></div>
+
 <p>糸こんにゃくを使ったパッタイは、<strong>低糖質・低カロリーでありながら満腹感もしっかり得られる最高のダイエットレシピ</strong>です。</p>
 <ul>
 <li><strong>麺を糸こんにゃくに置き換えて大幅糖質オフ</strong></li>
@@ -386,6 +489,25 @@
 <li><strong>ステンレス鍋なら「広げて混ぜすぎない」のがくっつかないコツ</strong></li>
 </ul>
 <p>特別な材料を買う必要がないため、思い立った時にすぐ作れるのも嬉しいポイントです。ぜひ今夜のメニューに取り入れて、ヘルシーで美味しいパッタイを楽しんでみてください！</p>
+    </div>
+
+    <!-- 記事下部 AdSense 広告枠 -->
+    <div class="ad-container ad-article-bottom">
+        <span class="ad-notice">スポンサーリンク</span>
+        <div class="ad-box">
+            <!-- Google AdSense Matched Content / Bottom Ad Code Here -->
+            <span>広告スペース（AdSense 記事下広告）</span>
+        </div>
+    </div>
+
+    <div class="footer-links-wrap" style="margin-top: 40px; padding-top: 24px; border-top: 1px solid rgba(0,0,0,0.08); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;">
+        <a href="index.html" style="display: inline-flex; align-items: center; gap: 6px; text-decoration: none; color: #4f46e5; font-weight: 600;">← トップページに戻る</a>
+        <div class="footer-sub-links" style="display: flex; gap: 16px; font-size: 0.9rem;">
+            <a href="pages/about.html" style="text-decoration: none; color: #6b7280;">このサイトについて</a>
+            <a href="pages/contact.html" style="text-decoration: none; color: #6b7280;">お問い合わせ</a>
+            <a href="pages/privacy_policy.html" style="text-decoration: none; color: #6b7280;">プライバシーポリシー</a>
+            <a href="pages/operator_info.html" style="text-decoration: none; color: #6b7280;">運営者情報</a>
+        </div>
     </div>
 </div>
 

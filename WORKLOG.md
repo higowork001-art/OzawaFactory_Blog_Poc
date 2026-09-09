@@ -421,3 +421,44 @@ YouTubeチャンネルURL（例: `https://www.youtube.com/@isamumumu1/videos`）
   - 個別記事ページで左端の文字切れがなく、美しい左右余白で本文が表示されること。
   - ページネーションおよびカテゴリフィルターの連動動作。
 
+---
+
+## セッション #8 — 2026-09-09
+
+### 担当者
+- アカウント: AI Pair Programmer (Gemini 3.7 Flash / Antigravity Agent)
+- 作業環境: Windows / PowerShell / Python 3.14
+
+---
+
+### 作業内容
+
+#### 🖼️ 記事見出し画像・アイキャッチ・トップページカードのYouTube公式サムネイル完全同期
+
+**背景・目的**:
+記事の見出し画像（ヒーロー画像）やトップページのカード画像が、動画から抽出した最初のフレーム（予熱中のフライパン等の静止画）になっていたため、YouTube本来の公式サムネイル画像（完成料理の写真やタイトルキャッチコピーが入った画像）が表示されるようにプログラムおよび既存HTMLを変更する。
+
+**変更点・実装内容:**
+
+1. **`src/screenshot.py`**:
+   - `download_thumbnail(video_id: str) -> str` を新規実装。
+   - `https://img.youtube.com/vi/{video_id}/maxresdefault.jpg`（フォールバック: `hqdefault.jpg`）から高解像度の公式サムネイルをダウンロードし、`output/{video_id}_thumb.jpg` にローカル保存。
+
+2. **`src/html_generator.py`**:
+   - `_build_hero_image_html(video_id: str)` を改修。動画抽出フレームではなく、ローカルの `output/{video_id}_thumb.jpg` またはYouTube公式サムネイルURLを最優先で見出し（ヒーロー画像）に設定。
+   - `_inject_scene_images()` において、先頭フレームがヒーロー画像に使われなくなったため、抽出した重要シーン画像を先頭から順番に各 `<h2>` の直後に挿入するように改善。
+
+3. **`main.py`**:
+   - `[5/9]` ステップで `download_thumbnail()` を呼び出し、サムネイルを確実にローカルキャッシュ。
+   - `[9/9]` WordPress自動投稿時のアイキャッチ画像登録（`featured_media_id`）に、ダウンロードした公式サムネイル画像（`thumbnail_file`）を優先アップロードするよう改修。
+
+4. **既存HTML（全5記事）＆トップページポータルの再生成**:
+   - `scratch/update_thumbnails_and_rebuild_html.py` を作成・実行。
+   - 既存の全5件（5pEDLLi64Mg, jPifRImSvv0, OaLbGnNo37M, Ru2kKBNMZRg, wliNbsb8zoo）の公式サムネイルを自動取得・保存。
+   - 各記事の個別HTMLファイル（`output/2026-*.html`）およびトップページ（`output/index.html`）を再生成・更新。
+
+**検証結果:**
+- ブラウザサブエージェントにより、トップページ（[`output/index.html`](file:///c:/AntiGravity/AIYouTublog/output/index.html)）および個別記事ページ（[`2026-09-06_うまさ大爆発‼ フライパン１つで出来る鶏ももとあさりの酒蒸し.html`](file:///c:/AntiGravity/AIYouTublog/output/2026-09-06_%E3%81%86%E3%81%BE%E3%81%95%E5%A4%A7%E7%88%86%E7%99%BA%E2%80%BC%20%E3%83%95%E3%83%A9%E3%82%A4%E3%83%91%E3%83%B3%EF%BC%91%E3%81%A4%E3%81%A7%E5%87%BA%E6%9D%A5%E3%82%8B%E9%B6%8F%E3%82%82%E3%82%82%E3%81%A8%E3%81%82%E3%81%95%E3%82%8A%E3%81%AE%E9%85%92%E8%92%B8%E3%81%97.html) 等）を確認：
+  - 各記事カードおよび記事冒頭のヒーロー画像に、完成料理の写真・キャッチコピーが入った公式YouTubeサムネイルが鮮明に表示されることを確認。
+  - 本文中の各見出し（`<h2>`）の下には引き続き抽出されたシーン解説画像が正しく挿入されていることを確認。
+
