@@ -19,6 +19,7 @@ ARTICLE_MODEL = os.getenv("ARTICLE_MODEL", "gemini-3.6-flash")
 # YouTubeチャンネル・一括処理設定
 YOUTUBE_CHANNEL_URL = os.getenv("YOUTUBE_CHANNEL_URL", "")
 MAX_BATCH_VIDEOS = int(os.getenv("MAX_BATCH_VIDEOS", "10"))
+BATCH_DELAY_SECONDS = int(os.getenv("BATCH_DELAY_SECONDS", "10"))  # 一括処理時の動画間クールダウン秒数
 
 # 定数設定
 OUTPUT_DIR = "output"
@@ -35,12 +36,12 @@ WP_APP_PASSWORD = os.getenv("WP_APP_PASSWORD", "")
 WP_DEFAULT_STATUS = os.getenv("WP_DEFAULT_STATUS", "draft")
 
 # サイト運営者情報（固定ページ生成時にAIへ渡す変数）
-SITE_NAME = os.getenv("SITE_NAME", "")
-SITE_OPERATOR_NAME = os.getenv("SITE_OPERATOR_NAME", "")
-SITE_CONTACT_EMAIL = os.getenv("SITE_CONTACT_EMAIL", "")
-SITE_LAUNCH_DATE = os.getenv("SITE_LAUNCH_DATE", "")
-SITE_GENRE = os.getenv("SITE_GENRE", "")
-USES_GOOGLE_ANALYTICS = os.getenv("USES_GOOGLE_ANALYTICS", "false")
+SITE_NAME = os.getenv("SITE_NAME", "").strip()
+SITE_OPERATOR_NAME = os.getenv("SITE_OPERATOR_NAME", "").strip()
+SITE_CONTACT_EMAIL = os.getenv("SITE_CONTACT_EMAIL", "").strip()
+SITE_LAUNCH_DATE = os.getenv("SITE_LAUNCH_DATE", "").strip()
+SITE_GENRE = os.getenv("SITE_GENRE", "").strip()
+USES_GOOGLE_ANALYTICS = os.getenv("USES_GOOGLE_ANALYTICS", "false").strip()
 
 # 固定ページ用プロンプトパス
 PAGE_ABOUT_PROMPT_PATH = os.path.join(PROMPTS_DIR, "page_about.txt")

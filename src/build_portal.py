@@ -49,7 +49,7 @@ def build_static_page_html(md_path: str, title: str, nav_prefix: str = "../") ->
     cleaned = get_clean_markdown(content)
     body_html = markdown.markdown(cleaned, extensions=['extra', 'tables', 'nl2br'])
 
-    site_name = config.SITE_NAME or "料理男子のおうちごはんレシピ"
+    site_name = config.SITE_NAME or "ステンレス鍋のための料理教室!大澤ブログ"
 
     html_out = f"""<!DOCTYPE html>
 <html lang="ja">
@@ -301,9 +301,9 @@ def build_portal():
     pages_dir = os.path.join(output_dir, "pages")
     os.makedirs(pages_dir, exist_ok=True)
 
-    site_name = config.SITE_NAME or "料理男子のおうちごはんレシピ"
-    site_operator = config.SITE_OPERATOR_NAME or "イサム"
-    site_genre = config.SITE_GENRE or "簡単おうちごはん・フライパン時短レシピ"
+    site_name = config.SITE_NAME or "ステンレス鍋のための料理教室!大澤ブログ"
+    site_operator = config.SITE_OPERATOR_NAME or "大澤　勇"
+    site_genre = config.SITE_GENRE or "ステンレス鍋・簡単おうちごはん・料理レシピ"
 
     print("=" * 50)
     print(" [Build Portal] ローカルブログサイト生成開始")

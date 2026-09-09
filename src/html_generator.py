@@ -222,7 +222,7 @@ def generate_html_preview(
     # サイト名と年の取得
     import config
     from datetime import datetime
-    site_name = config.SITE_NAME or "料理男子のおうちごはんレシピ"
+    site_name = config.SITE_NAME or "ステンレス鍋のための料理教室!大澤ブログ"
     current_year = str(datetime.now().year)
 
     # テンプレートに埋め込み

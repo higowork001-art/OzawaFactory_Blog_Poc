@@ -1,8 +1,8 @@
 # SPEC.md — YouTube → AI SEO記事生成システム 仕様書
 
-> **バージョン**: 1.6.0  
+> **バージョン**: 1.8.0  
 > **最終更新**: 2026-09-09  
-> **ステータス**: 記事見出し画像・アイキャッチ・ポータルカードへの公式YouTubeサムネイル適用＆自動保存対応完了
+> **ステータス**: YouTube字幕APIのIPレートリミット回避機能（バッチ待機・指数バックオフリトライ）実装完了
 
 ---
 
@@ -99,6 +99,8 @@ ARTICLE_MODEL=gemini-3.6-flash
 # YouTube Auto Fetch Settings
 YOUTUBE_CHANNEL_URL=https://www.youtube.com/@channel/videos
 MAX_BATCH_VIDEOS=10
+BATCH_DELAY_SECONDS=10
+
 
 # WordPress連携（セットアップ後に入力）
 WP_SITE_URL=https://example.com
@@ -261,3 +263,8 @@ YouTuberアカウント管理ダッシュボード
 1. **`google.generativeai` の非推奨警告**: `FutureWarning` が表示されるが動作には影響しない。将来的に `google.genai` パッケージへの移行が必要。
 2. **コンソール表示の文字化け**: Windows環境でPowerShellのデフォルトエンコーディングが原因。生成ファイル（UTF-8）は正常。
 3. **字幕APIのバージョン対応**: `youtube-transcript-api` v1.2.4以降は `YouTubeTranscriptApi().list(video_id)` のインスタンスメソッドを使用（クラスメソッド `list_transcripts()` は廃止）。
+4. **YouTubeのIPブロックとレートリミット**:
+   - `youtube-transcript-api` はYouTubeの非公式APIを使用しているため、短時間に連続アクセスするとIPがブロックされます。
+   - **対策1**: `config.py` (`.env`) の `BATCH_DELAY_SECONDS` により、一括処理時に動画間で待機時間（デフォルト10秒）を設けています。
+   - **対策2**: `src/transcript.py` に指数バックオフ（30秒→60秒→120秒）による自動リトライ機構を実装しています。
+   - **⚠️注意**: クラウドプロバイダ（AWS、GCPなど）のIPアドレスから実行した場合、YouTube側に無条件でスクレイピングと判定され恒久的にブロックされる可能性があります。本システムは一般的なプロバイダの**ローカル環境（家庭用IP）での実行**を推奨します。

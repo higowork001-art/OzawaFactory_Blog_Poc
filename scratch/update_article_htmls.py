@@ -6,6 +6,7 @@ import frontmatter
 import markdown
 
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+import config
 from src.html_generator import clean_markdown_text, _build_hero_image_html, _inject_scene_images
 
 if hasattr(sys.stdout, 'reconfigure'):
@@ -86,6 +87,8 @@ for h_path in html_files:
         rendered = rendered.replace('{{source_link_html}}', source_html)
         rendered = rendered.replace('{{hero_image_html}}', hero_html)
         rendered = rendered.replace('{{content}}', body_html)
+        rendered = rendered.replace('{{site_name}}', config.SITE_NAME or "ステンレス鍋のための料理教室!大澤ブログ")
+        rendered = rendered.replace('{{year}}', "2026")
 
         with open(h_path, 'w', encoding='utf-8') as hf:
             hf.write(rendered)

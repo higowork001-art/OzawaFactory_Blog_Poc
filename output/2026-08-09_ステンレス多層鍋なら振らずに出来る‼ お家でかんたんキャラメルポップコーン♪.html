@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2026-08-09_ステンレス多層鍋なら振らずに出来る‼ お家でかんたんキャラメルポップコーン♪</title>
+    <meta name="description" content="ステンレス多層鍋を使えば、鍋を振らずに焦げ付きゼロでポップコーンが弾けます。ココナッツオイルと白砂糖を使った手作りキャラメルポップコーンのレシピと失敗しないコツをわかりやすく解説！">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-gradient-1: #fdfbfb;
+            --bg-gradient-2: #ebedee;
+            --glass-bg: rgba(255, 255, 255, 0.85);
+            --glass-border: rgba(255, 255, 255, 0.7);
+            --text-main: #2d3748;
+            --text-muted: #718096;
+            --accent: #4f46e5;
+            --accent-hover: #4338ca;
+            --surface: #ffffff;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html, body {
+            overflow-x: hidden;
+            width: 100%;
+            max-width: 100vw;
+        }
+
+        body {
+            font-family: 'Inter', 'Noto Sans JP', sans-serif;
+            color: var(--text-main);
+            background: linear-gradient(135deg, #a1c4fd 0%, #c2e9fb 100%);
+            background-attachment: fixed;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* Glassmorphism Container */
+        .container {
+            width: calc(100% - 32px);
+            max-width: 800px;
+            margin: 32px auto;
+            padding: 44px 48px;
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-radius: 24px;
+            border: 1px solid var(--glass-border);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+            animation: fadeIn 0.8s ease-out;
+            word-break: break-word;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Header / Meta section */
+        header {
+            margin-bottom: 32px;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            line-height: 1.4;
+            margin-bottom: 16px;
+            color: #1a202c;
+            letter-spacing: -0.02em;
+        }
+
+        .meta-description {
+            font-size: 1.05rem;
+            color: var(--text-muted);
+            margin-bottom: 24px;
+        }
+
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            justify-content: center;
+            margin-bottom: 30px;
+        }
+
+        .tag {
+            background: rgba(79, 70, 229, 0.1);
+            color: var(--accent);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            transition: all 0.2s ease;
+        }
+        
+        .tag:hover {
+            background: var(--accent);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .source-link {
+            display: inline-block;
+            margin-top: 10px;
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: color 0.2s;
+        }
+
+        .source-link:hover {
+            color: var(--accent-hover);
+            text-decoration: underline;
+        }
+
+        /* Markdown Content Styling */
+        .content {
+            font-size: 1.05rem;
+        }
+
+        .content h2 {
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-top: 48px;
+            margin-bottom: 20px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid rgba(0,0,0,0.05);
+            color: #1a202c;
+        }
+
+        .content h3 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-top: 36px;
+            margin-bottom: 16px;
+            color: #2d3748;
+        }
+
+        .content p {
+            margin-bottom: 20px;
+        }
+
+        .content ul, .content ol {
+            margin-bottom: 24px;
+            padding-left: 24px;
+        }
+
+        .content li {
+            margin-bottom: 8px;
+        }
+
+        .content strong {
+            font-weight: 700;
+            color: #1a202c;
+            background: linear-gradient(transparent 60%, rgba(79, 70, 229, 0.2) 60%);
+        }
+
+        .content table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 32px 0;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+        }
+
+        .content th, .content td {
+            padding: 14px 20px;
+            text-align: left;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .content th {
+            background: rgba(0,0,0,0.03);
+            font-weight: 600;
+            color: #4a5568;
+        }
+
+        .content tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .content blockquote {
+            margin: 24px 0;
+            padding: 16px 24px;
+            background: rgba(79, 70, 229, 0.05);
+            border-left: 4px solid var(--accent);
+            border-radius: 0 8px 8px 0;
+            color: #4a5568;
+            font-style: italic;
+        }
+
+        .content hr {
+            border: 0;
+            height: 1px;
+            background: rgba(0,0,0,0.1);
+            margin: 40px 0;
+        }
+
+        /* === Scene Capture Images === */
+        .hero-image {
+            width: 100%;
+            border-radius: 16px;
+            overflow: hidden;
+            margin: 24px 0 36px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.12);
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.4s ease;
+        }
+
+        .hero-image img:hover {
+            transform: scale(1.02);
+        }
+
+        .scene-capture {
+            margin: 24px 0 32px;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.10);
+            background: rgba(255,255,255,0.6);
+            border: 1px solid rgba(255,255,255,0.8);
+        }
+
+        .scene-capture img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .scene-caption {
+            padding: 10px 16px;
+            font-size: 0.82rem;
+            color: var(--text-muted);
+            font-style: italic;
+            border-top: 1px solid rgba(0,0,0,0.05);
+            background: rgba(255,255,255,0.4);
+        }
+
+        .scene-caption::before {
+            content: '📸 ';
+        }
+
+        /* Google AdSense 広告枠スタイル */
+        .ad-container {
+            margin: 32px 0;
+            text-align: center;
+        }
+        .ad-notice {
+            font-size: 0.72rem;
+            color: #9ca3af;
+            letter-spacing: 0.05em;
+            margin-bottom: 6px;
+            display: block;
+            text-transform: uppercase;
+        }
+        .ad-box {
+            background: rgba(255, 255, 255, 0.75);
+            border: 1px dashed #cbd5e1;
+            border-radius: 14px;
+            padding: 18px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: #94a3b8;
+            font-size: 0.82rem;
+            min-height: 120px;
+            transition: all 0.2s;
+        }
+        .ad-box:hover {
+            border-color: #94a3b8;
+            background: rgba(255, 255, 255, 0.95);
+        }
+
+        /* 記事下部「トップへ戻る」ボタン */
+        .footer-back-wrap {
+            margin-top: 40px;
+            padding-top: 24px;
+            border-top: 1px solid rgba(0,0,0,0.08);
+            display: flex;
+            justify-content: center;
+        }
+
+        .back-to-home-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 28px;
+            background: linear-gradient(135deg, #4f46e5 0%, #3b82f6 100%);
+            color: #ffffff;
+            font-weight: 700;
+            font-size: 0.95rem;
+            border-radius: 24px;
+            text-decoration: none;
+            box-shadow: 0 4px 15px rgba(79, 70, 229, 0.25);
+            transition: all 0.25s ease;
+        }
+
+        .back-to-home-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(79, 70, 229, 0.35);
+            color: #ffffff;
+        }
+
+        /* サイト共通フッター */
+        footer.site-footer {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(12px);
+            border-top: 1px solid rgba(229, 231, 235, 0.8);
+            padding: 36px 20px;
+            margin-top: 60px;
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.88rem;
+            box-shadow: 0 -2px 10px rgba(0,0,0,0.02);
+        }
+
+        .footer-nav {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-bottom: 16px;
+        }
+
+        .footer-nav a {
+            color: #4b5563;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: color 0.2s;
+        }
+
+        .footer-nav a:hover {
+            color: var(--accent);
+        }
+
+        .footer-copy {
+            margin: 0;
+            color: #9ca3af;
+            font-size: 0.82rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            body {
+                display: block;
+            }
+            .container {
+                margin: 14px 10px;
+                padding: 24px 18px;
+                border-radius: 16px;
+                width: auto;
+            }
+            h1 {
+                font-size: 1.5rem;
+                line-height: 1.4;
+            }
+            .meta-description {
+                font-size: 0.92rem;
+            }
+            .content {
+                font-size: 0.98rem;
+            }
+            .content h2 {
+                font-size: 1.35rem;
+                margin-top: 36px;
+            }
+            .content h3 {
+                font-size: 1.15rem;
+            }
+            .content table {
+                display: block;
+                overflow-x: auto;
+                white-space: nowrap;
+            }
+            .footer-nav {
+                gap: 10px 14px;
+            }
+            .footer-nav a {
+                font-size: 0.82rem;
+            }
+            footer.site-footer {
+                padding: 28px 14px;
+                margin-top: 40px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div style="margin-bottom: 24px;">
+        <a href="index.html" style="display: inline-flex; align-items: center; gap: 6px; text-decoration: none; color: #4f46e5; font-weight: 600; font-size: 0.92rem; background: rgba(255,255,255,0.85); padding: 8px 16px; border-radius: 20px; border: 1px solid rgba(79,70,229,0.2); transition: all 0.2s; box-shadow: 0 2px 6px rgba(0,0,0,0.03);">← ブログトップに戻る</a>
+    </div>
+
+    <header>
+        <h1>2026-08-09_ステンレス多層鍋なら振らずに出来る‼ お家でかんたんキャラメルポップコーン♪</h1>
+        <p class="meta-description">ステンレス多層鍋を使えば、鍋を振らずに焦げ付きゼロでポップコーンが弾けます。ココナッツオイルと白砂糖を使った手作りキャラメルポップコーンのレシピと失敗しないコツをわかりやすく解説！</p>
+        
+        <div class="tags">
+            <span class="tag">ステンレス鍋 ポップコーン</span><span class="tag">キャラメルポップコーン 作り方</span><span class="tag">ポップコーン 振らない</span><span class="tag">手作りおやつ 無添加</span><span class="tag">ココナッツオイル ポップコーン</span>
+        </div>
+
+        <a href="https://www.youtube.com/watch?v=jib_tBKoMsY" target="_blank" class="source-link">🔗 元のYouTube動画を見る</a>
+
+        <div class="hero-image"><img src="jib_tBKoMsY_thumb.jpg" alt="YouTube動画サムネイル" loading="lazy"></div>
+    </header>
+
+    <!-- 記事上部 AdSense 広告枠 -->
+    <div class="ad-container ad-article-top">
+        <span class="ad-notice">スポンサーリンク</span>
+        <div class="ad-box">
+            <!-- Google AdSense Responsive Ad Code Here -->
+            <span>広告スペース（AdSense レスポンシブ広告）</span>
+        </div>
+    </div>
+
+    <div class="content">
+        <p>家庭でポップコーンを作るとき、「ずっと鍋を振り続けないと焦げてしまう」「市販のキャラメルポップコーンは添加物や油分が気になる」と悩んだことはありませんか？</p>
+<p><strong>結論からお伝えすると、高い熱伝導性を持つステンレス多層鍋を使用すれば、鍋を一切振らずに中火で放置するだけで、焦がさずに美味しいポップコーンを作ることができます。</strong></p>
+<p>本記事では、酸化に強いココナッツオイルと白砂糖を使って作る、安全・安心でヘルシーな「手作りキャラメルポップコーン」のレシピと調理のポイントを詳しく紹介します。</p>
+<hr />
+<h2>ステンレス多層鍋でポップコーンを作るメリット</h2>
+<div class="scene-capture"><img src="jib_tBKoMsY_frames/frame_00064s.jpg" alt="鍋底一面にポップコーン豆を並べる" loading="lazy"><div class="scene-caption">鍋底一面にポップコーン豆を並べる</div></div>
+
+<p>一般的なフライパンや薄手のアルミ鍋でポップコーンを作ると、熱が一部に集中してしまい、カシャカシャと常に振り続けないと底が焦げ付いてしまいます。</p>
+<p>しかし、ステンレス多層鍋を使用すればその苦労は不要です。</p>
+<ul>
+<li><strong>鍋を振る手間がゼロ</strong>：全体に均一に熱が伝わる構造のため、中火にかけておくだけで豆が均等に弾けます。</li>
+<li><strong>油分控えめでベタつかない</strong>：市販品や専用マシンで作る場合に比べ、使う油の量は約1/3。食べた後に手を拭く手間が少なく、ベタつきません。</li>
+<li><strong>圧倒的なコストパフォーマンス</strong>：テーマパークや市販のキャラクター品を買うと数百円ほどかかりますが、手作りなら1回あたり約20〜30円と非常にお得です。</li>
+</ul>
+<hr />
+<h2>材料と事前準備</h2>
+<div class="scene-capture"><img src="jib_tBKoMsY_frames/frame_00095s.jpg" alt="蓋をして中火で加熱を開始する場面" loading="lazy"><div class="scene-caption">蓋をして中火で加熱を開始する場面</div></div>
+
+<p>作る前に以下の材料を用意しましょう。1.75コート程度のステンレス多層鍋（または1コート）を使用するのが適しています。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">材料</th>
+<th style="text-align: left;">分量</th>
+<th style="text-align: left;">備考</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">ドライポップコーン（豆）</td>
+<td style="text-align: left;">鍋底一面に重ならない程度</td>
+<td style="text-align: left;">少量でたくさん弾けます</td>
+</tr>
+<tr>
+<td style="text-align: left;">ココナッツオイル</td>
+<td style="text-align: left;">大さじ1</td>
+<td style="text-align: left;">熱や酸化に強くヘルシー</td>
+</tr>
+<tr>
+<td style="text-align: left;">白砂糖</td>
+<td style="text-align: left;">1/2カップ</td>
+<td style="text-align: left;">飴作りに最適</td>
+</tr>
+</tbody>
+</table>
+<p>※ココナッツオイルは熱に強く酸化しにくい特性があり、南国風の香ばしい風味に仕上がります。</p>
+<hr />
+<h2>簡単キャラメルポップコーンの作り方</h2>
+<div class="scene-capture"><img src="jib_tBKoMsY_frames/frame_00185s.jpg" alt="弾けたポップコーンをバットに出す" loading="lazy"><div class="scene-caption">弾けたポップコーンをバットに出す</div></div>
+
+<h3>ステップ1：ポップコーンを弾かせる（振らずに中火で加熱）</h3>
+<ol>
+<li>ステンレス鍋の底一面に重ならないようにドライポップコーンを敷き詰めます。</li>
+<li>ココナッツオイル（大さじ1）を加えます。</li>
+<li>鍋の蓋をして、中火（目安：900W程度）にかけます。</li>
+<li>しばらくすると「ポンポン」と弾ける音が聞こえてきます。<strong>鍋は振らずにそのまま待ちます</strong>。</li>
+<li>音が鳴り止んだら火を止め、弾けたポップコーンを一度バットなどの容器に取り出します。</li>
+</ol>
+<h3>ステップ2：キャラメル（飴）を作る</h3>
+<ol>
+<li>空になった鍋に白砂糖（1/2カップ）を直接入れます。</li>
+<li>そのまま熱し、砂糖をとろっと溶かしていきます。</li>
+<li>全体が均一に溶けて飴状になるまで加熱します。</li>
+</ol>
+<h3>ステップ3：キャラメルをポップコーンに絡める</h3>
+<ol>
+<li>砂糖が綺麗に溶けたら火を止めます。</li>
+<li>取り出しておいたポップコーンを鍋に戻し入れます。</li>
+<li>手早く全体を混ぜ合わせ、キャラメルをまんべんなく絡めたら完成です。</li>
+</ol>
+<hr />
+<h2>美味しく失敗なく作るためのコツ＆注意点</h2>
+<div class="scene-capture"><img src="jib_tBKoMsY_frames/frame_00210s.jpg" alt="鍋に白砂糖を入れて加熱溶かす場面" loading="lazy"><div class="scene-caption">鍋に白砂糖を入れて加熱溶かす場面</div></div>
+
+<h3>なぜ「白砂糖」を使うのがおすすめ？</h3>
+<p>キャラメル作りの際、きび砂糖や三温糖よりも「白砂糖」を使うのが失敗しないポイントです。白砂糖は適度な水分を含んでいるため、加熱した際にダマにならず、焦げ付く前に綺麗な液体状へととろっと溶けてくれます。</p>
+<h3>賞味期限は「作って30分以内」がベスト！</h3>
+<p>市販のポップコーンには湿気防止や保存用の添加物が使用されていることがありますが、手作りポップコーンは無添加上、時間が経つと空気を吸ってサクサク感が失われてしまいます。できあがってから<strong>30分以内のサクサクな状態</strong>で食べるのが最も美味しく楽しむコツです。</p>
+<hr />
+<h2>実際に作る際のアドバイス＆お手入れの注意点</h2>
+<div class="scene-capture"><img src="jib_tBKoMsY_frames/frame_00251s.jpg" alt="溶けた砂糖にポップコーンを絡める" loading="lazy"><div class="scene-caption">溶けた砂糖にポップコーンを絡める</div></div>
+
+<p>ご家庭で安全かつ快適にキャラメルポップコーンを作るための実践的なアドバイスです。</p>
+<p>加熱直後のステンレス鍋や溶けた砂糖（キャラメル）は想像以上に高温になります。お子様と一緒に調理を楽しむ場合は、火傷を防ぐために「砂糖を溶かす工程」や「飴を絡める作業」は大人が担当し、最後の取り分けなどを手伝ってもらうと安全です。</p>
+<p>また、「キャラメルが固まって鍋底にこびりついたら洗うのが大変そう」と心配されるかもしれませんが、砂糖は水に溶けやすい性質を持っています。使い終わった鍋にお湯を注いでしばらく放置するか、軽く加熱して温めるだけで、固まったキャラメルがスルッと溶け出します。スポンジで強く擦る必要もありませんので、後片付けも安心です。</p>
+<hr />
+<h2>動画で紹介されているアイテム・サービス</h2>
+<div class="scene-capture"><img src="jib_tBKoMsY_frames/frame_00260s.jpg" alt="完成したキャラメルポップコーン" loading="lazy"><div class="scene-caption">完成したキャラメルポップコーン</div></div>
+
+<p>動画内や概要欄で紹介されているおすすめの調理器具やキッチンアイテムの一覧です。</p>
+<ul>
+<li><a href="https://x.gd/MQjdm">キッチンクラフト 1コート</a></li>
+<li><a href="https://item.rakuten.co.jp/mpowjapan/cp001agjp1/">EPEIOS 電気ケトル</a></li>
+<li><a href="https://www.up-x.com/product/purifier/re_married.html">置き型浄水器 Re</a></li>
+<li><a href="https://amzn.to/3K8dg5T">国産置き型浄水器 beaq</a></li>
+<li><a href="https://amzn.to/4oRnLZK">予算1万円のおすすめお鍋</a></li>
+<li><a href="https://www.qoo10.jp/gmkt.inc/Goods/Goods.aspx?goodscode=1042615206">予算2万円のおすすめお鍋</a></li>
+<li><a href="https://amzn.to/34KgJmh">ヘンケルス オールステンレス包丁</a></li>
+<li><a href="https://amzn.to/4gqSQjm">頑丈な大さじ</a></li>
+<li><a href="https://amzn.to/3JtBFN4">ピッチャー型浄水器リセラ</a></li>
+<li><a href="https://amzn.to/49DZJ0h">スリムなホイッパー</a></li>
+<li><a href="https://amzn.to/4gHH1Fe">取り外せる優秀なキッチンばさみ</a></li>
+<li><a href="https://amzn.to/367MeHj">岐阜の3年みりん</a></li>
+<li><a href="https://amzn.to/3WNwX59">安全で美味しいしょうゆ</a></li>
+<li><a href="https://amzn.to/3jvJjff">美濃三年酢</a></li>
+<li><a href="https://amzn.to/3JfE39N">ピンクの塩</a></li>
+<li><a href="https://amzn.to/3VPL9Lo">スタイリッシュなピーラー</a></li>
+<li><a href="https://amzn.to/44yxrAG">安全なステンレスケトル</a></li>
+<li><a href="https://amzn.to/3YTPL5h">内窯ステンレス炊飯器</a></li>
+<li><a href="https://hatsuga-kousogenmai.com">酵素玄米炊飯器</a></li>
+</ul>
+<hr />
+<h2>よくある質問（FAQ）</h2>
+<h3>Q1. ステンレス鍋がない場合、普通のフライパンでも振らずに作れますか？</h3>
+<p>薄手のアルミフライパンや一般的な鍋は熱伝導が不均一なため、振らないと底の豆だけが集中して焦げてしまいます。振らずに均一に弾かせるには、熱伝導性と保温性に優れた多層構造のステンレス鍋が必要です。</p>
+<h3>Q2. ココナッツオイルの代わりにサラダ油やバターでも作れますか？</h3>
+<p>サラダ油でも作ること自体は可能ですが、ココナッツオイルは熱に強く酸化しにくいため、仕上がりの風味が非常に良くなります。バターを使用したい場合は、焦げやすくなるため火加減に注意が必要です。</p>
+<h3>Q3. きび砂糖や黒糖でキャラメルを作っても大丈夫ですか？</h3>
+<p>作れなくはありませんが、水分量が少ない砂糖は加熱時に焦げ付きやすく、綺麗に溶けない場合があります。初めて作る際や失敗を防ぎたい場合は、とろっと溶けやすい白砂糖を使用することをおすすめします。</p>
+<hr />
+<h2>運営者のひとことコメント</h2>
+<p>ステンレス多層鍋でポップコーンを作ると、シャカシャカ振る手間がなく本当に簡単で感動します。市販品に比べて油分控えめでベタつかないので、お子様のおやつにも安心ですね。おうちで出来立てサクサクのキャラメルポップコーンをぜひ楽しんでみてください！</p>
+    </div>
+
+    <!-- 記事下部 AdSense 広告枠 -->
+    <div class="ad-container ad-article-bottom">
+        <span class="ad-notice">スポンサーリンク</span>
+        <div class="ad-box">
+            <!-- Google AdSense Matched Content / Bottom Ad Code Here -->
+            <span>広告スペース（AdSense 記事下広告）</span>
+        </div>
+    </div>
+
+    <div class="footer-back-wrap">
+        <a href="index.html" class="back-to-home-btn">← 記事一覧（トップ）に戻る</a>
+    </div>
+</div>
+
+<!-- サイト共通フッター -->
+<footer class="site-footer">
+    <div class="footer-nav">
+        <a href="index.html">ホーム</a>
+        <a href="pages/about.html">このサイトについて</a>
+        <a href="pages/contact.html">お問い合わせ</a>
+        <a href="pages/privacy_policy.html">プライバシーポリシー</a>
+        <a href="pages/operator_info.html">運営者情報</a>
+    </div>
+    <p class="footer-copy">© 2026 ステンレス鍋のための料理教室!大澤ブログ All Rights Reserved.</p>
+</footer>
+
+</body>
+</html>

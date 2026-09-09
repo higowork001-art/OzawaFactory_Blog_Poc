@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2026-08-11_これで失敗なし！ステンレスフライパンがくっついた時の２つの対処法</title>
+    <meta name="description" content="ステンレスフライパンで目玉焼きや鮭が張り付いてボロボロになって困していませんか？くっついてしまった時の対処法2つと、くっつきを防ぐ予熱のコツをわかりやすく解説します。">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-gradient-1: #fdfbfb;
+            --bg-gradient-2: #ebedee;
+            --glass-bg: rgba(255, 255, 255, 0.85);
+            --glass-border: rgba(255, 255, 255, 0.7);
+            --text-main: #2d3748;
+            --text-muted: #718096;
+            --accent: #4f46e5;
+            --accent-hover: #4338ca;
+            --surface: #ffffff;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html, body {
+            overflow-x: hidden;
+            width: 100%;
+            max-width: 100vw;
+        }
+
+        body {
+            font-family: 'Inter', 'Noto Sans JP', sans-serif;
+            color: var(--text-main);
+            background: linear-gradient(135deg, #a1c4fd 0%, #c2e9fb 100%);
+            background-attachment: fixed;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* Glassmorphism Container */
+        .container {
+            width: calc(100% - 32px);
+            max-width: 800px;
+            margin: 32px auto;
+            padding: 44px 48px;
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-radius: 24px;
+            border: 1px solid var(--glass-border);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+            animation: fadeIn 0.8s ease-out;
+            word-break: break-word;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Header / Meta section */
+        header {
+            margin-bottom: 32px;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            line-height: 1.4;
+            margin-bottom: 16px;
+            color: #1a202c;
+            letter-spacing: -0.02em;
+        }
+
+        .meta-description {
+            font-size: 1.05rem;
+            color: var(--text-muted);
+            margin-bottom: 24px;
+        }
+
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            justify-content: center;
+            margin-bottom: 30px;
+        }
+
+        .tag {
+            background: rgba(79, 70, 229, 0.1);
+            color: var(--accent);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            transition: all 0.2s ease;
+        }
+        
+        .tag:hover {
+            background: var(--accent);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .source-link {
+            display: inline-block;
+            margin-top: 10px;
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: color 0.2s;
+        }
+
+        .source-link:hover {
+            color: var(--accent-hover);
+            text-decoration: underline;
+        }
+
+        /* Markdown Content Styling */
+        .content {
+            font-size: 1.05rem;
+        }
+
+        .content h2 {
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-top: 48px;
+            margin-bottom: 20px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid rgba(0,0,0,0.05);
+            color: #1a202c;
+        }
+
+        .content h3 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-top: 36px;
+            margin-bottom: 16px;
+            color: #2d3748;
+        }
+
+        .content p {
+            margin-bottom: 20px;
+        }
+
+        .content ul, .content ol {
+            margin-bottom: 24px;
+            padding-left: 24px;
+        }
+
+        .content li {
+            margin-bottom: 8px;
+        }
+
+        .content strong {
+            font-weight: 700;
+            color: #1a202c;
+            background: linear-gradient(transparent 60%, rgba(79, 70, 229, 0.2) 60%);
+        }
+
+        .content table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 32px 0;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+        }
+
+        .content th, .content td {
+            padding: 14px 20px;
+            text-align: left;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .content th {
+            background: rgba(0,0,0,0.03);
+            font-weight: 600;
+            color: #4a5568;
+        }
+
+        .content tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .content blockquote {
+            margin: 24px 0;
+            padding: 16px 24px;
+            background: rgba(79, 70, 229, 0.05);
+            border-left: 4px solid var(--accent);
+            border-radius: 0 8px 8px 0;
+            color: #4a5568;
+            font-style: italic;
+        }
+
+        .content hr {
+            border: 0;
+            height: 1px;
+            background: rgba(0,0,0,0.1);
+            margin: 40px 0;
+        }
+
+        /* === Scene Capture Images === */
+        .hero-image {
+            width: 100%;
+            border-radius: 16px;
+            overflow: hidden;
+            margin: 24px 0 36px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.12);
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.4s ease;
+        }
+
+        .hero-image img:hover {
+            transform: scale(1.02);
+        }
+
+        .scene-capture {
+            margin: 24px 0 32px;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.10);
+            background: rgba(255,255,255,0.6);
+            border: 1px solid rgba(255,255,255,0.8);
+        }
+
+        .scene-capture img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .scene-caption {
+            padding: 10px 16px;
+            font-size: 0.82rem;
+            color: var(--text-muted);
+            font-style: italic;
+            border-top: 1px solid rgba(0,0,0,0.05);
+            background: rgba(255,255,255,0.4);
+        }
+
+        .scene-caption::before {
+            content: '📸 ';
+        }
+
+        /* Google AdSense 広告枠スタイル */
+        .ad-container {
+            margin: 32px 0;
+            text-align: center;
+        }
+        .ad-notice {
+            font-size: 0.72rem;
+            color: #9ca3af;
+            letter-spacing: 0.05em;
+            margin-bottom: 6px;
+            display: block;
+            text-transform: uppercase;
+        }
+        .ad-box {
+            background: rgba(255, 255, 255, 0.75);
+            border: 1px dashed #cbd5e1;
+            border-radius: 14px;
+            padding: 18px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: #94a3b8;
+            font-size: 0.82rem;
+            min-height: 120px;
+            transition: all 0.2s;
+        }
+        .ad-box:hover {
+            border-color: #94a3b8;
+            background: rgba(255, 255, 255, 0.95);
+        }
+
+        /* 記事下部「トップへ戻る」ボタン */
+        .footer-back-wrap {
+            margin-top: 40px;
+            padding-top: 24px;
+            border-top: 1px solid rgba(0,0,0,0.08);
+            display: flex;
+            justify-content: center;
+        }
+
+        .back-to-home-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 28px;
+            background: linear-gradient(135deg, #4f46e5 0%, #3b82f6 100%);
+            color: #ffffff;
+            font-weight: 700;
+            font-size: 0.95rem;
+            border-radius: 24px;
+            text-decoration: none;
+            box-shadow: 0 4px 15px rgba(79, 70, 229, 0.25);
+            transition: all 0.25s ease;
+        }
+
+        .back-to-home-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(79, 70, 229, 0.35);
+            color: #ffffff;
+        }
+
+        /* サイト共通フッター */
+        footer.site-footer {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(12px);
+            border-top: 1px solid rgba(229, 231, 235, 0.8);
+            padding: 36px 20px;
+            margin-top: 60px;
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.88rem;
+            box-shadow: 0 -2px 10px rgba(0,0,0,0.02);
+        }
+
+        .footer-nav {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-bottom: 16px;
+        }
+
+        .footer-nav a {
+            color: #4b5563;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: color 0.2s;
+        }
+
+        .footer-nav a:hover {
+            color: var(--accent);
+        }
+
+        .footer-copy {
+            margin: 0;
+            color: #9ca3af;
+            font-size: 0.82rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            body {
+                display: block;
+            }
+            .container {
+                margin: 14px 10px;
+                padding: 24px 18px;
+                border-radius: 16px;
+                width: auto;
+            }
+            h1 {
+                font-size: 1.5rem;
+                line-height: 1.4;
+            }
+            .meta-description {
+                font-size: 0.92rem;
+            }
+            .content {
+                font-size: 0.98rem;
+            }
+            .content h2 {
+                font-size: 1.35rem;
+                margin-top: 36px;
+            }
+            .content h3 {
+                font-size: 1.15rem;
+            }
+            .content table {
+                display: block;
+                overflow-x: auto;
+                white-space: nowrap;
+            }
+            .footer-nav {
+                gap: 10px 14px;
+            }
+            .footer-nav a {
+                font-size: 0.82rem;
+            }
+            footer.site-footer {
+                padding: 28px 14px;
+                margin-top: 40px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div style="margin-bottom: 24px;">
+        <a href="index.html" style="display: inline-flex; align-items: center; gap: 6px; text-decoration: none; color: #4f46e5; font-weight: 600; font-size: 0.92rem; background: rgba(255,255,255,0.85); padding: 8px 16px; border-radius: 20px; border: 1px solid rgba(79,70,229,0.2); transition: all 0.2s; box-shadow: 0 2px 6px rgba(0,0,0,0.03);">← ブログトップに戻る</a>
+    </div>
+
+    <header>
+        <h1>2026-08-11_これで失敗なし！ステンレスフライパンがくっついた時の２つの対処法</h1>
+        <p class="meta-description">ステンレスフライパンで目玉焼きや鮭が張り付いてボロボロになって困していませんか？くっついてしまった時の対処法2つと、くっつきを防ぐ予熱のコツをわかりやすく解説します。</p>
+        
+        <div class="tags">
+            <span class="tag">ステンレスフライパン くっつく 対処法</span><span class="tag">ステンレス鍋 食材 くっつく 剥がし方</span><span class="tag">ステンレスフライパン 焦げ付き 剥がし方</span><span class="tag">ステンレスフライパン 予熱 水滴</span><span class="tag">ステンレスフライパン 失敗しない コツ</span>
+        </div>
+
+        <a href="https://www.youtube.com/watch?v=fJGHwn4Xw-o" target="_blank" class="source-link">🔗 元のYouTube動画を見る</a>
+
+        <div class="hero-image"><img src="fJGHwn4Xw-o_thumb.jpg" alt="YouTube動画サムネイル" loading="lazy"></div>
+    </header>
+
+    <!-- 記事上部 AdSense 広告枠 -->
+    <div class="ad-container ad-article-top">
+        <span class="ad-notice">スポンサーリンク</span>
+        <div class="ad-box">
+            <!-- Google AdSense Responsive Ad Code Here -->
+            <span>広告スペース（AdSense レスポンシブ広告）</span>
+        </div>
+    </div>
+
+    <div class="content">
+        <h1>結論：ステンレスフライパンにくっついても焦る必要はありません！</h1>
+<p>ステンレスフライパンで調理していて、鮭や目玉焼き、餃子が鍋底に張り付き、ボロボロになって困った経験はありませんか？</p>
+<p>結論から言うと、ステンレスフライパンに食材がくっついてしまっても<strong>「金属ヘラで力技で削ぎ剥がす」</strong>か<strong>「火を止めて蓋をし、蒸気を巡らせて待つ」</strong>という2つの対処法を知っていれば、失敗することはありません。</p>
+<p>本記事では、食材が張り付く原因から調理前の予防策、くっついた時の具体的なリカバリー手順まで詳しく解説します。</p>
+<hr />
+<h2>なぜステンレスフライパンに食材がくっついてしまうのか？</h2>
+<div class="scene-capture"><img src="fJGHwn4Xw-o_frames/frame_00076s.jpg" alt="水滴がコロコロ転がる適切な予熱の確認" loading="lazy"><div class="scene-caption">水滴がコロコロ転がる適切な予熱の確認</div></div>
+
+<p>ステンレスフライパンで食材が張り付いてしまう主な原因は以下の3つです。</p>
+<ol>
+<li><strong>予熱不足（フライパンの温度が低い）</strong></li>
+<li><strong>鍋底に残った細かい汚れや凹凸</strong></li>
+<li><strong>食材の表面に残っている水分</strong></li>
+</ol>
+<p>ステンレスの表面には目に見えない小さな穴（微細な孔）が存在します。フライパンの温度が十分でない状態で油や食材を入れると、加熱の過程で食材のタンパク質がこの穴に入り込み、焼きついて固まることで「くっつき」が発生します。</p>
+<hr />
+<h2>くっつきを防ぐ！調理前に実践すべき3つの予防策</h2>
+<div class="scene-capture"><img src="fJGHwn4Xw-o_frames/frame_00092s.jpg" alt="ペーパーで鮭の表面の水分を拭き取る" loading="lazy"><div class="scene-caption">ペーパーで鮭の表面の水分を拭き取る</div></div>
+
+<p>調理に入る前のちょっとした工夫で、張り付きのトラブルは大半を防ぐことができます。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">予防策</th>
+<th style="text-align: left;">具体的な手順・ポイント</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>① フライパンを綺麗に洗う</strong></td>
+<td style="text-align: left;">前回調理した際の微細な汚れや凹凸が残っていると焦げ付きの原因になります。しっかり洗って鍋底を滑らかに保ちましょう。</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>② しっかり予熱する</strong></td>
+<td style="text-align: left;">中火で全体を熱し、水を数滴落とした際に<strong>「玉のようになってコロコロと転がる状態」</strong>になるまで予熱します（すぐにジュッと蒸発するのは予熱不足）。</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>③ 食材の水分を拭き取る</strong></td>
+<td style="text-align: left;">魚や肉などの表面についている水分はくっつきを引き起こします。焼く前にキッチンペーパーで水気をしっかり拭き取りましょう。</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>食材がくっついてしまった時の2つの対処法</h2>
+<div class="scene-capture"><img src="fJGHwn4Xw-o_frames/frame_00171s.jpg" alt="くっついた食材を金属ヘラで削ぎ剥がす" loading="lazy"><div class="scene-caption">くっついた食材を金属ヘラで削ぎ剥がす</div></div>
+
+<p>万が一、予熱を行っても食材が鍋底に張り付いてしまった場合は、以下の2つの方法で綺麗に剥がすことができます。</p>
+<h3>対処法1：金属ヘラで削ぎ剥がす</h3>
+<p>フッ素樹脂加工（テフロンなど）のフライパンとは異なり、オールステンレスフライパンには剥がれてしまう表面コーティングがありません。</p>
+<p>そのため、金属ヘラ（ターナー）を食材の下に差し込み、ゴリゴリと力強く削ぎ剥がすように動かしても問題ありません。</p>
+<h3>対処法2：火を止めて「蓋をして待つ」（おすすめ）</h3>
+<p>最も傷をつけず綺麗に仕上がるのが、<strong>蒸気の力を利用したリカバリー術</strong>です。</p>
+<ol>
+<li>一旦、火を止める</li>
+<li>フライパンに蓋をする（水分が足りない場合は少量の水を回し入れる）</li>
+<li>しばらくそのまま放置して冷ます</li>
+</ol>
+<p>火を消して蓋をすることで、鍋内部に水分（蒸気）が充満して循環します。この蒸気が鍋底と食材の隙間に入り込み、強固に張り付いていた部分を自然に浮かせてポロっと剥がれやすくしてくれます。</p>
+<hr />
+<h2>【料理別】食材が張り付いた時の実践リカバリー例</h2>
+<div class="scene-capture"><img src="fJGHwn4Xw-o_frames/frame_00185s.jpg" alt="火を止め蓋をして水分を循環させる手順" loading="lazy"><div class="scene-caption">火を止め蓋をして水分を循環させる手順</div></div>
+
+<p>動画内で紹介されている具体的な料理別の対処手順です。</p>
+<h3>1. 鮭の塩焼き</h3>
+<ul>
+<li><strong>状況</strong>: 裏返そうとしたが、皮や身が鍋底にくっついて動かない。</li>
+<li><strong>対処</strong>: 無理に箸で引っ張らず、火を止めて蓋をします。数分置くと内部の蒸気で身が綺麗に剥がれるようになります。</li>
+</ul>
+<h3>2. 目玉焼き</h3>
+<ul>
+<li><strong>状況</strong>: 白身が固まり、ヘラを入れても底にくっついて離れない。</li>
+<li><strong>対処</strong>: 鍋肌から少量の水を差し入れ、すぐに蓋をして火を止めます。蒸気が回ると目玉焼きがフライパンの上で滑るように動きます。</li>
+</ul>
+<h3>3. 餃子</h3>
+<ul>
+<li><strong>状況</strong>: 蒸し焼きが終わって蓋を開けたものの、皮が底に張り付いている。</li>
+<li><strong>対処</strong>: 火を止めて再び蓋をし、内部の水分を全体に巡らせます。少し時間を置くことで皮を破らず綺麗に取り出すことができます。</li>
+</ul>
+<hr />
+<h2>【実践アドバイス】ステンレスフライパンを快適に使うための注意点</h2>
+<div class="scene-capture"><img src="fJGHwn4Xw-o_frames/frame_00211s.jpg" alt="蓋を外すと鮭の裏面が綺麗に剥がれる" loading="lazy"><div class="scene-caption">蓋を外すと鮭の裏面が綺麗に剥がれる</div></div>
+
+<p>ステンレスフライパンを扱う際、最も大切なのは<strong>「くっついた瞬間に焦って無理やり箸やトングで引っ張らないこと」</strong>です。</p>
+<p>張り付いた直後に力任せに引き剥がそうとすると、食材の表面が破れて身崩れを起こしてしまいます。「くっついたら、まずは火を止めて蓋をする」というルールを意識するだけで、料理の仕上がりが見違えるほど良くなります。</p>
+<p>また、調理後のお手入れにも注意が必要です。使い終わった直後の熱い状態のまま冷水をかけると、急激な温度変化で金属が変形してしまう恐れがあります。少し冷めてからぬるま湯を使ってしっかり洗浄するのが、フライパンを傷めずに長持ちさせるコツです。</p>
+<hr />
+<h2>よくある質問（FAQ）</h2>
+<div class="scene-capture"><img src="fJGHwn4Xw-o_frames/frame_00244s.jpg" alt="くっついた目玉焼きに水を少量足して蓋をする" loading="lazy"><div class="scene-caption">くっついた目玉焼きに水を少量足して蓋をする</div></div>
+
+<h3>Q1. ステンレスフライパンで金属ヘラを使っても傷つきませんか？</h3>
+<p><strong>A.</strong> コーティング加工がされていないため、金属ヘラで強めに削ぐように剥がしても問題ありません。傷を気にせず安心してご使用いただけます。</p>
+<h3>Q2. 火を止めて蓋をするとなぜ剥がれやすくなるのですか？</h3>
+<p><strong>A.</strong> 蓋を閉めることで鍋の中の水分が逃げずに蒸気として循環するためです。蒸気が食材と鍋底の隙間に入り込み、張り付きを自然と和らげてくれます。</p>
+<h3>Q3. 予熱が完了したかどうか確認する方法は？</h3>
+<p><strong>A.</strong> 水滴を垂らした際に、ジュッと蒸発せずに水滴が球状になってコロコロと転がる状態になれば予熱完了のサインです。</p>
+<hr />
+<h2>動画で紹介されているアイテム・サービス</h2>
+<div class="scene-capture"><img src="fJGHwn4Xw-o_frames/frame_00311s.jpg" alt="蒸気で餃子のくっつきが解消される場面" loading="lazy"><div class="scene-caption">蒸気で餃子のくっつきが解消される場面</div></div>
+
+<p>動画内で使用・紹介されているアイテムやサービスの一覧です。</p>
+<ul>
+<li><a href="https://x.gd/MQjdm">キッチンクラフト レギュラースキレット</a>（動画で使用されている316Lステンレス製のスキレット）</li>
+<li><a href="https://ozawachannnel.stores.jp">大澤チャンネル オリジナル商品サイト</a>（ステンレス菜箸や鍋磨き用ブラシなど）</li>
+<li><a href="https://www.up-x.com/product/purifier/re_married.html">安全な浄水器「Re」</a>（銀イオン・界面活性剤不使用の浄水器）</li>
+<li><a href="https://amzn.to/3K8dg5T">国産置き型浄水器 beaq</a>（Amazonで購入可能な置き型浄水器）</li>
+<li><a href="https://amzn.to/34KgJmh">ヘンケルス オールステンレス包丁</a>（長持ちするおすすめの包丁）</li>
+<li><a href="https://hatsuga-kousogenmai.com">酵素玄米炊飯器</a>（発芽玄米・酵素玄米用の炊飯器）</li>
+</ul>
+<hr />
+<h2>まとめ：対処法を知っていればステンレスフライパンは怖くない！</h2>
+<p>ステンレスフライパンで食材がくっついてしまうのは、コツや対処法を知らないことが主な原因です。</p>
+<p>調理前に「しっかり予熱する（水滴がコロコロ転がる状態）」ことを徹底し、万が一張り付いてしまったら<strong>「火を止めて蓋をして蒸気を巡らせる」</strong>というテクニックを使えば、失敗なく料理を楽しむことができます。</p>
+<p>適切な知識を身につけて、ステンレスフライパンを長く快適に活用していきましょう！</p>
+<blockquote>
+<p><strong>運営者の一言コメント</strong>
+ステンレスフライパンはコツさえ掴めば一生モノとして活躍してくれる頼もしい道具です。私も使い始めの頃は目玉焼きを何度もボロボロにしてしまいましたが、「火を止めて蓋をして待つ」という対処法を知ってからは失敗がなくなりました！くっついても慌てず、ぜひ試してみてくださいね。（140文字）</p>
+</blockquote>
+    </div>
+
+    <!-- 記事下部 AdSense 広告枠 -->
+    <div class="ad-container ad-article-bottom">
+        <span class="ad-notice">スポンサーリンク</span>
+        <div class="ad-box">
+            <!-- Google AdSense Matched Content / Bottom Ad Code Here -->
+            <span>広告スペース（AdSense 記事下広告）</span>
+        </div>
+    </div>
+
+    <div class="footer-back-wrap">
+        <a href="index.html" class="back-to-home-btn">← 記事一覧（トップ）に戻る</a>
+    </div>
+</div>
+
+<!-- サイト共通フッター -->
+<footer class="site-footer">
+    <div class="footer-nav">
+        <a href="index.html">ホーム</a>
+        <a href="pages/about.html">このサイトについて</a>
+        <a href="pages/contact.html">お問い合わせ</a>
+        <a href="pages/privacy_policy.html">プライバシーポリシー</a>
+        <a href="pages/operator_info.html">運営者情報</a>
+    </div>
+    <p class="footer-copy">© 2026 ステンレス鍋のための料理教室!大澤ブログ All Rights Reserved.</p>
+</footer>
+
+</body>
+</html>

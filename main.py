@@ -1,4 +1,5 @@
 import sys
+import time
 import io
 
 # Windowsコンソールでの特殊Unicode文字（感嘆符や絵文字等）出力時のCP932エンコードエラーを防止
@@ -13,6 +14,7 @@ import frontmatter
 from config import (
     YOUTUBE_CHANNEL_URL,
     MAX_BATCH_VIDEOS,
+    BATCH_DELAY_SECONDS,
     CATEGORY_MAP,
     DEFAULT_CATEGORY,
 )
@@ -218,6 +220,11 @@ def run_batch_mode(channel_url: str, max_count: int = 10):
     fail_count = 0
 
     for idx, video in enumerate(target_videos, 1):
+        # 2件目以降はYouTubeのIPレートリミット回避のためクールダウン待機
+        if idx > 1 and BATCH_DELAY_SECONDS > 0:
+            print(f"\n  [クールダウン] YouTube IPレートリミット回避のため {BATCH_DELAY_SECONDS}秒 待機中...")
+            time.sleep(BATCH_DELAY_SECONDS)
+
         print(f"\n----------------------------------------")
         print(f" 進行状況: [{idx}/{len(target_videos)}] 件目を処理中")
         print(f"----------------------------------------")

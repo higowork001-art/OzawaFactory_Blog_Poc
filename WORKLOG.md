@@ -502,3 +502,74 @@ PC幅ではフッター関連のスタイルが一切適用されず、「この
 - `scratch/update_article_htmls.py` で全5記事HTML再生成（exit code 0）
 - `src/build_portal.py` で `output/index.html` および固定ページHTML再生成（exit code 0）
 
+---
+
+## セッション #10 — 2026-09-09
+
+### 担当者
+- アカウント: AI Pair Programmer (Gemini 3.8 Flash / Antigravity Agent)
+- 作業環境: Windows / PowerShell / Python 3.14
+
+---
+
+### 作業内容
+
+#### 🐛 バグ修正 ＆ 固定ページ再生成: .envのSITE_NAME等未反映問題の解決
+
+**背景・原因**:
+1. `src/setup_pages.py` は、`output/pages/` 配下に既に `.md` ファイルが存在する場合、デフォルトで `[Setup Pages] 既存のMarkdownファイルを使用します。` となり、Gemini APIによる再生成を行わず既存のMarkdownを使い回す仕様だった。
+2. そのため、`.env` 側の `SITE_NAME` や `SITE_OPERATOR_NAME` を更新しても、`--regenerate` 引数なしで実行すると古い初期値（「料理男子のおうちごはんレシピ」「イサム」など）のまま WordPress に更新送信されていた。
+3. また、`.env` の `SITE_NAME` 先頭に「料」のタイポ（`料ステンレス鍋のための料理教室!大澤ブログ`）、および `SITE_CONTACT_EMAIL` の末尾に半角スペースが含まれていた。
+
+**修正・対応内容:**
+
+| ファイル | 変更内容 |
+|---|---|
+| `.env` | `SITE_NAME=ステンレス鍋のための料理教室!大澤ブログ` にタイポ修正、`SITE_CONTACT_EMAIL` の末尾スペースを除去 |
+| `config.py` | サイト情報関連の環境変数読み込み時に `.strip()` を追加し、意図せぬ空白混入を防止 |
+| `src/html_generator.py` | ハードコードされていたデフォルトサイト名フォールバックを「ステンレス鍋のための料理教室!大澤ブログ」に更新 |
+| `src/build_portal.py` | 同上（フォールバックを更新） |
+| `src/setup_pages.py --regenerate` | 実行により Gemini API で固定ページ4種（`about.md`, `contact.md`, `privacy_policy.md`, `operator_info.md`）を新サイト名・運営者情報で完全再生成し、WordPress固定ページ（ID: 8, 9, 16, 11）へ更新反映 |
+| `output/pages/*.html` & `output/index.html` | `build_portal.py` によりローカル固定ページおよびトップページポータルを再ビルド |
+| `output/2026-*.html` | 全5記事HTMLの個別ページフッターサイト名を新サイト名に同期 |
+
+**検証結果:**
+- `output/pages/about.md` および `operator_info.md` に「ステンレス鍋のための料理教室!大澤ブログ」「大澤 勇」「iissaamuu2016@gmail.com」が正しく出力されていることを確認。
+- WordPress REST APIにより既存固定ページ4種がステータス200/201で正常更新（UPDATE）されたことを確認。
+- ブラウザサブエージェントにより `output/index.html`、`pages/about.html`、`pages/operator_info.html` を確認し、ロゴ・ヘッダー・本文・プロフィール・フッターがすべて「ステンレス鍋のための料理教室!大澤ブログ」「大澤 勇」で統一されていることを確認。
+
+---
+
+## セッション #11 — 2026-09-09
+
+### 担当者
+- アカウント: AI Pair Programmer (Gemini 3.1 Pro / Antigravity Agent)
+- 作業環境: Windows / PowerShell / Python 3.14
+
+---
+
+### 作業内容
+
+#### 🐛 一括バッチ処理の失敗原因の調査と対策 (YouTube IP ブロック)
+
+**背景**:
+一括処理を実行した際、10件中6件が「スキップ/失敗」となる現象が発生した。
+
+**原因調査**:
+- 失敗した動画のIDを取得し、個別に `extract_video_id` -> `get_video_info` -> `get_transcript` のステップを検証するスクリプトを実行。
+- 結果、すべての失敗動画で `get_transcript` 実行時に `YouTube is blocking requests from your IP.` というエラーが発生していることが判明した。
+- YouTubeは、短い間に連続してリクエストが送られた場合、または **クラウドプロバイダー（AWS, Google Cloud等）のIPアドレス** からのスクレイピングを検知した場合に、アクセスをブロックする仕様がある。
+
+**修正・対応内容:**
+
+| ファイル | 変更内容 |
+|---|---|
+| `config.py` | `BATCH_DELAY_SECONDS` （デフォルト10秒）を追加し、動画処理間にクールダウンを設けるようにした。 |
+| `.env` | `BATCH_DELAY_SECONDS=10` を追加。 |
+| `main.py` | 一括処理ループ (`run_batch_mode`) 内で、2件目以降の処理前に `time.sleep(BATCH_DELAY_SECONDS)` を実行してアクセス頻度を下げるようにした。 |
+| `src/transcript.py` | `get_transcript` 関数内に、IPブロックエラーを検知した場合の「指数バックオフ付きリトライ機構（30秒→60秒→120秒）」を実装。 |
+
+**テスト結果と今後の課題**:
+- 対策後、失敗した動画に対してリトライ機構のテストを実施。
+- リトライは正常に発動（30秒、60秒、120秒待機）したが、現在の実行環境（AIエージェントのクラウドサーバーIP）では一時的なレートリミットではなく、クラウドプロバイダIPによる恒久的なIPブロックに該当するため、依然としてエラーとなった。
+- **ユーザー環境での運用**: ユーザー自身のローカルPC（家庭用プロバイダのIP）で実行する場合は、クラウドIPによるブロックを受けないため、今回追加した「10秒のクールダウン（BATCH_DELAY）」と「リトライ機構」によって安定して取得できると想定される。
