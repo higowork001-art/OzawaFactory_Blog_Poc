@@ -18,6 +18,7 @@ if hasattr(sys.stdout, 'reconfigure'):
 if hasattr(sys.stderr, 'reconfigure'):
     sys.stderr.reconfigure(encoding='utf-8', errors='replace')
 
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 import config
 
 def get_clean_markdown(text: str) -> str:
@@ -185,6 +186,56 @@ def build_static_page_html(md_path: str, title: str, nav_prefix: str = "../") ->
             color: var(--text-muted);
             font-size: 0.9rem;
         }}
+        /* 固定ページ スマホ最適化 */
+        @media (max-width: 768px) {{
+            .nav-inner {{
+                padding: 12px 16px;
+                flex-direction: column;
+                align-items: stretch;
+                gap: 10px;
+            }}
+            .site-logo {{
+                font-size: 1.2rem;
+                justify-content: center;
+            }}
+            .nav-links {{
+                display: flex;
+                gap: 8px;
+                overflow-x: auto;
+                white-space: nowrap;
+                -webkit-overflow-scrolling: touch;
+                padding-bottom: 4px;
+                scrollbar-width: none;
+            }}
+            .nav-links::-webkit-scrollbar {{
+                display: none;
+            }}
+            .nav-links a {{
+                padding: 6px 14px;
+                background: rgba(0, 0, 0, 0.04);
+                border-radius: 18px;
+                font-size: 0.85rem;
+                display: inline-block;
+                flex-shrink: 0;
+            }}
+            .nav-links a.active {{
+                background: var(--accent);
+                color: #ffffff;
+            }}
+            .container {{
+                margin: 16px 12px;
+                padding: 24px 18px;
+                border-radius: 16px;
+            }}
+            .page-header h1 {{
+                font-size: 1.5rem;
+            }}
+            .page-body table {{
+                display: block;
+                overflow-x: auto;
+                white-space: nowrap;
+            }}
+        }}
     </style>
 </head>
 <body>
@@ -314,7 +365,7 @@ def build_portal():
 
     # 3. 記事カード HTML 生成（data-category 属性付き）
     article_cards_html = ""
-    for a in articles:
+    for idx, a in enumerate(articles):
         article_cards_html += f"""
         <article class="post-card" data-category="{a['category']}">
             <a href="{a['filename']}" class="post-card-thumb-link">
@@ -333,6 +384,18 @@ def build_portal():
             </div>
         </article>
         """
+        # 2記事目の後にAdSenseインフィード広告スロットを配置
+        if idx == 1:
+            article_cards_html += """
+        <div class="ad-container ad-infeed">
+            <span class="ad-notice">スポンサーリンク</span>
+            <div class="ad-box">
+                <!-- Google AdSense In-feed Ad Code Here -->
+                <span>広告スペース（AdSense インフィード広告）</span>
+            </div>
+        </div>
+        """
+
 
     # 4. カテゴリフィルタータブ HTML
     filter_tabs_html = f'<button type="button" class="filter-btn active" data-filter="all">すべて ({total_articles})</button>'
@@ -824,27 +887,179 @@ def build_portal():
             color: #ffffff;
         }}
 
+        /* レスポンシブ & モバイル最適化 */
+        @media (max-width: 768px) {{
+            .nav-inner {{
+                padding: 12px 16px;
+                flex-direction: column;
+                align-items: stretch;
+                gap: 10px;
+            }}
+            .site-logo {{
+                font-size: 1.2rem;
+                justify-content: center;
+            }}
+            .nav-links {{
+                display: flex;
+                gap: 8px;
+                overflow-x: auto;
+                white-space: nowrap;
+                -webkit-overflow-scrolling: touch;
+                padding-bottom: 4px;
+                scrollbar-width: none; /* Firefox */
+            }}
+            .nav-links::-webkit-scrollbar {{
+                display: none; /* Chrome/Safari */
+            }}
+            .nav-links a {{
+                padding: 6px 14px;
+                background: rgba(0, 0, 0, 0.04);
+                border-radius: 18px;
+                font-size: 0.85rem;
+                display: inline-block;
+                flex-shrink: 0;
+            }}
+            .nav-links a.active {{
+                background: var(--accent);
+                color: #ffffff;
+            }}
+            .hero-banner {{
+                margin: 16px 16px 12px;
+                padding: 24px 18px;
+                border-radius: 18px;
+            }}
+            .hero-banner h1 {{
+                font-size: 1.45rem;
+                margin-bottom: 8px;
+            }}
+            .hero-banner p {{
+                font-size: 0.88rem;
+                line-height: 1.55;
+            }}
+            .main-layout {{
+                margin: 16px auto 40px;
+                padding: 0 14px;
+                gap: 24px;
+            }}
+            .category-filter-bar {{
+                overflow-x: auto;
+                white-space: nowrap;
+                -webkit-overflow-scrolling: touch;
+                scrollbar-width: none;
+                padding: 8px 12px;
+                gap: 8px;
+            }}
+            .category-filter-bar::-webkit-scrollbar {{
+                display: none;
+            }}
+            .filter-btn {{
+                padding: 6px 14px;
+                font-size: 0.82rem;
+                flex-shrink: 0;
+                border-radius: 16px;
+            }}
+            .post-card {{
+                flex-direction: column;
+                border-radius: 16px;
+            }}
+            .post-card-thumb-link {{
+                width: 100%;
+                min-width: 100%;
+                height: 200px;
+            }}
+            .post-card-content {{
+                padding: 16px 18px;
+            }}
+            .post-title {{
+                font-size: 1.15rem;
+                line-height: 1.45;
+            }}
+            .post-desc {{
+                font-size: 0.88rem;
+                line-height: 1.55;
+                margin-bottom: 12px;
+            }}
+            .sidebar-widget {{
+                padding: 20px 16px;
+                border-radius: 16px;
+            }}
+            .container {{
+                margin: 16px 12px;
+                padding: 24px 16px;
+                border-radius: 16px;
+            }}
+            .page-header h1 {{
+                font-size: 1.5rem;
+            }}
+            .page-body table {{
+                display: block;
+                overflow-x: auto;
+                white-space: nowrap;
+            }}
+        }}
+
+        /* Google AdSense 広告枠スタイル */
+        .ad-container {{
+            margin: 24px 0;
+            text-align: center;
+        }}
+        .ad-notice {{
+            font-size: 0.72rem;
+            color: #9ca3af;
+            letter-spacing: 0.05em;
+            margin-bottom: 6px;
+            display: block;
+            text-transform: uppercase;
+        }}
+        .ad-box {{
+            background: rgba(255, 255, 255, 0.75);
+            border: 1px dashed #cbd5e1;
+            border-radius: 14px;
+            padding: 18px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: #94a3b8;
+            font-size: 0.82rem;
+            min-height: 110px;
+            transition: all 0.2s;
+        }}
+        .ad-box:hover {{
+            border-color: #94a3b8;
+            background: rgba(255, 255, 255, 0.95);
+        }}
+        .ad-infeed {{
+            margin: 16px 0;
+        }}
+        .ad-infeed .ad-box {{
+            min-height: 100px;
+        }}
+        .ad-sidebar .ad-box {{
+            min-height: 240px;
+        }}
+
         /* フッター */
         footer.site-footer {{
             background: #ffffff;
             border-top: 1px solid #e5e7eb;
-            padding: 40px 20px;
-            margin-top: 60px;
+            padding: 32px 16px;
+            margin-top: 50px;
             text-align: center;
             color: var(--text-muted);
-            font-size: 0.9rem;
+            font-size: 0.88rem;
         }}
         .footer-nav {{
             display: flex;
             justify-content: center;
-            gap: 20px;
+            gap: 16px;
             flex-wrap: wrap;
-            margin-bottom: 20px;
+            margin-bottom: 16px;
         }}
         .footer-nav a {{
             color: #4b5563;
             text-decoration: none;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             transition: color 0.2s;
         }}
         .footer-nav a:hover {{
@@ -920,6 +1135,15 @@ def build_portal():
                 <ul class="widget-links">
                     {sidebar_cat_html}
                 </ul>
+            </div>
+
+            <!-- AdSense サイドバー広告スロット -->
+            <div class="sidebar-widget ad-container ad-sidebar">
+                <span class="ad-notice">スポンサーリンク</span>
+                <div class="ad-box">
+                    <!-- Google AdSense Responsive / 300x250 Ad Code Here -->
+                    <span>広告スペース（AdSense レクタングル）</span>
+                </div>
             </div>
 
             <!-- サイト情報 -->
@@ -1003,6 +1227,11 @@ def build_portal():
                 }}
                 window.location.hash = 'category=' + encodeURIComponent(catName);
             }}
+
+            // インフィード広告の表示切り替え（0件または1件のみの場合は非表示）
+            document.querySelectorAll('.ad-infeed').forEach(ad => {{
+                ad.style.display = (visibleCount >= 2) ? 'block' : 'none';
+            }});
         }}
 
         // イベントリスナーの登録

@@ -247,14 +247,90 @@
             content: '📸 ';
         }
 
+        /* Google AdSense 広告枠スタイル */
+        .ad-container {
+            margin: 32px 0;
+            text-align: center;
+        }
+        .ad-notice {
+            font-size: 0.72rem;
+            color: #9ca3af;
+            letter-spacing: 0.05em;
+            margin-bottom: 6px;
+            display: block;
+            text-transform: uppercase;
+        }
+        .ad-box {
+            background: rgba(255, 255, 255, 0.75);
+            border: 1px dashed #cbd5e1;
+            border-radius: 14px;
+            padding: 18px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: #94a3b8;
+            font-size: 0.82rem;
+            min-height: 120px;
+            transition: all 0.2s;
+        }
+        .ad-box:hover {
+            border-color: #94a3b8;
+            background: rgba(255, 255, 255, 0.95);
+        }
+
         /* Responsive */
         @media (max-width: 768px) {
             .container {
-                margin: 20px 10px;
-                padding: 30px 20px;
+                margin: 14px 10px;
+                padding: 24px 18px;
+                border-radius: 16px;
             }
             h1 {
-                font-size: 1.8rem;
+                font-size: 1.5rem;
+                line-height: 1.4;
+            }
+            .meta-description {
+                font-size: 0.92rem;
+            }
+            .content {
+                font-size: 0.98rem;
+            }
+            .content h2 {
+                font-size: 1.35rem;
+                margin-top: 36px;
+            }
+            .content h3 {
+                font-size: 1.15rem;
+            }
+            .content table {
+                display: block;
+                overflow-x: auto;
+                white-space: nowrap;
+            }
+            .footer-links-wrap {
+                flex-direction: column;
+                align-items: stretch !important;
+                gap: 16px !important;
+            }
+            .footer-sub-links {
+                display: flex;
+                gap: 8px !important;
+                overflow-x: auto;
+                white-space: nowrap;
+                -webkit-overflow-scrolling: touch;
+                padding-bottom: 4px;
+                scrollbar-width: none;
+            }
+            .footer-sub-links::-webkit-scrollbar {
+                display: none;
+            }
+            .footer-sub-links a {
+                padding: 6px 12px;
+                background: rgba(0, 0, 0, 0.04);
+                border-radius: 14px;
+                font-size: 0.82rem !important;
+                flex-shrink: 0;
             }
         }
     </style>
@@ -263,7 +339,7 @@
 
 <div class="container">
     <div style="margin-bottom: 24px;">
-        <a href="index.html" style="display: inline-flex; align-items: center; gap: 6px; text-decoration: none; color: #4f46e5; font-weight: 600; font-size: 0.95rem; background: rgba(255,255,255,0.7); padding: 8px 16px; border-radius: 10px; border: 1px solid rgba(79,70,229,0.2); transition: all 0.2s;">← ブログトップに戻る</a>
+        <a href="index.html" style="display: inline-flex; align-items: center; gap: 6px; text-decoration: none; color: #4f46e5; font-weight: 600; font-size: 0.92rem; background: rgba(255,255,255,0.85); padding: 8px 16px; border-radius: 20px; border: 1px solid rgba(79,70,229,0.2); transition: all 0.2s; box-shadow: 0 2px 6px rgba(0,0,0,0.03);">← ブログトップに戻る</a>
     </div>
 
     <header>
@@ -271,16 +347,26 @@
         <p class="meta-description">ステンレス鍋で作る「バター醤油とうもろこしおこわ」のレシピをご紹介。もち米の水加減や火加減、焦げ付かせない蒸らしのコツ、とうもろこしの旨味を最大限に引き出す方法を解説します。</p>
         
         <div class="tags">
-            <span class="tag">とうもろこしおこわ</span><span class="tag">バター醤油 とうもろこしご飯</span><span class="tag">ステンレス鍋 ご飯 炊き方</span><span class="tag">もち米 とうもろこし レシピ</span><span class="tag">ステンレス鍋 もち米</span>
+            <span class="tag">#料理レシピ</span><span class="tag">#時短料理</span>
         </div>
 
-        <a href="https://www.youtube.com/watch?v=jPifRImSvv0" target="_blank" class="source-link">🔗 元のYouTube動画を見る</a>
+        <a href="https://www.youtube.com/watch?v=jPifRImSvv0" target="_blank" class="source-link">▶ YouTubeで元動画を見る</a>
 
         <div class="hero-image"><img src="jPifRImSvv0_frames/frame_00069s.jpg" alt="動画サムネイル" loading="lazy"></div>
     </header>
 
+    <!-- 記事上部 AdSense 広告枠 -->
+    <div class="ad-container ad-article-top">
+        <span class="ad-notice">スポンサーリンク</span>
+        <div class="ad-box">
+            <!-- Google AdSense Responsive Ad Code Here -->
+            <span>広告スペース（AdSense レスポンシブ広告）</span>
+        </div>
+    </div>
+
     <div class="content">
-        <p>旬のとうもろこしを使った料理の中でも、特におすすめなのが「バター醤油とうもろこしおこわ」です。</p>
+        <p>```</p>
+<p>旬のとうもろこしを使った料理の中でも、特におすすめなのが「バター醤油とうもろこしおこわ」です。</p>
 <p>結論からお伝えすると、<strong>高密閉・高蓄熱なステンレス鍋を使えば、炊飯器のにおい移りを気にせず、短時間でもっちり香ばしい最高のおこわが炊き上がります。</strong></p>
 <p>今回は、もち米の水加減や火加減のコツから、とうもろこしの旨味を余すことなく引き出す手順まで詳しく解説します。</p>
 <hr />
@@ -339,7 +425,7 @@
 <h3>4. 加熱・炊飯（中弱火→弱火で10分）</h3>
 <p>お鍋に蓋をして中弱火で加熱します。沸騰してフタの隙間からしっかり蒸気が上がってきたら、<strong>弱火に落として10分間加熱</strong>します。</p>
 <h3>5. 蒸らして仕上げ（蒸らし2〜3分＋バター）</h3>
-<p>10分経ったら火を止め、<strong>フタをしたまま2〜3分蒸らします</strong>。
+<p>10分経ったら火を止め、<strong>フタをしたまま2〜3分蒸らします</strong>。<br />
 蒸らし終わったらフタを開け、とうもろこしの芯を取り出します。仕上げにバター20gを加え、お鍋に残った蒸気と熱で溶かしながら、全体をサッと混ぜ合わせれば完成です。</p>
 <hr />
 <h2>美味しく仕上げるためのワンポイント</h2>
@@ -385,9 +471,18 @@
 </ul>
     </div>
 
-    <div style="margin-top: 40px; padding-top: 24px; border-top: 1px solid rgba(0,0,0,0.08); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;">
+    <!-- 記事下部 AdSense 広告枠 -->
+    <div class="ad-container ad-article-bottom">
+        <span class="ad-notice">スポンサーリンク</span>
+        <div class="ad-box">
+            <!-- Google AdSense Matched Content / Bottom Ad Code Here -->
+            <span>広告スペース（AdSense 記事下広告）</span>
+        </div>
+    </div>
+
+    <div class="footer-links-wrap" style="margin-top: 40px; padding-top: 24px; border-top: 1px solid rgba(0,0,0,0.08); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;">
         <a href="index.html" style="display: inline-flex; align-items: center; gap: 6px; text-decoration: none; color: #4f46e5; font-weight: 600;">← トップページに戻る</a>
-        <div style="display: flex; gap: 16px; font-size: 0.9rem;">
+        <div class="footer-sub-links" style="display: flex; gap: 16px; font-size: 0.9rem;">
             <a href="pages/about.html" style="text-decoration: none; color: #6b7280;">このサイトについて</a>
             <a href="pages/contact.html" style="text-decoration: none; color: #6b7280;">お問い合わせ</a>
             <a href="pages/privacy_policy.html" style="text-decoration: none; color: #6b7280;">プライバシーポリシー</a>

@@ -247,14 +247,90 @@
             content: '📸 ';
         }
 
+        /* Google AdSense 広告枠スタイル */
+        .ad-container {
+            margin: 32px 0;
+            text-align: center;
+        }
+        .ad-notice {
+            font-size: 0.72rem;
+            color: #9ca3af;
+            letter-spacing: 0.05em;
+            margin-bottom: 6px;
+            display: block;
+            text-transform: uppercase;
+        }
+        .ad-box {
+            background: rgba(255, 255, 255, 0.75);
+            border: 1px dashed #cbd5e1;
+            border-radius: 14px;
+            padding: 18px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: #94a3b8;
+            font-size: 0.82rem;
+            min-height: 120px;
+            transition: all 0.2s;
+        }
+        .ad-box:hover {
+            border-color: #94a3b8;
+            background: rgba(255, 255, 255, 0.95);
+        }
+
         /* Responsive */
         @media (max-width: 768px) {
             .container {
-                margin: 20px 10px;
-                padding: 30px 20px;
+                margin: 14px 10px;
+                padding: 24px 18px;
+                border-radius: 16px;
             }
             h1 {
-                font-size: 1.8rem;
+                font-size: 1.5rem;
+                line-height: 1.4;
+            }
+            .meta-description {
+                font-size: 0.92rem;
+            }
+            .content {
+                font-size: 0.98rem;
+            }
+            .content h2 {
+                font-size: 1.35rem;
+                margin-top: 36px;
+            }
+            .content h3 {
+                font-size: 1.15rem;
+            }
+            .content table {
+                display: block;
+                overflow-x: auto;
+                white-space: nowrap;
+            }
+            .footer-links-wrap {
+                flex-direction: column;
+                align-items: stretch !important;
+                gap: 16px !important;
+            }
+            .footer-sub-links {
+                display: flex;
+                gap: 8px !important;
+                overflow-x: auto;
+                white-space: nowrap;
+                -webkit-overflow-scrolling: touch;
+                padding-bottom: 4px;
+                scrollbar-width: none;
+            }
+            .footer-sub-links::-webkit-scrollbar {
+                display: none;
+            }
+            .footer-sub-links a {
+                padding: 6px 12px;
+                background: rgba(0, 0, 0, 0.04);
+                border-radius: 14px;
+                font-size: 0.82rem !important;
+                flex-shrink: 0;
             }
         }
     </style>
@@ -263,7 +339,7 @@
 
 <div class="container">
     <div style="margin-bottom: 24px;">
-        <a href="index.html" style="display: inline-flex; align-items: center; gap: 6px; text-decoration: none; color: #4f46e5; font-weight: 600; font-size: 0.95rem; background: rgba(255,255,255,0.7); padding: 8px 16px; border-radius: 10px; border: 1px solid rgba(79,70,229,0.2); transition: all 0.2s;">← ブログトップに戻る</a>
+        <a href="index.html" style="display: inline-flex; align-items: center; gap: 6px; text-decoration: none; color: #4f46e5; font-weight: 600; font-size: 0.92rem; background: rgba(255,255,255,0.85); padding: 8px 16px; border-radius: 20px; border: 1px solid rgba(79,70,229,0.2); transition: all 0.2s; box-shadow: 0 2px 6px rgba(0,0,0,0.03);">← ブログトップに戻る</a>
     </div>
 
     <header>
@@ -271,13 +347,22 @@
         <p class="meta-description">PFASフリーで注目のコレール（CORELLE）フライパンを、強火で1年間使い続けた耐久実験の結果を解説。焦げ付く原因や寿命を延ばす正しい火加減、フライパン選びの失敗を減らす根本的な解決策まで紹介します。</p>
         
         <div class="tags">
-            <span class="tag">コレール フライパン 評判</span><span class="tag">コレール フライパン 寿命</span><span class="tag">コレール フライパン くっつく</span><span class="tag">脱フッ素 フライパン 耐久性</span><span class="tag">PFASフリー フライパン 比較</span><span class="tag">ステンレス フライパン 焦げ付き</span>
+            <span class="tag">#料理レシピ</span><span class="tag">#時短料理</span>
         </div>
 
-        <a href="https://www.youtube.com/watch?v=5pEDLLi64Mg" target="_blank" class="source-link">🔗 元のYouTube動画を見る</a>
+        <a href="https://www.youtube.com/watch?v=5pEDLLi64Mg" target="_blank" class="source-link">▶ YouTubeで元動画を見る</a>
 
         <div class="hero-image"><img src="5pEDLLi64Mg_frames/frame_00026s.jpg" alt="動画サムネイル" loading="lazy"></div>
     </header>
+
+    <!-- 記事上部 AdSense 広告枠 -->
+    <div class="ad-container ad-article-top">
+        <span class="ad-notice">スポンサーリンク</span>
+        <div class="ad-box">
+            <!-- Google AdSense Responsive Ad Code Here -->
+            <span>広告スペース（AdSense レスポンシブ広告）</span>
+        </div>
+    </div>
 
     <div class="content">
         <p>フッ素樹脂（テフロン）を使わない安全なフライパンとして人気の「コレール（CORELLE）フライパン」。購入を検討する中で、「本当にくっつかないのか」「どれくらい長持ちするのか」気になっている方も多いのではないでしょうか。</p>
@@ -337,11 +422,11 @@
 
 <p>コレールフライパンをできるだけ長く愛用したい場合は、以下のポイントを徹底することが重要です。</p>
 <ul>
-<li><strong>強火を避け、中火〜弱火で調理する</strong>
+<li><strong>強火を避け、中火〜弱火で調理する</strong><br />
   IHクッキングヒーターを使用する場合は、1000W以上の高出力を避け、<strong>800W程度の中火〜弱火</strong>で丁寧に扱いましょう。</li>
-<li><strong>空焚きをしない</strong>
+<li><strong>空焚きをしない</strong><br />
   高温での空焚きはコーティングを急速に傷める原因になります。</li>
-<li><strong>柔らかいスポンジとお湯で洗う</strong>
+<li><strong>柔らかいスポンジとお湯で洗う</strong><br />
   汚れは放置せず、使用後に温水で浮かせてから柔らかいスポンジで優しく洗い流します。金たわしなどで擦るとコーティングに傷がつきます。</li>
 </ul>
 <p>火加減さえ適切にコントロールできれば、寿命を大きく延ばすことが可能です。</p>
@@ -402,9 +487,18 @@
 <p>もし「買い替えの手間やコーティングの劣化から解放されたい」と考えているなら、予熱の技術をマスターして<strong>オールステンレスフライパン</strong>へ移行することを検討してみてはいかがでしょうか。</p>
     </div>
 
-    <div style="margin-top: 40px; padding-top: 24px; border-top: 1px solid rgba(0,0,0,0.08); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;">
+    <!-- 記事下部 AdSense 広告枠 -->
+    <div class="ad-container ad-article-bottom">
+        <span class="ad-notice">スポンサーリンク</span>
+        <div class="ad-box">
+            <!-- Google AdSense Matched Content / Bottom Ad Code Here -->
+            <span>広告スペース（AdSense 記事下広告）</span>
+        </div>
+    </div>
+
+    <div class="footer-links-wrap" style="margin-top: 40px; padding-top: 24px; border-top: 1px solid rgba(0,0,0,0.08); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;">
         <a href="index.html" style="display: inline-flex; align-items: center; gap: 6px; text-decoration: none; color: #4f46e5; font-weight: 600;">← トップページに戻る</a>
-        <div style="display: flex; gap: 16px; font-size: 0.9rem;">
+        <div class="footer-sub-links" style="display: flex; gap: 16px; font-size: 0.9rem;">
             <a href="pages/about.html" style="text-decoration: none; color: #6b7280;">このサイトについて</a>
             <a href="pages/contact.html" style="text-decoration: none; color: #6b7280;">お問い合わせ</a>
             <a href="pages/privacy_policy.html" style="text-decoration: none; color: #6b7280;">プライバシーポリシー</a>

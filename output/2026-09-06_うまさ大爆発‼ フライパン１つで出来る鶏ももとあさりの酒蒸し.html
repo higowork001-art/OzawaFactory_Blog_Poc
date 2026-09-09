@@ -247,14 +247,90 @@
             content: '📸 ';
         }
 
+        /* Google AdSense 広告枠スタイル */
+        .ad-container {
+            margin: 32px 0;
+            text-align: center;
+        }
+        .ad-notice {
+            font-size: 0.72rem;
+            color: #9ca3af;
+            letter-spacing: 0.05em;
+            margin-bottom: 6px;
+            display: block;
+            text-transform: uppercase;
+        }
+        .ad-box {
+            background: rgba(255, 255, 255, 0.75);
+            border: 1px dashed #cbd5e1;
+            border-radius: 14px;
+            padding: 18px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: #94a3b8;
+            font-size: 0.82rem;
+            min-height: 120px;
+            transition: all 0.2s;
+        }
+        .ad-box:hover {
+            border-color: #94a3b8;
+            background: rgba(255, 255, 255, 0.95);
+        }
+
         /* Responsive */
         @media (max-width: 768px) {
             .container {
-                margin: 20px 10px;
-                padding: 30px 20px;
+                margin: 14px 10px;
+                padding: 24px 18px;
+                border-radius: 16px;
             }
             h1 {
-                font-size: 1.8rem;
+                font-size: 1.5rem;
+                line-height: 1.4;
+            }
+            .meta-description {
+                font-size: 0.92rem;
+            }
+            .content {
+                font-size: 0.98rem;
+            }
+            .content h2 {
+                font-size: 1.35rem;
+                margin-top: 36px;
+            }
+            .content h3 {
+                font-size: 1.15rem;
+            }
+            .content table {
+                display: block;
+                overflow-x: auto;
+                white-space: nowrap;
+            }
+            .footer-links-wrap {
+                flex-direction: column;
+                align-items: stretch !important;
+                gap: 16px !important;
+            }
+            .footer-sub-links {
+                display: flex;
+                gap: 8px !important;
+                overflow-x: auto;
+                white-space: nowrap;
+                -webkit-overflow-scrolling: touch;
+                padding-bottom: 4px;
+                scrollbar-width: none;
+            }
+            .footer-sub-links::-webkit-scrollbar {
+                display: none;
+            }
+            .footer-sub-links a {
+                padding: 6px 12px;
+                background: rgba(0, 0, 0, 0.04);
+                border-radius: 14px;
+                font-size: 0.82rem !important;
+                flex-shrink: 0;
             }
         }
     </style>
@@ -263,7 +339,7 @@
 
 <div class="container">
     <div style="margin-bottom: 24px;">
-        <a href="index.html" style="display: inline-flex; align-items: center; gap: 6px; text-decoration: none; color: #4f46e5; font-weight: 600; font-size: 0.95rem; background: rgba(255,255,255,0.7); padding: 8px 16px; border-radius: 10px; border: 1px solid rgba(79,70,229,0.2); transition: all 0.2s;">← ブログトップに戻る</a>
+        <a href="index.html" style="display: inline-flex; align-items: center; gap: 6px; text-decoration: none; color: #4f46e5; font-weight: 600; font-size: 0.92rem; background: rgba(255,255,255,0.85); padding: 8px 16px; border-radius: 20px; border: 1px solid rgba(79,70,229,0.2); transition: all 0.2s; box-shadow: 0 2px 6px rgba(0,0,0,0.03);">← ブログトップに戻る</a>
     </div>
 
     <header>
@@ -271,13 +347,22 @@
         <p class="meta-description">ステンレスフライパンでお肉がくっつくお悩みを解決！水滴を使った正しい予熱テクニックと、皮パリパリでジューシーな鶏もも肉とあさりの酒蒸しレシピを紹介します。</p>
         
         <div class="tags">
-            <span class="tag">ステンレスフライパン 鶏肉 くっつかない</span><span class="tag">鶏肉 あさり 酒蒸し</span><span class="tag">ステンレス鍋 予熱 方法</span><span class="tag">鶏もも肉 おつまみ ワイン</span><span class="tag">ステンレスフライパン 焼き方</span>
+            <span class="tag">#料理レシピ</span><span class="tag">#時短料理</span>
         </div>
 
-        <a href="https://www.youtube.com/watch?v=wliNbsb8zoo" target="_blank" class="source-link">🔗 元のYouTube動画を見る</a>
+        <a href="https://www.youtube.com/watch?v=wliNbsb8zoo" target="_blank" class="source-link">▶ YouTubeで元動画を見る</a>
 
         <div class="hero-image"><img src="wliNbsb8zoo_frames/frame_00049s.jpg" alt="動画サムネイル" loading="lazy"></div>
     </header>
+
+    <!-- 記事上部 AdSense 広告枠 -->
+    <div class="ad-container ad-article-top">
+        <span class="ad-notice">スポンサーリンク</span>
+        <div class="ad-box">
+            <!-- Google AdSense Responsive Ad Code Here -->
+            <span>広告スペース（AdSense レスポンシブ広告）</span>
+        </div>
+    </div>
 
     <div class="content">
         <p>「ステンレスフライパンでお肉を焼くとくっついてしまう」「皮がパリッと焼けない」とお悩みではありませんか？</p>
@@ -394,9 +479,18 @@
 <p>鶏肉のイノシン酸にあさりのグルタミン酸を掛け合わせた酒蒸しは、簡単でありながら本格的な味わいを楽しめるレシピです。ぜひご家庭のステンレスフライパンで試してみてください！</p>
     </div>
 
-    <div style="margin-top: 40px; padding-top: 24px; border-top: 1px solid rgba(0,0,0,0.08); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;">
+    <!-- 記事下部 AdSense 広告枠 -->
+    <div class="ad-container ad-article-bottom">
+        <span class="ad-notice">スポンサーリンク</span>
+        <div class="ad-box">
+            <!-- Google AdSense Matched Content / Bottom Ad Code Here -->
+            <span>広告スペース（AdSense 記事下広告）</span>
+        </div>
+    </div>
+
+    <div class="footer-links-wrap" style="margin-top: 40px; padding-top: 24px; border-top: 1px solid rgba(0,0,0,0.08); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;">
         <a href="index.html" style="display: inline-flex; align-items: center; gap: 6px; text-decoration: none; color: #4f46e5; font-weight: 600;">← トップページに戻る</a>
-        <div style="display: flex; gap: 16px; font-size: 0.9rem;">
+        <div class="footer-sub-links" style="display: flex; gap: 16px; font-size: 0.9rem;">
             <a href="pages/about.html" style="text-decoration: none; color: #6b7280;">このサイトについて</a>
             <a href="pages/contact.html" style="text-decoration: none; color: #6b7280;">お問い合わせ</a>
             <a href="pages/privacy_policy.html" style="text-decoration: none; color: #6b7280;">プライバシーポリシー</a>
