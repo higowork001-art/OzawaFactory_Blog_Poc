@@ -22,6 +22,10 @@
         * {
             box-sizing: border-box;
         }
+        html, body {
+            overflow-x: hidden;
+            max-width: 100vw;
+        }
         body {
             font-family: 'Inter', 'Noto Sans JP', sans-serif;
             color: var(--text-main);
@@ -63,7 +67,8 @@
         }
         .nav-links {
             display: flex;
-            gap: 22px;
+            flex-wrap: wrap;
+            gap: 10px 18px;
             list-style: none;
             margin: 0;
             padding: 0;
@@ -74,6 +79,7 @@
             font-size: 0.95rem;
             font-weight: 600;
             transition: color 0.2s;
+            white-space: nowrap;
         }
         .nav-links a:hover, .nav-links a.active {
             color: var(--accent);
@@ -90,6 +96,8 @@
             text-align: center;
             box-shadow: 0 15px 35px rgba(37, 99, 235, 0.2);
             backdrop-filter: blur(8px);
+            overflow: hidden;
+            word-break: break-word;
         }
         .hero-banner h1 {
             margin: 0 0 12px 0;
@@ -139,10 +147,10 @@
         .category-filter-bar {
             display: flex;
             flex-wrap: wrap;
-            gap: 10px;
+            gap: 8px;
             background: rgba(255, 255, 255, 0.7);
             backdrop-filter: blur(8px);
-            padding: 10px 16px;
+            padding: 10px 14px;
             border-radius: 16px;
             border: 1px solid var(--glass-border);
             box-shadow: 0 2px 8px rgba(0,0,0,0.03);
@@ -151,11 +159,12 @@
             background: #ffffff;
             border: 1px solid #d1d5db;
             color: #4b5563;
-            padding: 8px 18px;
+            padding: 7px 14px;
             border-radius: 20px;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             font-weight: 600;
             cursor: pointer;
+            white-space: nowrap;
             transition: all 0.2s;
         }
         .filter-btn:hover {
@@ -476,114 +485,130 @@
             color: #ffffff;
         }
 
+        /* ページネーション */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 12px;
+            margin-top: 28px;
+            padding: 16px 0;
+        }
+        .page-btn {
+            background: #ffffff;
+            border: 1px solid #d1d5db;
+            color: #4b5563;
+            padding: 10px 20px;
+            border-radius: 12px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .page-btn:hover:not(:disabled) {
+            background: var(--accent);
+            color: #ffffff;
+            border-color: var(--accent);
+        }
+        .page-btn:disabled {
+            opacity: 0.4;
+            cursor: default;
+        }
+        .page-info {
+            font-size: 0.88rem;
+            color: var(--text-muted);
+            font-weight: 600;
+        }
+
         /* レスポンシブ & モバイル最適化 */
         @media (max-width: 768px) {
             .nav-inner {
                 padding: 12px 16px;
                 flex-direction: column;
                 align-items: stretch;
-                gap: 10px;
+                gap: 8px;
             }
             .site-logo {
-                font-size: 1.2rem;
+                font-size: 1.15rem;
                 justify-content: center;
             }
             .nav-links {
                 display: flex;
-                gap: 8px;
-                overflow-x: auto;
-                white-space: nowrap;
-                -webkit-overflow-scrolling: touch;
-                padding-bottom: 4px;
-                scrollbar-width: none; /* Firefox */
-            }
-            .nav-links::-webkit-scrollbar {
-                display: none; /* Chrome/Safari */
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 6px;
+                padding-bottom: 2px;
             }
             .nav-links a {
-                padding: 6px 14px;
+                padding: 5px 12px;
                 background: rgba(0, 0, 0, 0.04);
-                border-radius: 18px;
-                font-size: 0.85rem;
+                border-radius: 16px;
+                font-size: 0.78rem;
                 display: inline-block;
-                flex-shrink: 0;
             }
             .nav-links a.active {
                 background: var(--accent);
                 color: #ffffff;
             }
             .hero-banner {
-                margin: 16px 16px 12px;
-                padding: 24px 18px;
-                border-radius: 18px;
+                margin: 12px 12px 10px;
+                padding: 20px 16px;
+                border-radius: 16px;
             }
             .hero-banner h1 {
-                font-size: 1.45rem;
-                margin-bottom: 8px;
+                font-size: 1.3rem;
+                margin-bottom: 6px;
             }
             .hero-banner p {
-                font-size: 0.88rem;
-                line-height: 1.55;
+                font-size: 0.82rem;
+                line-height: 1.5;
             }
             .main-layout {
-                margin: 16px auto 40px;
-                padding: 0 14px;
-                gap: 24px;
+                margin: 12px auto 32px;
+                padding: 0 12px;
+                gap: 20px;
             }
             .category-filter-bar {
-                overflow-x: auto;
-                white-space: nowrap;
-                -webkit-overflow-scrolling: touch;
-                scrollbar-width: none;
-                padding: 8px 12px;
-                gap: 8px;
-            }
-            .category-filter-bar::-webkit-scrollbar {
-                display: none;
+                padding: 8px 10px;
+                gap: 6px;
             }
             .filter-btn {
-                padding: 6px 14px;
-                font-size: 0.82rem;
-                flex-shrink: 0;
-                border-radius: 16px;
+                padding: 5px 10px;
+                font-size: 0.76rem;
+                border-radius: 14px;
             }
             .post-card {
                 flex-direction: column;
-                border-radius: 16px;
+                border-radius: 14px;
             }
             .post-card-thumb-link {
                 width: 100%;
                 min-width: 100%;
-                height: 200px;
+                height: 180px;
             }
             .post-card-content {
-                padding: 16px 18px;
+                padding: 14px 16px;
             }
             .post-title {
-                font-size: 1.15rem;
-                line-height: 1.45;
+                font-size: 1.05rem;
+                line-height: 1.4;
             }
             .post-desc {
-                font-size: 0.88rem;
-                line-height: 1.55;
-                margin-bottom: 12px;
+                font-size: 0.84rem;
+                line-height: 1.5;
+                margin-bottom: 10px;
             }
             .sidebar-widget {
-                padding: 20px 16px;
-                border-radius: 16px;
+                padding: 18px 14px;
+                border-radius: 14px;
             }
             .container {
-                margin: 16px 12px;
-                padding: 24px 16px;
-                border-radius: 16px;
+                margin: 12px 10px;
+                padding: 20px 14px;
+                border-radius: 14px;
             }
             .page-header h1 {
-                font-size: 1.5rem;
-            }
-            .page-body table {
-                display: block;
-                overflow-x: auto;
-                white-space: nowrap;
+                font-size: 1.4rem;
             }
         }
 
@@ -667,6 +692,7 @@
                 <li><a href="pages/contact.html">お問い合わせ</a></li>
                 <li><a href="pages/privacy_policy.html">プライバシーポリシー</a></li>
                 <li><a href="pages/operator_info.html">運営者情報</a></li>
+                <li><a href="#shop-section" style="color: #d97706;">🛍️ オリジナル商品</a></li>
             </ul>
         </div>
     </nav>
@@ -792,6 +818,13 @@
         
             </div>
 
+            <!-- ページネーション -->
+            <div class="pagination" id="pagination">
+                <button type="button" class="page-btn" id="prev-page-btn" disabled>← 前のページ</button>
+                <span class="page-info" id="page-info"></span>
+                <button type="button" class="page-btn" id="next-page-btn">次のページ →</button>
+            </div>
+
             <!-- 0件時の表示 -->
             <div id="no-results-msg" class="no-results">
                 <div style="font-size: 2.5rem; margin-bottom: 8px;">🔍</div>
@@ -811,13 +844,7 @@
                 <a href="pages/about.html" class="read-more" style="justify-content: center;">詳しいプロフィール <span>→</span></a>
             </div>
 
-            <!-- カテゴリ（絞り込みリンク） -->
-            <div class="sidebar-widget">
-                <h3 class="widget-title">📂 カテゴリで絞り込み</h3>
-                <ul class="widget-links">
-                    <li><a href="javascript:void(0)" class="cat-link active" data-filter="all">すべて表示 <span>5</span></a></li><li><a href="javascript:void(0)" class="cat-link" data-filter="レシピ・料理">レシピ・料理 <span>3</span></a></li><li><a href="javascript:void(0)" class="cat-link" data-filter="調理器具・器具活用">調理器具・器具活用 <span>1</span></a></li><li><a href="javascript:void(0)" class="cat-link" data-filter="レビュー・検証">レビュー・検証 <span>1</span></a></li>
-                </ul>
-            </div>
+
 
             <!-- AdSense サイドバー広告スロット -->
             <div class="sidebar-widget ad-container ad-sidebar">
@@ -840,7 +867,7 @@
             </div>
 
             <!-- 大澤チャンネルのオリジナル商品サイト -->
-            <div class="sidebar-widget shop-widget">
+            <div id="shop-section" class="sidebar-widget shop-widget">
                 <h3 class="widget-title">🛍️ オリジナル商品</h3>
                 <div class="shop-card">
                     <p class="shop-label">●大澤チャンネルのオリジナル商品サイト</p>
@@ -865,24 +892,66 @@
         <p>© 2026 料理男子のおうちごはんレシピ All Rights Reserved.</p>
     </footer>
 
-    <!-- カテゴリ絞り込みJavaScript -->
+    <!-- カテゴリ絞り込み＋ページネーションJavaScript -->
     <script>
-        function applyCategoryFilter(catName) {
-            const cards = document.querySelectorAll('.post-card');
-            let visibleCount = 0;
+        const ITEMS_PER_PAGE = 5;
+        let currentPage = 1;
+        let currentFilter = 'all';
 
-            cards.forEach(card => {
-                const cardCat = card.getAttribute('data-category');
-                if (catName === 'all' || cardCat === catName) {
-                    card.style.display = 'flex';
-                    visibleCount++;
-                } else {
-                    card.style.display = 'none';
-                }
+        function getVisibleCards() {
+            const cards = Array.from(document.querySelectorAll('.post-card'));
+            if (currentFilter === 'all') return cards;
+            return cards.filter(c => c.getAttribute('data-category') === currentFilter);
+        }
+
+        function applyPagination() {
+            const allCards = Array.from(document.querySelectorAll('.post-card'));
+            const visibleCards = getVisibleCards();
+            const totalPages = Math.max(1, Math.ceil(visibleCards.length / ITEMS_PER_PAGE));
+            if (currentPage > totalPages) currentPage = totalPages;
+            const startIdx = (currentPage - 1) * ITEMS_PER_PAGE;
+            const endIdx = startIdx + ITEMS_PER_PAGE;
+
+            allCards.forEach(card => { card.style.display = 'none'; });
+            visibleCards.forEach((card, i) => {
+                card.style.display = (i >= startIdx && i < endIdx) ? 'flex' : 'none';
             });
 
-            // ボタン・リンクのactiveクラス切り替え
-            document.querySelectorAll('.filter-btn, .cat-link').forEach(el => {
+            // インフィード広告: 表示ページの記事が2つ以上の場合のみ表示
+            const pageCards = visibleCards.slice(startIdx, endIdx);
+            document.querySelectorAll('.ad-infeed').forEach(ad => {
+                ad.style.display = (pageCards.length >= 2 && currentPage === 1) ? 'block' : 'none';
+            });
+
+            // ページネーションUI更新
+            const pagination = document.getElementById('pagination');
+            const prevBtn = document.getElementById('prev-page-btn');
+            const nextBtn = document.getElementById('next-page-btn');
+            const pageInfo = document.getElementById('page-info');
+            const noResults = document.getElementById('no-results-msg');
+
+            if (visibleCards.length === 0) {
+                pagination.style.display = 'none';
+                if (noResults) noResults.style.display = 'block';
+            } else {
+                if (noResults) noResults.style.display = 'none';
+                if (totalPages <= 1) {
+                    pagination.style.display = 'none';
+                } else {
+                    pagination.style.display = 'flex';
+                    pageInfo.textContent = currentPage + ' / ' + totalPages + ' ページ';
+                    prevBtn.disabled = (currentPage <= 1);
+                    nextBtn.disabled = (currentPage >= totalPages);
+                }
+            }
+        }
+
+        function applyCategoryFilter(catName) {
+            currentFilter = catName;
+            currentPage = 1;
+
+            // ボタンのactiveクラス切り替え
+            document.querySelectorAll('.filter-btn').forEach(el => {
                 if (el.getAttribute('data-filter') === catName) {
                     el.classList.add('active');
                 } else {
@@ -892,33 +961,26 @@
 
             // 状態バナーの更新
             const banner = document.getElementById('filter-status-banner');
-            const noResults = document.getElementById('no-results-msg');
+            const visibleCards = getVisibleCards();
 
             if (catName === 'all') {
                 banner.style.display = 'none';
-                if (noResults) noResults.style.display = 'none';
-                if (window.location.hash) {
+                if (window.location.hash && window.location.hash.startsWith('#category=')) {
                     history.replaceState(null, '', window.location.pathname);
                 }
             } else {
                 banner.style.display = 'flex';
                 document.getElementById('current-cat-name').textContent = catName;
-                document.getElementById('filtered-count').textContent = visibleCount;
-                if (noResults) {
-                    noResults.style.display = (visibleCount === 0) ? 'block' : 'none';
-                }
+                document.getElementById('filtered-count').textContent = visibleCards.length;
                 window.location.hash = 'category=' + encodeURIComponent(catName);
             }
 
-            // インフィード広告の表示切り替え（0件または1件のみの場合は非表示）
-            document.querySelectorAll('.ad-infeed').forEach(ad => {
-                ad.style.display = (visibleCount >= 2) ? 'block' : 'none';
-            });
+            applyPagination();
         }
 
         // イベントリスナーの登録
         document.addEventListener('DOMContentLoaded', () => {
-            // タブボタンとサイドバーリンクのクリック
+            // タブボタンのクリック
             document.querySelectorAll('[data-filter]').forEach(el => {
                 el.addEventListener('click', (e) => {
                     e.preventDefault();
@@ -936,11 +998,21 @@
                 });
             }
 
+            // ページネーションボタン
+            document.getElementById('prev-page-btn').addEventListener('click', () => {
+                if (currentPage > 1) { currentPage--; applyPagination(); window.scrollTo(0, 0); }
+            });
+            document.getElementById('next-page-btn').addEventListener('click', () => {
+                currentPage++; applyPagination(); window.scrollTo(0, 0);
+            });
+
             // 初期ロード時のURLハッシュ判定
             const hash = window.location.hash;
             if (hash && hash.startsWith('#category=')) {
                 const targetCat = decodeURIComponent(hash.replace('#category=', ''));
                 applyCategoryFilter(targetCat);
+            } else {
+                applyPagination();
             }
         });
 
@@ -950,7 +1022,7 @@
             if (hash && hash.startsWith('#category=')) {
                 const targetCat = decodeURIComponent(hash.replace('#category=', ''));
                 applyCategoryFilter(targetCat);
-            } else {
+            } else if (!hash || hash === '#') {
                 applyCategoryFilter('all');
             }
         });
